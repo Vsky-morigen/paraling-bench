@@ -1,0 +1,27 @@
+{
+  "model_id": "SIMULATION_ONLY",
+  "versions": {
+    "all": "mock"
+  },
+  "simulation": true,
+  "generate": [
+    "python",
+    "tests/mock_service.py",
+    "generate"
+  ],
+  "asr": [
+    "python",
+    "tests/mock_service.py",
+    "asr"
+  ],
+  "jev": [
+    "python",
+    "tests/mock_service.py",
+    "jev"
+  ],
+  "judge": [
+    "python",
+    "tests/mock_service.py",
+    "judge"
+  ]
+}

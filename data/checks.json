@@ -1,0 +1,702 @@
+{
+  "Q01": {
+    "requirement_mode": "required",
+    "feature": "stress",
+    "checks": [
+      {
+        "id": "Q01.core",
+        "kind": "core",
+        "requirement": "突出“先”，强调核对必须在发送之前完成。"
+      }
+    ]
+  },
+  "Q02": {
+    "requirement_mode": "required",
+    "feature": "stress",
+    "checks": [
+      {
+        "id": "Q02.core",
+        "kind": "core",
+        "requirement": "突出“三遍”和“不能碰”，表现反复提醒仍被无视的不满。"
+      }
+    ]
+  },
+  "Q03": {
+    "requirement_mode": "required",
+    "feature": "stress",
+    "checks": [
+      {
+        "id": "Q03.core",
+        "kind": "core",
+        "requirement": "突出“任何人”，让对方听出没有例外。"
+      }
+    ]
+  },
+  "Q04": {
+    "requirement_mode": "required",
+    "feature": "stress",
+    "checks": [
+      {
+        "id": "Q04.core",
+        "kind": "core",
+        "requirement": "突出“东门”，明确纠正集合地点。"
+      }
+    ]
+  },
+  "Q05": {
+    "requirement_mode": "required",
+    "feature": "stress",
+    "checks": [
+      {
+        "id": "Q05.core",
+        "kind": "core",
+        "requirement": "突出“才”，表现对年龄评价的不服气。"
+      }
+    ]
+  },
+  "Q06": {
+    "requirement_mode": "required",
+    "feature": "speech_rate",
+    "checks": [
+      {
+        "id": "Q06.core",
+        "kind": "core",
+        "requirement": "用舒缓的慢语速引导，让人跟得上。"
+      }
+    ]
+  },
+  "Q07": {
+    "requirement_mode": "required",
+    "feature": "speech_rate",
+    "checks": [
+      {
+        "id": "Q07.core",
+        "kind": "core",
+        "requirement": "语速快一些，保持字词清楚。"
+      }
+    ]
+  },
+  "Q08": {
+    "requirement_mode": "required",
+    "feature": "speech_rate",
+    "checks": [
+      {
+        "id": "Q08.core",
+        "kind": "core",
+        "requirement": "从容慢说，不要把每个字拖成长音。"
+      }
+    ]
+  },
+  "Q09": {
+    "requirement_mode": "required",
+    "feature": "speech_rate",
+    "checks": [
+      {
+        "id": "Q09.core",
+        "kind": "core",
+        "requirement": "急促、较快地说，保持每句话清楚。"
+      }
+    ]
+  },
+  "Q10": {
+    "requirement_mode": "required",
+    "feature": "speech_rate",
+    "checks": [
+      {
+        "id": "Q10.core",
+        "kind": "core",
+        "requirement": "前半段稍快，从“我重新说”开始明显放慢。"
+      }
+    ]
+  },
+  "Q11": {
+    "requirement_mode": "required",
+    "feature": "lengthening",
+    "checks": [
+      {
+        "id": "Q11.core",
+        "kind": "core",
+        "requirement": "把名字里的“雨”有声拉长，像隔着院子喊人。"
+      }
+    ]
+  },
+  "Q12": {
+    "requirement_mode": "required",
+    "feature": "lengthening",
+    "checks": [
+      {
+        "id": "Q12.core",
+        "kind": "core",
+        "requirement": "把句末“嘛”拉长，像孩子撒娇。"
+      }
+    ]
+  },
+  "Q13": {
+    "requirement_mode": "required",
+    "feature": "lengthening",
+    "checks": [
+      {
+        "id": "Q13.core",
+        "kind": "core",
+        "requirement": "两句都拖着腔说，每个字有声拉长，表现无聊。"
+      }
+    ]
+  },
+  "Q14": {
+    "requirement_mode": "required",
+    "feature": "lengthening",
+    "checks": [
+      {
+        "id": "Q14.core",
+        "kind": "core",
+        "requirement": "把第二个“想”拉长，后面恢复正常说法。"
+      }
+    ]
+  },
+  "Q15": {
+    "requirement_mode": "required",
+    "feature": "lengthening",
+    "checks": [
+      {
+        "id": "Q15.core",
+        "kind": "core",
+        "requirement": "把“真”稍微拉长，带一点打趣意味。"
+      }
+    ]
+  },
+  "Q16": {
+    "requirement_mode": "required",
+    "feature": "pause",
+    "checks": [
+      {
+        "id": "Q16.core",
+        "kind": "core",
+        "requirement": "在“钥匙”前稍停，像突然发现答案。"
+      }
+    ]
+  },
+  "Q17": {
+    "requirement_mode": "required",
+    "feature": "pause",
+    "checks": [
+      {
+        "id": "Q17.core",
+        "kind": "core",
+        "requirement": "把六码按“四八二／六一七”分成两组报，中间留短暂停顿。"
+      }
+    ]
+  },
+  "Q18": {
+    "requirement_mode": "required",
+    "feature": "pause",
+    "checks": [
+      {
+        "id": "Q18.core",
+        "kind": "core",
+        "requirement": "说到“请你”后停一下，像犹豫着提出请求，再把句子说完。"
+      }
+    ]
+  },
+  "Q19": {
+    "requirement_mode": "required",
+    "feature": "pause",
+    "checks": [
+      {
+        "id": "Q19.core",
+        "kind": "core",
+        "requirement": "在“住在”后停一下，像在回忆地址，再说出“幸福路十八号”。"
+      }
+    ]
+  },
+  "Q20": {
+    "requirement_mode": "required",
+    "feature": "pause",
+    "checks": [
+      {
+        "id": "Q20.core",
+        "kind": "core",
+        "requirement": "说到“是”后稍停，再报出姓名。"
+      }
+    ]
+  },
+  "Q21": {
+    "requirement_mode": "required",
+    "feature": "laugh",
+    "checks": [
+      {
+        "id": "Q21.core",
+        "kind": "core",
+        "requirement": "实际发出笑声"
+      },
+      {
+        "id": "Q21.direction",
+        "kind": "qualifier",
+        "requirement": "先笑一声，再得意地说出台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q22": {
+    "requirement_mode": "required",
+    "feature": "laugh",
+    "checks": [
+      {
+        "id": "Q22.core",
+        "kind": "core",
+        "requirement": "实际发出笑声"
+      },
+      {
+        "id": "Q22.direction",
+        "kind": "qualifier",
+        "requirement": "先痛快地笑出声，再兴奋地说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q23": {
+    "requirement_mode": "required",
+    "feature": "laugh",
+    "checks": [
+      {
+        "id": "Q23.core",
+        "kind": "core",
+        "requirement": "实际发出笑声"
+      },
+      {
+        "id": "Q23.direction",
+        "kind": "qualifier",
+        "requirement": "说完后短笑一下，像在自嘲。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q24": {
+    "requirement_mode": "required",
+    "feature": "laugh",
+    "checks": [
+      {
+        "id": "Q24.core",
+        "kind": "core",
+        "requirement": "实际发出笑声"
+      },
+      {
+        "id": "Q24.direction",
+        "kind": "qualifier",
+        "requirement": "一下没忍住笑出声，再边笑边说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q25": {
+    "requirement_mode": "required",
+    "feature": "laugh",
+    "checks": [
+      {
+        "id": "Q25.core",
+        "kind": "core",
+        "requirement": "实际发出笑声"
+      },
+      {
+        "id": "Q25.direction",
+        "kind": "qualifier",
+        "requirement": "开心地大笑，再说出台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q26": {
+    "requirement_mode": "required",
+    "feature": "cry",
+    "checks": [
+      {
+        "id": "Q26.core",
+        "kind": "core",
+        "requirement": "实际发出哭声"
+      },
+      {
+        "id": "Q26.direction",
+        "kind": "qualifier",
+        "requirement": "激动得哭出声，再努力把话说清楚。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q27": {
+    "requirement_mode": "required",
+    "feature": "cry",
+    "checks": [
+      {
+        "id": "Q27.core",
+        "kind": "core",
+        "requirement": "实际发出哭声"
+      },
+      {
+        "id": "Q27.direction",
+        "kind": "qualifier",
+        "requirement": "先带一声抽泣，再说出台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q28": {
+    "requirement_mode": "required",
+    "feature": "cry",
+    "checks": [
+      {
+        "id": "Q28.core",
+        "kind": "core",
+        "requirement": "实际发出哭声"
+      },
+      {
+        "id": "Q28.direction",
+        "kind": "qualifier",
+        "requirement": "边抽泣边说，尽量说清台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q29": {
+    "requirement_mode": "prohibited",
+    "feature": "cry",
+    "checks": [
+      {
+        "id": "Q29.core",
+        "kind": "core",
+        "requirement": "不哭出声"
+      },
+      {
+        "id": "Q29.direction",
+        "kind": "qualifier",
+        "requirement": "像在努力忍住情绪，不再哭出声。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q30": {
+    "requirement_mode": "optional",
+    "feature": "cry",
+    "checks": [
+      {
+        "id": "Q30.core",
+        "kind": "core",
+        "requirement": "可以不使用；使用时应为哭声"
+      },
+      {
+        "id": "Q30.direction",
+        "kind": "qualifier",
+        "requirement": "表达不舍，是否哭出声由你决定。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q31": {
+    "requirement_mode": "required",
+    "feature": "sigh",
+    "checks": [
+      {
+        "id": "Q31.core",
+        "kind": "core",
+        "requirement": "实际发出叹气"
+      },
+      {
+        "id": "Q31.direction",
+        "kind": "qualifier",
+        "requirement": "先叹一口气，再无奈地说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q32": {
+    "requirement_mode": "required",
+    "feature": "sigh",
+    "checks": [
+      {
+        "id": "Q32.core",
+        "kind": "core",
+        "requirement": "实际发出叹气"
+      },
+      {
+        "id": "Q32.direction",
+        "kind": "qualifier",
+        "requirement": "先发出一声释然的叹息，再回答。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q33": {
+    "requirement_mode": "required",
+    "feature": "sigh",
+    "checks": [
+      {
+        "id": "Q33.core",
+        "kind": "core",
+        "requirement": "实际发出叹气"
+      },
+      {
+        "id": "Q33.direction",
+        "kind": "qualifier",
+        "requirement": "说完后叹气，表现疲惫。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q34": {
+    "requirement_mode": "optional",
+    "feature": "sigh",
+    "checks": [
+      {
+        "id": "Q34.core",
+        "kind": "core",
+        "requirement": "可以不使用；使用时应为叹气"
+      },
+      {
+        "id": "Q34.direction",
+        "kind": "qualifier",
+        "requirement": "惋惜但不责怪，是否叹气由你决定。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q35": {
+    "requirement_mode": "required",
+    "feature": "sigh",
+    "checks": [
+      {
+        "id": "Q35.core",
+        "kind": "core",
+        "requirement": "实际发出叹气"
+      },
+      {
+        "id": "Q35.direction",
+        "kind": "qualifier",
+        "requirement": "先长叹一口气，再无奈地说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q36": {
+    "requirement_mode": "required",
+    "feature": "gasp",
+    "checks": [
+      {
+        "id": "Q36.core",
+        "kind": "core",
+        "requirement": "实际发出倒吸气"
+      },
+      {
+        "id": "Q36.direction",
+        "kind": "qualifier",
+        "requirement": "先突然倒吸一口气，再回应朋友。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q37": {
+    "requirement_mode": "required",
+    "feature": "gasp",
+    "checks": [
+      {
+        "id": "Q37.core",
+        "kind": "core",
+        "requirement": "实际发出倒吸气"
+      },
+      {
+        "id": "Q37.direction",
+        "kind": "qualifier",
+        "requirement": "先有一声短促的倒吸气，再惊喜地确认。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q38": {
+    "requirement_mode": "required",
+    "feature": "gasp",
+    "checks": [
+      {
+        "id": "Q38.core",
+        "kind": "core",
+        "requirement": "实际发出倒吸气"
+      },
+      {
+        "id": "Q38.direction",
+        "kind": "qualifier",
+        "requirement": "先倒吸一口气，再说自己接住了花瓶。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q39": {
+    "requirement_mode": "optional",
+    "feature": "gasp",
+    "checks": [
+      {
+        "id": "Q39.core",
+        "kind": "core",
+        "requirement": "可以不使用；使用时应为倒吸气"
+      },
+      {
+        "id": "Q39.direction",
+        "kind": "qualifier",
+        "requirement": "表现意外发现，是否倒吸气由你决定。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q40": {
+    "requirement_mode": "required",
+    "feature": "gasp",
+    "checks": [
+      {
+        "id": "Q40.core",
+        "kind": "core",
+        "requirement": "实际发出倒吸气"
+      },
+      {
+        "id": "Q40.direction",
+        "kind": "qualifier",
+        "requirement": "先突然倒吸一口气，再惊喜地说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q41": {
+    "requirement_mode": "required",
+    "feature": "cough",
+    "checks": [
+      {
+        "id": "Q41.core",
+        "kind": "core",
+        "requirement": "实际发出咳嗽"
+      },
+      {
+        "id": "Q41.direction",
+        "kind": "qualifier",
+        "requirement": "先咳一声，再把请假的话说清楚。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q42": {
+    "requirement_mode": "required",
+    "feature": "cough",
+    "checks": [
+      {
+        "id": "Q42.core",
+        "kind": "core",
+        "requirement": "实际发出咳嗽"
+      },
+      {
+        "id": "Q42.direction",
+        "kind": "qualifier",
+        "requirement": "说完“发痒”后咳一声，再接着说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q43": {
+    "requirement_mode": "required",
+    "feature": "cough",
+    "checks": [
+      {
+        "id": "Q43.core",
+        "kind": "core",
+        "requirement": "实际发出咳嗽"
+      },
+      {
+        "id": "Q43.direction",
+        "kind": "qualifier",
+        "requirement": "受粉尘刺激咳一声，再安排下一步。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q44": {
+    "requirement_mode": "required",
+    "feature": "cough",
+    "checks": [
+      {
+        "id": "Q44.core",
+        "kind": "core",
+        "requirement": "实际发出咳嗽"
+      },
+      {
+        "id": "Q44.direction",
+        "kind": "qualifier",
+        "requirement": "先短咳几声，再告诉对方已经缓过来。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q45": {
+    "requirement_mode": "required",
+    "feature": "cough",
+    "checks": [
+      {
+        "id": "Q45.core",
+        "kind": "core",
+        "requirement": "实际发出咳嗽"
+      },
+      {
+        "id": "Q45.direction",
+        "kind": "qualifier",
+        "requirement": "先被辣味呛得咳几声，再说出台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q46": {
+    "requirement_mode": "required",
+    "feature": "throat_clear",
+    "checks": [
+      {
+        "id": "Q46.core",
+        "kind": "core",
+        "requirement": "实际发出清嗓"
+      },
+      {
+        "id": "Q46.direction",
+        "kind": "qualifier",
+        "requirement": "先清一下嗓子，再开场讲话。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q47": {
+    "requirement_mode": "required",
+    "feature": "throat_clear",
+    "checks": [
+      {
+        "id": "Q47.core",
+        "kind": "core",
+        "requirement": "实际发出清嗓"
+      },
+      {
+        "id": "Q47.direction",
+        "kind": "qualifier",
+        "requirement": "开口前轻轻清嗓，再接电话。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q48": {
+    "requirement_mode": "required",
+    "feature": "throat_clear",
+    "checks": [
+      {
+        "id": "Q48.core",
+        "kind": "core",
+        "requirement": "实际发出清嗓"
+      },
+      {
+        "id": "Q48.direction",
+        "kind": "qualifier",
+        "requirement": "在“对不起”前清嗓，像在收住话头。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q49": {
+    "requirement_mode": "required",
+    "feature": "throat_clear",
+    "checks": [
+      {
+        "id": "Q49.core",
+        "kind": "core",
+        "requirement": "实际发出清嗓"
+      },
+      {
+        "id": "Q49.direction",
+        "kind": "qualifier",
+        "requirement": "开始试音前清嗓，再自然报节目名。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  },
+  "Q50": {
+    "requirement_mode": "required",
+    "feature": "throat_clear",
+    "checks": [
+      {
+        "id": "Q50.core",
+        "kind": "core",
+        "requirement": "实际发出清嗓"
+      },
+      {
+        "id": "Q50.direction",
+        "kind": "qualifier",
+        "requirement": "先清一下嗓子，再郑重地宣布消息。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+      }
+    ]
+  }
+}

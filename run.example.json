@@ -1,0 +1,37 @@
+{
+  "model_id": "imported-audio",
+  "versions": {
+    "asr": "填写模型版本",
+    "jev": "填写模型版本",
+    "judge": "填写模型版本"
+  },
+  "timeout_s": 600,
+  "generate": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "generate",
+    "settings.example.json"
+  ],
+  "asr": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "asr",
+    "settings.example.json"
+  ],
+  "jev": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "jev",
+    "settings.example.json"
+  ],
+  "judge": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "judge",
+    "settings.example.json"
+  ]
+}
