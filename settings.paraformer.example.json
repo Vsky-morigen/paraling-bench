@@ -1,0 +1,119 @@
+{
+  "generate": {
+    "audio_dir": "predictions"
+  },
+  "asr": {
+    "provider": "funasr",
+    "model": "paraformer-zh",
+    "device": "cpu"
+  },
+  "jev": {
+    "url": "http://localhost:8020",
+    "questions": [
+      {
+        "id": "laugh",
+        "feature": "laugh",
+        "text": "音频中是否实际出现笑声？不要把念拟声词当成声音事件。",
+        "options": [
+          "有",
+          "没有",
+          "无法判断"
+        ],
+        "mapping": {
+          "有": "present",
+          "没有": "absent",
+          "无法判断": "unknown"
+        },
+        "calibrated": false
+      },
+      {
+        "id": "cry",
+        "feature": "cry",
+        "text": "音频中是否实际出现哭泣或抽泣？不要把念拟声词当成声音事件。",
+        "options": [
+          "有",
+          "没有",
+          "无法判断"
+        ],
+        "mapping": {
+          "有": "present",
+          "没有": "absent",
+          "无法判断": "unknown"
+        },
+        "calibrated": false
+      },
+      {
+        "id": "sigh",
+        "feature": "sigh",
+        "text": "音频中是否实际出现叹息？不要把念拟声词当成声音事件。",
+        "options": [
+          "有",
+          "没有",
+          "无法判断"
+        ],
+        "mapping": {
+          "有": "present",
+          "没有": "absent",
+          "无法判断": "unknown"
+        },
+        "calibrated": false
+      },
+      {
+        "id": "gasp",
+        "feature": "gasp",
+        "text": "音频中是否实际出现突然倒吸气？不要把念拟声词当成声音事件。",
+        "options": [
+          "有",
+          "没有",
+          "无法判断"
+        ],
+        "mapping": {
+          "有": "present",
+          "没有": "absent",
+          "无法判断": "unknown"
+        },
+        "calibrated": false
+      },
+      {
+        "id": "cough",
+        "feature": "cough",
+        "text": "音频中是否实际出现咳嗽？不要把念拟声词当成声音事件。",
+        "options": [
+          "有",
+          "没有",
+          "无法判断"
+        ],
+        "mapping": {
+          "有": "present",
+          "没有": "absent",
+          "无法判断": "unknown"
+        },
+        "calibrated": false
+      },
+      {
+        "id": "throat_clear",
+        "feature": "throat_clear",
+        "text": "音频中是否实际出现清嗓？不要把念拟声词当成声音事件。",
+        "options": [
+          "有",
+          "没有",
+          "无法判断"
+        ],
+        "mapping": {
+          "有": "present",
+          "没有": "absent",
+          "无法判断": "unknown"
+        },
+        "calibrated": false
+      }
+    ]
+  },
+  "judge": {
+    "provider": "openai_compatible",
+    "base_url": "https://YOUR_JUDGE_HOST/v1",
+    "model": "YOUR_JUDGE_MODEL",
+    "api_key_env": "JUDGE_API_KEY",
+    "json_mode": true,
+    "temperature": 0
+  }
+}
