@@ -6,7 +6,34 @@
       {
         "id": "Q01.core",
         "kind": "core",
-        "requirement": "突出“先”，强调核对必须在发送之前完成。"
+        "requirement": "重读先"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "先",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q01.target1",
+        "check_id": "Q01.core",
+        "text": "“先”所在片段哪个词被重读？",
+        "options": [
+          "先",
+          "陈",
+          "宇",
+          "核",
+          "没有明显重读"
+        ],
+        "mapping": {
+          "先": "pass",
+          "陈": "fail",
+          "宇": "fail",
+          "核": "fail",
+          "没有明显重读": "fail"
+        }
       }
     ]
   },
@@ -17,7 +44,57 @@
       {
         "id": "Q02.core",
         "kind": "core",
-        "requirement": "突出“三遍”和“不能碰”，表现反复提醒仍被无视的不满。"
+        "requirement": "重读三遍、不能碰"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "三遍",
+        "occurrence": 1
+      },
+      "target2": {
+        "text": "不能碰",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q02.target1",
+        "check_id": "Q02.core",
+        "text": "“三遍”所在片段哪个词被重读？",
+        "options": [
+          "三遍",
+          "林",
+          "浩",
+          "我",
+          "没有明显重读"
+        ],
+        "mapping": {
+          "三遍": "pass",
+          "林": "fail",
+          "浩": "fail",
+          "我": "fail",
+          "没有明显重读": "fail"
+        }
+      },
+      {
+        "id": "Q02.target2",
+        "check_id": "Q02.core",
+        "text": "“不能碰”所在片段哪个词被重读？",
+        "options": [
+          "不能碰",
+          "林",
+          "浩",
+          "我",
+          "没有明显重读"
+        ],
+        "mapping": {
+          "不能碰": "pass",
+          "林": "fail",
+          "浩": "fail",
+          "我": "fail",
+          "没有明显重读": "fail"
+        }
       }
     ]
   },
@@ -28,7 +105,34 @@
       {
         "id": "Q03.core",
         "kind": "core",
-        "requirement": "突出“任何人”，让对方听出没有例外。"
+        "requirement": "重读任何人"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "任何人",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q03.target1",
+        "check_id": "Q03.core",
+        "text": "“任何人”所在片段哪个词被重读？",
+        "options": [
+          "任何人",
+          "周",
+          "航",
+          "这",
+          "没有明显重读"
+        ],
+        "mapping": {
+          "任何人": "pass",
+          "周": "fail",
+          "航": "fail",
+          "这": "fail",
+          "没有明显重读": "fail"
+        }
       }
     ]
   },
@@ -39,7 +143,34 @@
       {
         "id": "Q04.core",
         "kind": "core",
-        "requirement": "突出“东门”，明确纠正集合地点。"
+        "requirement": "重读东门"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "东门",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q04.target1",
+        "check_id": "Q04.core",
+        "text": "“东门”所在片段哪个词被重读？",
+        "options": [
+          "东门",
+          "是",
+          "不",
+          "西",
+          "没有明显重读"
+        ],
+        "mapping": {
+          "东门": "pass",
+          "是": "fail",
+          "不": "fail",
+          "西": "fail",
+          "没有明显重读": "fail"
+        }
       }
     ]
   },
@@ -50,7 +181,34 @@
       {
         "id": "Q05.core",
         "kind": "core",
-        "requirement": "突出“才”，表现对年龄评价的不服气。"
+        "requirement": "重读才"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "才",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q05.target1",
+        "check_id": "Q05.core",
+        "text": "“才”所在片段哪个词被重读？",
+        "options": [
+          "才",
+          "小",
+          "李",
+          "我",
+          "没有明显重读"
+        ],
+        "mapping": {
+          "才": "pass",
+          "小": "fail",
+          "李": "fail",
+          "我": "fail",
+          "没有明显重读": "fail"
+        }
       }
     ]
   },
@@ -63,7 +221,9 @@
         "kind": "core",
         "requirement": "用舒缓的慢语速引导，让人跟得上。"
       }
-    ]
+    ],
+    "targets": {},
+    "jev_questions": []
   },
   "Q07": {
     "requirement_mode": "required",
@@ -74,7 +234,9 @@
         "kind": "core",
         "requirement": "语速快一些，保持字词清楚。"
       }
-    ]
+    ],
+    "targets": {},
+    "jev_questions": []
   },
   "Q08": {
     "requirement_mode": "required",
@@ -85,7 +247,9 @@
         "kind": "core",
         "requirement": "从容慢说，不要把每个字拖成长音。"
       }
-    ]
+    ],
+    "targets": {},
+    "jev_questions": []
   },
   "Q09": {
     "requirement_mode": "required",
@@ -96,7 +260,9 @@
         "kind": "core",
         "requirement": "急促、较快地说，保持每句话清楚。"
       }
-    ]
+    ],
+    "targets": {},
+    "jev_questions": []
   },
   "Q10": {
     "requirement_mode": "required",
@@ -107,7 +273,14 @@
         "kind": "core",
         "requirement": "前半段稍快，从“我重新说”开始明显放慢。"
       }
-    ]
+    ],
+    "targets": {
+      "target1": {
+        "text": "我重新说",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": []
   },
   "Q11": {
     "requirement_mode": "required",
@@ -116,7 +289,34 @@
       {
         "id": "Q11.core",
         "kind": "core",
-        "requirement": "把名字里的“雨”有声拉长，像隔着院子喊人。"
+        "requirement": "指定字有声拉长：雨"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "雨",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q11.target1",
+        "check_id": "Q11.core",
+        "text": "哪个字被拉长了？",
+        "options": [
+          "雨",
+          "小",
+          "回",
+          "家",
+          "没有明显拖音"
+        ],
+        "mapping": {
+          "雨": "pass",
+          "小": "fail",
+          "回": "fail",
+          "家": "fail",
+          "没有明显拖音": "fail"
+        }
       }
     ]
   },
@@ -127,7 +327,34 @@
       {
         "id": "Q12.core",
         "kind": "core",
-        "requirement": "把句末“嘛”拉长，像孩子撒娇。"
+        "requirement": "指定字有声拉长：嘛"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "嘛",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q12.target1",
+        "check_id": "Q12.core",
+        "text": "哪个字被拉长了？",
+        "options": [
+          "嘛",
+          "妈",
+          "再",
+          "让",
+          "没有明显拖音"
+        ],
+        "mapping": {
+          "嘛": "pass",
+          "妈": "fail",
+          "再": "fail",
+          "让": "fail",
+          "没有明显拖音": "fail"
+        }
       }
     ]
   },
@@ -138,7 +365,70 @@
       {
         "id": "Q13.core",
         "kind": "core",
-        "requirement": "两句都拖着腔说，每个字有声拉长，表现无聊。"
+        "requirement": "每个字有声拉长"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "好",
+        "occurrence": 1
+      },
+      "target2": {
+        "text": "无",
+        "occurrence": 1
+      },
+      "target3": {
+        "text": "聊",
+        "occurrence": 1
+      },
+      "target4": {
+        "text": "啊",
+        "occurrence": 1
+      },
+      "target5": {
+        "text": "怎",
+        "occurrence": 1
+      },
+      "target6": {
+        "text": "么",
+        "occurrence": 1
+      },
+      "target7": {
+        "text": "还",
+        "occurrence": 1
+      },
+      "target8": {
+        "text": "没",
+        "occurrence": 1
+      },
+      "target9": {
+        "text": "人",
+        "occurrence": 1
+      },
+      "target10": {
+        "text": "来",
+        "occurrence": 1
+      },
+      "target11": {
+        "text": "啊",
+        "occurrence": 2
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q13.all",
+        "check_id": "Q13.core",
+        "text": "哪些字被拉长了？",
+        "options": [
+          "每个字",
+          "只有部分字",
+          "没有明显拖音"
+        ],
+        "mapping": {
+          "每个字": "pass",
+          "只有部分字": "fail",
+          "没有明显拖音": "fail"
+        }
       }
     ]
   },
@@ -149,7 +439,34 @@
       {
         "id": "Q14.core",
         "kind": "core",
-        "requirement": "把第二个“想”拉长，后面恢复正常说法。"
+        "requirement": "指定字有声拉长：第二个想，后续恢复正常"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "想",
+        "occurrence": 2
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q14.target1",
+        "check_id": "Q14.core",
+        "text": "哪个字被拉长了？",
+        "options": [
+          "第二个想",
+          "我",
+          "还",
+          "是",
+          "没有明显拖音"
+        ],
+        "mapping": {
+          "第二个想": "pass",
+          "我": "fail",
+          "还": "fail",
+          "是": "fail",
+          "没有明显拖音": "fail"
+        }
       }
     ]
   },
@@ -160,7 +477,34 @@
       {
         "id": "Q15.core",
         "kind": "core",
-        "requirement": "把“真”稍微拉长，带一点打趣意味。"
+        "requirement": "指定字有声拉长：真"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "真",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q15.target1",
+        "check_id": "Q15.core",
+        "text": "哪个字被拉长了？",
+        "options": [
+          "真",
+          "哟",
+          "张",
+          "明",
+          "没有明显拖音"
+        ],
+        "mapping": {
+          "真": "pass",
+          "哟": "fail",
+          "张": "fail",
+          "明": "fail",
+          "没有明显拖音": "fail"
+        }
       }
     ]
   },
@@ -171,7 +515,26 @@
       {
         "id": "Q16.core",
         "kind": "core",
-        "requirement": "在“钥匙”前稍停，像突然发现答案。"
+        "requirement": "在“钥匙”前稍停"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "钥匙",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q16.pause_reference",
+        "text": "在哪个词前停顿了？",
+        "options": [
+          "钥匙",
+          "我找遍了抽屉",
+          "钥匙原来就在口袋里",
+          "没有停顿"
+        ],
+        "mapping": {}
       }
     ]
   },
@@ -182,7 +545,26 @@
       {
         "id": "Q17.core",
         "kind": "core",
-        "requirement": "把六码按“四八二／六一七”分成两组报，中间留短暂停顿。"
+        "requirement": "把六码按“四八二／六一七”分成两组报"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "四八二",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q17.pause_reference",
+        "text": "在哪个词后停顿了？",
+        "options": [
+          "四八二",
+          "取件码是四八二六一七",
+          "记好后给我回个消息",
+          "没有停顿"
+        ],
+        "mapping": {}
       }
     ]
   },
@@ -193,7 +575,25 @@
       {
         "id": "Q18.core",
         "kind": "core",
-        "requirement": "说到“请你”后停一下，像犹豫着提出请求，再把句子说完。"
+        "requirement": "说到“请你”后停一下"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "请你",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q18.pause_reference",
+        "text": "在哪个词后停顿了？",
+        "options": [
+          "请你",
+          "我想请你明天陪我去见班主任",
+          "没有停顿"
+        ],
+        "mapping": {}
       }
     ]
   },
@@ -204,7 +604,25 @@
       {
         "id": "Q19.core",
         "kind": "core",
-        "requirement": "在“住在”后停一下，像在回忆地址，再说出“幸福路十八号”。"
+        "requirement": "在“住在”后停一下"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "住在",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q19.pause_reference",
+        "text": "在哪个词后停顿了？",
+        "options": [
+          "住在",
+          "我记得李宁住在幸福路十八号",
+          "没有停顿"
+        ],
+        "mapping": {}
       }
     ]
   },
@@ -215,7 +633,26 @@
       {
         "id": "Q20.core",
         "kind": "core",
-        "requirement": "说到“是”后稍停，再报出姓名。"
+        "requirement": "说到“是”后稍停"
+      }
+    ],
+    "targets": {
+      "target1": {
+        "text": "是",
+        "occurrence": 1
+      }
+    },
+    "jev_questions": [
+      {
+        "id": "Q20.pause_reference",
+        "text": "在哪个词后停顿了？",
+        "options": [
+          "是",
+          "这次一等奖的获得者是王佳",
+          "请上台领奖",
+          "没有停顿"
+        ],
+        "mapping": {}
       }
     ]
   },
@@ -229,11 +666,72 @@
         "requirement": "实际发出笑声"
       },
       {
-        "id": "Q21.direction",
+        "id": "Q21.position",
         "kind": "qualifier",
-        "requirement": "先笑一声，再得意地说出台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "笑声位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q21.count",
+        "kind": "qualifier",
+        "requirement": "笑声一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q21.position",
+    "jev_questions": [
+      {
+        "id": "Q21.position",
+        "check_id": "Q21.core",
+        "text": "笑声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有笑声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有笑声": "fail"
+        },
+        "check_mappings": {
+          "Q21.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有笑声": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q21.count",
+        "check_id": "Q21.count",
+        "calibration_key": "laugh.count",
+        "text": "笑声出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有笑声"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有笑声": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q22": {
     "requirement_mode": "required",
@@ -245,11 +743,46 @@
         "requirement": "实际发出笑声"
       },
       {
-        "id": "Q22.direction",
+        "id": "Q22.position",
         "kind": "qualifier",
-        "requirement": "先痛快地笑出声，再兴奋地说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "笑声位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q22.position",
+    "jev_questions": [
+      {
+        "id": "Q22.position",
+        "check_id": "Q22.core",
+        "text": "笑声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有笑声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有笑声": "fail"
+        },
+        "check_mappings": {
+          "Q22.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有笑声": "fail"
+          }
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q23": {
     "requirement_mode": "required",
@@ -261,11 +794,96 @@
         "requirement": "实际发出笑声"
       },
       {
-        "id": "Q23.direction",
+        "id": "Q23.position",
         "kind": "qualifier",
-        "requirement": "说完后短笑一下，像在自嘲。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "笑声位于说话后",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q23.count",
+        "kind": "qualifier",
+        "requirement": "笑声一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "id": "Q23.duration",
+        "kind": "qualifier",
+        "requirement": "笑声短促",
+        "measurement": {
+          "metric": "event_duration_s"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q23.position",
+    "jev_questions": [
+      {
+        "id": "Q23.position",
+        "check_id": "Q23.core",
+        "text": "笑声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有笑声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有笑声": "fail"
+        },
+        "check_mappings": {
+          "Q23.position": {
+            "说话前": "fail",
+            "说话后": "pass",
+            "说话中": "fail",
+            "没有笑声": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q23.count",
+        "check_id": "Q23.count",
+        "calibration_key": "laugh.count",
+        "text": "笑声出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有笑声"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有笑声": "fail"
+        }
+      },
+      {
+        "id": "Q23.duration",
+        "check_id": "Q23.duration",
+        "calibration_key": "laugh.duration",
+        "text": "笑声持续时间如何？",
+        "options": [
+          "短促",
+          "较长",
+          "没有笑声"
+        ],
+        "mapping": {
+          "短促": "pass",
+          "较长": "fail",
+          "没有笑声": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "after_speech"
+    }
   },
   "Q24": {
     "requirement_mode": "required",
@@ -277,11 +895,49 @@
         "requirement": "实际发出笑声"
       },
       {
-        "id": "Q24.direction",
+        "id": "Q24.position",
         "kind": "qualifier",
-        "requirement": "一下没忍住笑出声，再边笑边说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "笑声位于说话前且说话中",
+        "measurement": {
+          "metric": "position"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q24.position",
+    "jev_questions": [
+      {
+        "id": "Q24.position",
+        "check_id": "Q24.core",
+        "text": "笑声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话中",
+          "说话前且说话中",
+          "说话后",
+          "没有笑声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话中": "pass",
+          "说话前且说话中": "pass",
+          "说话后": "pass",
+          "没有笑声": "fail"
+        },
+        "check_mappings": {
+          "Q24.position": {
+            "说话前": "fail",
+            "说话中": "fail",
+            "说话前且说话中": "pass",
+            "说话后": "fail",
+            "没有笑声": "fail"
+          }
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_and_during"
+    }
   },
   "Q25": {
     "requirement_mode": "required",
@@ -293,11 +949,70 @@
         "requirement": "实际发出笑声"
       },
       {
-        "id": "Q25.direction",
+        "id": "Q25.position",
         "kind": "qualifier",
-        "requirement": "开心地大笑，再说出台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "笑声位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q25.intensity",
+        "kind": "qualifier",
+        "requirement": "笑声响亮",
+        "measurement": {
+          "metric": "event_speech_rms_ratio"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q25.position",
+    "jev_questions": [
+      {
+        "id": "Q25.position",
+        "check_id": "Q25.core",
+        "text": "笑声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有笑声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有笑声": "fail"
+        },
+        "check_mappings": {
+          "Q25.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有笑声": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q25.intensity",
+        "check_id": "Q25.intensity",
+        "calibration_key": "laugh.intensity",
+        "text": "笑声强度如何？",
+        "options": [
+          "响亮",
+          "轻微",
+          "没有笑声"
+        ],
+        "mapping": {
+          "响亮": "pass",
+          "轻微": "fail",
+          "没有笑声": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q26": {
     "requirement_mode": "required",
@@ -309,11 +1024,46 @@
         "requirement": "实际发出哭声"
       },
       {
-        "id": "Q26.direction",
+        "id": "Q26.position",
         "kind": "qualifier",
-        "requirement": "激动得哭出声，再努力把话说清楚。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "哭声位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q26.position",
+    "jev_questions": [
+      {
+        "id": "Q26.position",
+        "check_id": "Q26.core",
+        "text": "哭声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有哭声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有哭声": "fail"
+        },
+        "check_mappings": {
+          "Q26.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有哭声": "fail"
+          }
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q27": {
     "requirement_mode": "required",
@@ -325,11 +1075,72 @@
         "requirement": "实际发出哭声"
       },
       {
-        "id": "Q27.direction",
+        "id": "Q27.position",
         "kind": "qualifier",
-        "requirement": "先带一声抽泣，再说出台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "哭声位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q27.count",
+        "kind": "qualifier",
+        "requirement": "哭声一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q27.position",
+    "jev_questions": [
+      {
+        "id": "Q27.position",
+        "check_id": "Q27.core",
+        "text": "哭声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有哭声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有哭声": "fail"
+        },
+        "check_mappings": {
+          "Q27.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有哭声": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q27.count",
+        "check_id": "Q27.count",
+        "calibration_key": "cry.count",
+        "text": "哭声出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有哭声"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有哭声": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q28": {
     "requirement_mode": "required",
@@ -341,11 +1152,46 @@
         "requirement": "实际发出哭声"
       },
       {
-        "id": "Q28.direction",
+        "id": "Q28.position",
         "kind": "qualifier",
-        "requirement": "边抽泣边说，尽量说清台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "哭声位于说话中",
+        "measurement": {
+          "metric": "position"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q28.position",
+    "jev_questions": [
+      {
+        "id": "Q28.position",
+        "check_id": "Q28.core",
+        "text": "哭声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有哭声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有哭声": "fail"
+        },
+        "check_mappings": {
+          "Q28.position": {
+            "说话前": "fail",
+            "说话后": "fail",
+            "说话中": "pass",
+            "没有哭声": "fail"
+          }
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "during_speech"
+    }
   },
   "Q29": {
     "requirement_mode": "prohibited",
@@ -355,11 +1201,27 @@
         "id": "Q29.core",
         "kind": "core",
         "requirement": "不哭出声"
-      },
+      }
+    ],
+    "targets": {},
+    "position_question_id": "Q29.position",
+    "jev_questions": [
       {
-        "id": "Q29.direction",
-        "kind": "qualifier",
-        "requirement": "像在努力忍住情绪，不再哭出声。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "id": "Q29.position",
+        "check_id": "Q29.core",
+        "text": "哭声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有哭声"
+        ],
+        "mapping": {
+          "说话前": "fail",
+          "说话后": "fail",
+          "说话中": "fail",
+          "没有哭声": "pass"
+        }
       }
     ]
   },
@@ -371,11 +1233,27 @@
         "id": "Q30.core",
         "kind": "core",
         "requirement": "可以不使用；使用时应为哭声"
-      },
+      }
+    ],
+    "targets": {},
+    "position_question_id": "Q30.position",
+    "jev_questions": [
       {
-        "id": "Q30.direction",
-        "kind": "qualifier",
-        "requirement": "表达不舍，是否哭出声由你决定。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "id": "Q30.position",
+        "check_id": "Q30.core",
+        "text": "哭声出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有哭声"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有哭声": "pass"
+        }
       }
     ]
   },
@@ -389,11 +1267,72 @@
         "requirement": "实际发出叹气"
       },
       {
-        "id": "Q31.direction",
+        "id": "Q31.position",
         "kind": "qualifier",
-        "requirement": "先叹一口气，再无奈地说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "叹气位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q31.count",
+        "kind": "qualifier",
+        "requirement": "叹气一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q31.position",
+    "jev_questions": [
+      {
+        "id": "Q31.position",
+        "check_id": "Q31.core",
+        "text": "叹气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有叹气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有叹气": "fail"
+        },
+        "check_mappings": {
+          "Q31.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有叹气": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q31.count",
+        "check_id": "Q31.count",
+        "calibration_key": "sigh.count",
+        "text": "叹气出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有叹气"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有叹气": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q32": {
     "requirement_mode": "required",
@@ -405,11 +1344,72 @@
         "requirement": "实际发出叹气"
       },
       {
-        "id": "Q32.direction",
+        "id": "Q32.position",
         "kind": "qualifier",
-        "requirement": "先发出一声释然的叹息，再回答。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "叹气位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q32.count",
+        "kind": "qualifier",
+        "requirement": "叹气一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q32.position",
+    "jev_questions": [
+      {
+        "id": "Q32.position",
+        "check_id": "Q32.core",
+        "text": "叹气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有叹气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有叹气": "fail"
+        },
+        "check_mappings": {
+          "Q32.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有叹气": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q32.count",
+        "check_id": "Q32.count",
+        "calibration_key": "sigh.count",
+        "text": "叹气出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有叹气"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有叹气": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q33": {
     "requirement_mode": "required",
@@ -421,11 +1421,46 @@
         "requirement": "实际发出叹气"
       },
       {
-        "id": "Q33.direction",
+        "id": "Q33.position",
         "kind": "qualifier",
-        "requirement": "说完后叹气，表现疲惫。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "叹气位于说话后",
+        "measurement": {
+          "metric": "position"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q33.position",
+    "jev_questions": [
+      {
+        "id": "Q33.position",
+        "check_id": "Q33.core",
+        "text": "叹气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有叹气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有叹气": "fail"
+        },
+        "check_mappings": {
+          "Q33.position": {
+            "说话前": "fail",
+            "说话后": "pass",
+            "说话中": "fail",
+            "没有叹气": "fail"
+          }
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "after_speech"
+    }
   },
   "Q34": {
     "requirement_mode": "optional",
@@ -435,11 +1470,27 @@
         "id": "Q34.core",
         "kind": "core",
         "requirement": "可以不使用；使用时应为叹气"
-      },
+      }
+    ],
+    "targets": {},
+    "position_question_id": "Q34.position",
+    "jev_questions": [
       {
-        "id": "Q34.direction",
-        "kind": "qualifier",
-        "requirement": "惋惜但不责怪，是否叹气由你决定。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "id": "Q34.position",
+        "check_id": "Q34.core",
+        "text": "叹气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有叹气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有叹气": "pass"
+        }
       }
     ]
   },
@@ -453,11 +1504,96 @@
         "requirement": "实际发出叹气"
       },
       {
-        "id": "Q35.direction",
+        "id": "Q35.position",
         "kind": "qualifier",
-        "requirement": "先长叹一口气，再无奈地说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "叹气位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q35.count",
+        "kind": "qualifier",
+        "requirement": "叹气一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "id": "Q35.duration",
+        "kind": "qualifier",
+        "requirement": "叹气有明显延长",
+        "measurement": {
+          "metric": "event_duration_s"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q35.position",
+    "jev_questions": [
+      {
+        "id": "Q35.position",
+        "check_id": "Q35.core",
+        "text": "叹气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有叹气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有叹气": "fail"
+        },
+        "check_mappings": {
+          "Q35.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有叹气": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q35.count",
+        "check_id": "Q35.count",
+        "calibration_key": "sigh.count",
+        "text": "叹气出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有叹气"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有叹气": "fail"
+        }
+      },
+      {
+        "id": "Q35.duration",
+        "check_id": "Q35.duration",
+        "calibration_key": "sigh.duration",
+        "text": "叹气持续时间如何？",
+        "options": [
+          "短促",
+          "较长",
+          "没有叹气"
+        ],
+        "mapping": {
+          "短促": "fail",
+          "较长": "pass",
+          "没有叹气": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q36": {
     "requirement_mode": "required",
@@ -469,11 +1605,72 @@
         "requirement": "实际发出倒吸气"
       },
       {
-        "id": "Q36.direction",
+        "id": "Q36.position",
         "kind": "qualifier",
-        "requirement": "先突然倒吸一口气，再回应朋友。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "倒吸气位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q36.count",
+        "kind": "qualifier",
+        "requirement": "倒吸气一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q36.position",
+    "jev_questions": [
+      {
+        "id": "Q36.position",
+        "check_id": "Q36.core",
+        "text": "倒吸气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有倒吸气": "fail"
+        },
+        "check_mappings": {
+          "Q36.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有倒吸气": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q36.count",
+        "check_id": "Q36.count",
+        "calibration_key": "gasp.count",
+        "text": "倒吸气出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有倒吸气": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q37": {
     "requirement_mode": "required",
@@ -485,11 +1682,96 @@
         "requirement": "实际发出倒吸气"
       },
       {
-        "id": "Q37.direction",
+        "id": "Q37.position",
         "kind": "qualifier",
-        "requirement": "先有一声短促的倒吸气，再惊喜地确认。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "倒吸气位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q37.count",
+        "kind": "qualifier",
+        "requirement": "倒吸气一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "id": "Q37.duration",
+        "kind": "qualifier",
+        "requirement": "倒吸气短促",
+        "measurement": {
+          "metric": "event_duration_s"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q37.position",
+    "jev_questions": [
+      {
+        "id": "Q37.position",
+        "check_id": "Q37.core",
+        "text": "倒吸气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有倒吸气": "fail"
+        },
+        "check_mappings": {
+          "Q37.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有倒吸气": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q37.count",
+        "check_id": "Q37.count",
+        "calibration_key": "gasp.count",
+        "text": "倒吸气出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有倒吸气": "fail"
+        }
+      },
+      {
+        "id": "Q37.duration",
+        "check_id": "Q37.duration",
+        "calibration_key": "gasp.duration",
+        "text": "倒吸气持续时间如何？",
+        "options": [
+          "短促",
+          "较长",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "短促": "pass",
+          "较长": "fail",
+          "没有倒吸气": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q38": {
     "requirement_mode": "required",
@@ -501,11 +1783,72 @@
         "requirement": "实际发出倒吸气"
       },
       {
-        "id": "Q38.direction",
+        "id": "Q38.position",
         "kind": "qualifier",
-        "requirement": "先倒吸一口气，再说自己接住了花瓶。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "倒吸气位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q38.count",
+        "kind": "qualifier",
+        "requirement": "倒吸气一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q38.position",
+    "jev_questions": [
+      {
+        "id": "Q38.position",
+        "check_id": "Q38.core",
+        "text": "倒吸气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有倒吸气": "fail"
+        },
+        "check_mappings": {
+          "Q38.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有倒吸气": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q38.count",
+        "check_id": "Q38.count",
+        "calibration_key": "gasp.count",
+        "text": "倒吸气出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有倒吸气": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q39": {
     "requirement_mode": "optional",
@@ -515,11 +1858,27 @@
         "id": "Q39.core",
         "kind": "core",
         "requirement": "可以不使用；使用时应为倒吸气"
-      },
+      }
+    ],
+    "targets": {},
+    "position_question_id": "Q39.position",
+    "jev_questions": [
       {
-        "id": "Q39.direction",
-        "kind": "qualifier",
-        "requirement": "表现意外发现，是否倒吸气由你决定。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "id": "Q39.position",
+        "check_id": "Q39.core",
+        "text": "倒吸气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有倒吸气": "pass"
+        }
       }
     ]
   },
@@ -533,11 +1892,72 @@
         "requirement": "实际发出倒吸气"
       },
       {
-        "id": "Q40.direction",
+        "id": "Q40.position",
         "kind": "qualifier",
-        "requirement": "先突然倒吸一口气，再惊喜地说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "倒吸气位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q40.count",
+        "kind": "qualifier",
+        "requirement": "倒吸气一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q40.position",
+    "jev_questions": [
+      {
+        "id": "Q40.position",
+        "check_id": "Q40.core",
+        "text": "倒吸气出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有倒吸气": "fail"
+        },
+        "check_mappings": {
+          "Q40.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有倒吸气": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q40.count",
+        "check_id": "Q40.count",
+        "calibration_key": "gasp.count",
+        "text": "倒吸气出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有倒吸气"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有倒吸气": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q41": {
     "requirement_mode": "required",
@@ -549,11 +1969,72 @@
         "requirement": "实际发出咳嗽"
       },
       {
-        "id": "Q41.direction",
+        "id": "Q41.position",
         "kind": "qualifier",
-        "requirement": "先咳一声，再把请假的话说清楚。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "咳嗽位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q41.count",
+        "kind": "qualifier",
+        "requirement": "咳嗽一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q41.position",
+    "jev_questions": [
+      {
+        "id": "Q41.position",
+        "check_id": "Q41.core",
+        "text": "咳嗽出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有咳嗽": "fail"
+        },
+        "check_mappings": {
+          "Q41.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有咳嗽": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q41.count",
+        "check_id": "Q41.count",
+        "calibration_key": "cough.count",
+        "text": "咳嗽出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有咳嗽": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q42": {
     "requirement_mode": "required",
@@ -565,11 +2046,73 @@
         "requirement": "实际发出咳嗽"
       },
       {
-        "id": "Q42.direction",
+        "id": "Q42.position",
         "kind": "qualifier",
-        "requirement": "说完“发痒”后咳一声，再接着说。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "咳嗽位于发痒",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q42.count",
+        "kind": "qualifier",
+        "requirement": "咳嗽一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q42.position",
+    "jev_questions": [
+      {
+        "id": "Q42.position",
+        "check_id": "Q42.core",
+        "text": "咳嗽出现在哪个词后面？",
+        "options": [
+          "医生",
+          "发痒",
+          "晚上",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "医生": "pass",
+          "发痒": "pass",
+          "晚上": "pass",
+          "没有咳嗽": "fail"
+        },
+        "check_mappings": {
+          "Q42.position": {
+            "医生": "fail",
+            "发痒": "pass",
+            "晚上": "fail",
+            "没有咳嗽": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q42.count",
+        "check_id": "Q42.count",
+        "calibration_key": "cough.count",
+        "text": "咳嗽出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有咳嗽": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "after_word",
+      "text": "发痒"
+    }
   },
   "Q43": {
     "requirement_mode": "required",
@@ -581,11 +2124,72 @@
         "requirement": "实际发出咳嗽"
       },
       {
-        "id": "Q43.direction",
+        "id": "Q43.position",
         "kind": "qualifier",
-        "requirement": "受粉尘刺激咳一声，再安排下一步。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "咳嗽位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q43.count",
+        "kind": "qualifier",
+        "requirement": "咳嗽一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q43.position",
+    "jev_questions": [
+      {
+        "id": "Q43.position",
+        "check_id": "Q43.core",
+        "text": "咳嗽出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有咳嗽": "fail"
+        },
+        "check_mappings": {
+          "Q43.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有咳嗽": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q43.count",
+        "check_id": "Q43.count",
+        "calibration_key": "cough.count",
+        "text": "咳嗽出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有咳嗽": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q44": {
     "requirement_mode": "required",
@@ -597,11 +2201,95 @@
         "requirement": "实际发出咳嗽"
       },
       {
-        "id": "Q44.direction",
+        "id": "Q44.position",
         "kind": "qualifier",
-        "requirement": "先短咳几声，再告诉对方已经缓过来。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "咳嗽位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q44.count",
+        "kind": "qualifier",
+        "requirement": "咳嗽多次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 2
+        }
+      },
+      {
+        "id": "Q44.duration",
+        "kind": "qualifier",
+        "requirement": "咳嗽短促",
+        "measurement": {
+          "metric": "event_duration_s"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q44.position",
+    "jev_questions": [
+      {
+        "id": "Q44.position",
+        "check_id": "Q44.core",
+        "text": "咳嗽出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有咳嗽": "fail"
+        },
+        "check_mappings": {
+          "Q44.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有咳嗽": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q44.count",
+        "check_id": "Q44.count",
+        "calibration_key": "cough.count",
+        "text": "咳嗽出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "一次": "fail",
+          "多次": "pass",
+          "没有咳嗽": "fail"
+        }
+      },
+      {
+        "id": "Q44.duration",
+        "check_id": "Q44.duration",
+        "calibration_key": "cough.duration",
+        "text": "咳嗽持续时间如何？",
+        "options": [
+          "短促",
+          "较长",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "短促": "pass",
+          "较长": "fail",
+          "没有咳嗽": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q45": {
     "requirement_mode": "required",
@@ -613,11 +2301,71 @@
         "requirement": "实际发出咳嗽"
       },
       {
-        "id": "Q45.direction",
+        "id": "Q45.position",
         "kind": "qualifier",
-        "requirement": "先被辣味呛得咳几声，再说出台词。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "咳嗽位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q45.count",
+        "kind": "qualifier",
+        "requirement": "咳嗽多次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 2
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q45.position",
+    "jev_questions": [
+      {
+        "id": "Q45.position",
+        "check_id": "Q45.core",
+        "text": "咳嗽出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有咳嗽": "fail"
+        },
+        "check_mappings": {
+          "Q45.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有咳嗽": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q45.count",
+        "check_id": "Q45.count",
+        "calibration_key": "cough.count",
+        "text": "咳嗽出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有咳嗽"
+        ],
+        "mapping": {
+          "一次": "fail",
+          "多次": "pass",
+          "没有咳嗽": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q46": {
     "requirement_mode": "required",
@@ -629,11 +2377,72 @@
         "requirement": "实际发出清嗓"
       },
       {
-        "id": "Q46.direction",
+        "id": "Q46.position",
         "kind": "qualifier",
-        "requirement": "先清一下嗓子，再开场讲话。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "清嗓位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q46.count",
+        "kind": "qualifier",
+        "requirement": "清嗓一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q46.position",
+    "jev_questions": [
+      {
+        "id": "Q46.position",
+        "check_id": "Q46.core",
+        "text": "清嗓出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有清嗓"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有清嗓": "fail"
+        },
+        "check_mappings": {
+          "Q46.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有清嗓": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q46.count",
+        "check_id": "Q46.count",
+        "calibration_key": "throat_clear.count",
+        "text": "清嗓出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有清嗓"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有清嗓": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q47": {
     "requirement_mode": "required",
@@ -645,11 +2454,70 @@
         "requirement": "实际发出清嗓"
       },
       {
-        "id": "Q47.direction",
+        "id": "Q47.position",
         "kind": "qualifier",
-        "requirement": "开口前轻轻清嗓，再接电话。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "清嗓位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q47.intensity",
+        "kind": "qualifier",
+        "requirement": "清嗓轻微",
+        "measurement": {
+          "metric": "event_speech_rms_ratio"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q47.position",
+    "jev_questions": [
+      {
+        "id": "Q47.position",
+        "check_id": "Q47.core",
+        "text": "清嗓出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有清嗓"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有清嗓": "fail"
+        },
+        "check_mappings": {
+          "Q47.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有清嗓": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q47.intensity",
+        "check_id": "Q47.intensity",
+        "calibration_key": "throat_clear.intensity",
+        "text": "清嗓强度如何？",
+        "options": [
+          "响亮",
+          "轻微",
+          "没有清嗓"
+        ],
+        "mapping": {
+          "响亮": "fail",
+          "轻微": "pass",
+          "没有清嗓": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q48": {
     "requirement_mode": "required",
@@ -661,11 +2529,47 @@
         "requirement": "实际发出清嗓"
       },
       {
-        "id": "Q48.direction",
+        "id": "Q48.position",
         "kind": "qualifier",
-        "requirement": "在“对不起”前清嗓，像在收住话头。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "清嗓位于对不起",
+        "measurement": {
+          "metric": "position"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q48.position",
+    "jev_questions": [
+      {
+        "id": "Q48.position",
+        "check_id": "Q48.core",
+        "text": "清嗓出现在哪个词前面？",
+        "options": [
+          "她每次",
+          "对不起",
+          "我又说多了",
+          "没有清嗓"
+        ],
+        "mapping": {
+          "她每次": "pass",
+          "对不起": "pass",
+          "我又说多了": "pass",
+          "没有清嗓": "fail"
+        },
+        "check_mappings": {
+          "Q48.position": {
+            "她每次": "fail",
+            "对不起": "pass",
+            "我又说多了": "fail",
+            "没有清嗓": "fail"
+          }
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_word",
+      "text": "对不起"
+    }
   },
   "Q49": {
     "requirement_mode": "required",
@@ -677,11 +2581,46 @@
         "requirement": "实际发出清嗓"
       },
       {
-        "id": "Q49.direction",
+        "id": "Q49.position",
         "kind": "qualifier",
-        "requirement": "开始试音前清嗓，再自然报节目名。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "清嗓位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q49.position",
+    "jev_questions": [
+      {
+        "id": "Q49.position",
+        "check_id": "Q49.core",
+        "text": "清嗓出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有清嗓"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有清嗓": "fail"
+        },
+        "check_mappings": {
+          "Q49.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有清嗓": "fail"
+          }
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   },
   "Q50": {
     "requirement_mode": "required",
@@ -693,10 +2632,71 @@
         "requirement": "实际发出清嗓"
       },
       {
-        "id": "Q50.direction",
+        "id": "Q50.position",
         "kind": "qualifier",
-        "requirement": "先清一下嗓子，再郑重地宣布消息。；可选事件可靠缺失时，与事件出现相关的附加条件不适用。"
+        "requirement": "清嗓位于说话前",
+        "measurement": {
+          "metric": "position"
+        }
+      },
+      {
+        "id": "Q50.count",
+        "kind": "qualifier",
+        "requirement": "清嗓一次",
+        "measurement": {
+          "metric": "event_count",
+          "min": 1,
+          "max": 1
+        }
       }
-    ]
+    ],
+    "targets": {},
+    "position_question_id": "Q50.position",
+    "jev_questions": [
+      {
+        "id": "Q50.position",
+        "check_id": "Q50.core",
+        "text": "清嗓出现在哪里？",
+        "options": [
+          "说话前",
+          "说话后",
+          "说话中",
+          "没有清嗓"
+        ],
+        "mapping": {
+          "说话前": "pass",
+          "说话后": "pass",
+          "说话中": "pass",
+          "没有清嗓": "fail"
+        },
+        "check_mappings": {
+          "Q50.position": {
+            "说话前": "pass",
+            "说话后": "fail",
+            "说话中": "fail",
+            "没有清嗓": "fail"
+          }
+        }
+      },
+      {
+        "id": "Q50.count",
+        "check_id": "Q50.count",
+        "calibration_key": "throat_clear.count",
+        "text": "清嗓出现几次？",
+        "options": [
+          "一次",
+          "多次",
+          "没有清嗓"
+        ],
+        "mapping": {
+          "一次": "pass",
+          "多次": "fail",
+          "没有清嗓": "fail"
+        }
+      }
+    ],
+    "event_position": {
+      "relation": "before_speech"
+    }
   }
 }

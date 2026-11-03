@@ -1,6 +1,7 @@
 """题库校验、确定性评分和汇总；不猜测识别器能力。"""
 import hashlib
 import json
+import unicodedata
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -48,6 +49,34 @@ def validate_bank(items: list[dict]) -> None:
     if len(counts) != 10 or set(counts.values()) != {5}:
         raise ValueError("题库必须10类、每类5题")
 
+
+def validate_specs(items: list[dict], specs: dict) -> None:
+    if set(specs) != {item["id"] for item in items}:
+        raise ValueError("评分检查项须覆盖完整题库")
+    for item in items:
+        spec = specs[item["id"]]
+        ids = [c["id"] for c in spec["checks"]]
+        if len(ids) != len(set(ids)) or not ids or not any(c["kind"] == "core" for c in spec["checks"]):
+            raise ValueError(item["id"] + ": invalid checks")
+        if spec["feature"] not in {"stress", "lengthening", "pause", "speech_rate", "laugh", "cry", "sigh", "gasp", "cough", "throat_clear"}:
+            raise ValueError(item["id"] + ": unknown feature")
+        question_ids = []
+        for question in spec.get("jev_questions", []):
+            question_ids.append(question["id"])
+            options = question["options"]
+            if not 2 <= len(options) <= 10 or len(options) != len(set(options)) or not any("没有" in o for o in options):
+                raise ValueError(item["id"] + ": invalid JEV options")
+            mappings = dict(question.get("check_mappings", {}))
+            if question.get("check_id"):
+                mappings[question["check_id"]] = question.get("mapping", {})
+            if set(mappings) - set(ids):
+                raise ValueError(item["id"] + ": unknown mapped check")
+            for mapping in mappings.values():
+                if set(mapping) - set(options) or set(mapping.values()) - {"pass", "fail", "unknown"}:
+                    raise ValueError(item["id"] + ": invalid option mapping")
+        if len(question_ids) != len(set(question_ids)):
+            raise ValueError(item["id"] + ": duplicate JEV question IDs")
+
 def score(item: dict, spec: dict, evidence: dict, judge: dict) -> dict:
     checks = spec["checks"]
     if spec["requirement_mode"] not in {"required", "optional", "prohibited"}:
@@ -70,29 +99,61 @@ def score(item: dict, spec: dict, evidence: dict, judge: dict) -> dict:
             raise ValueError("非法判定或证据引用")
         if verdict != "unknown" and (not refs or any(facts[r].get("observed") == "unknown" for r in refs)):
             raise ValueError("确定判定必须引用有效声音证据")
-    core_fail = any(r["verdict"] == "fail" and expected[r["id"]]["kind"] == "core" for r in results)
-    delivery = 0 if core_fail else None if any(r["verdict"] == "unknown" for r in results) else 1 if any(r["verdict"] == "fail" for r in results) else 2
-    scores = judge["scores"]
-    for name in DIMENSIONS:
+    if results != evidence.get("check_results"):
+        raise ValueError("裁判不得改写双路证据的检查结论")
+    if judge.get("generation_status") == "refused":
+        quote = judge.get("refusal_quote")
+        if evidence.get("asr_status") != "ok" or not isinstance(quote, str) or not quote.strip() or quote not in evidence.get("spoken_text", ""):
+            raise ValueError("语音拒答须引用实际转写原文")
+        return {"id": item["id"], "category": item["category"], "mode": spec["requirement_mode"],
+                "status": "model_failure", "scores": dict.fromkeys(DIMENSIONS, 0), "total_score": 0,
+                "scoring_version": "2.0", "error": "spoken_refusal", "refusal_quote": quote}
+    scores = dict(judge["scores"])
+    for name in ("delivery", "appropriateness"):
         v = scores.get(name)
-        if v is not None and (type(v) is not int or v not in (0,1,2)):
-            raise ValueError("分数必须是0/1/2/null")
+        if v is not None and (type(v) is not int or not 0 <= v <= 5):
+            raise ValueError("表达完成和恰当性须为0到5整数或null")
+    for name in DIMENSIONS:
         if not judge.get("reasons", {}).get(name):
-            raise ValueError("每个维度须有判分或无法判断理由")
+            raise ValueError("每个维度须提供理由")
+    core_fail = any(r["verdict"] == "fail" and expected[r["id"]]["kind"] == "core" for r in results)
+    if core_fail:
+        scores["delivery"] = 0
+    elif any(r["verdict"] == "unknown" for r in results):
+        scores["delivery"] = None
+    elif any(r["verdict"] == "fail" for r in results) and scores.get("delivery") not in (1, 2, 3, 4):
+        raise ValueError("核心完成但附加要求失败，表达完成须为1到4分")
+    cer = character_error_rate(item["script"], evidence["spoken_text"]) if evidence.get("asr_status") == "ok" else None
+    scores["content"] = round(5 * max(0, 1 - cer), 6) if cer is not None else None
+    judge["reasons"]["content"] = f"CER={cer}; NFKC normalization; punctuation and whitespace excluded"
+    refs = judge.get("appropriateness_evidence_ids", [])
+    if scores.get("appropriateness") is not None and (not refs or any(r not in facts or facts[r].get("observed") == "unknown" for r in refs)):
+        raise ValueError("恰当性评分须引用有效声音证据")
     scores = {k: scores.get(k) for k in DIMENSIONS}
-    scores["delivery"] = delivery
-    if evidence.get("asr_status") != "ok":
-        scores["content"] = None
-    if scores["appropriateness"] is not None and not judge.get("appropriateness_evidence_ids"):
-        raise ValueError("恰当性评分须引用声音证据")
-    for ref in judge.get("appropriateness_evidence_ids", []):
-        if ref not in facts or facts[ref].get("observed") == "unknown":
-            raise ValueError("恰当性引用无效")
     complete = all(v is not None for v in scores.values())
-    return {"id": item["id"], "category": item["category"], "mode": spec["requirement_mode"], "status": "scored" if complete else "partial", "scores": scores, "total_score": round(sum(scores.values())/6*100,1) if complete else None, "check_results": results, "reasons": judge["reasons"]}
+    return {"id": item["id"], "category": item["category"], "mode": spec["requirement_mode"], "status": "scored" if complete else "partial", "scores": scores, "total_score": round(sum(scores.values())/15*100,1) if complete else None, "scoring_version": "2.0", "cer": cer, "check_results": results, "reasons": judge["reasons"]}
 
 def summarize(results: list[dict]) -> dict:
     def group(rows: list[dict]) -> dict:
         values = [r["total_score"] for r in rows if r.get("total_score") is not None]
-        return {"expected": len(rows), "complete": len(values), "coverage": len(values)/len(rows) if rows else 0, "total_mean": sum(values)/len(values) if values else None, "statuses": dict(Counter(r["status"] for r in rows)), "dimensions": {d: {"valid": len(v := [r["scores"][d] for r in rows if r.get("scores", {}).get(d) is not None]), "mean": 50*sum(v)/len(v) if v else None} for d in DIMENSIONS}}
+        return {"expected": len(rows), "complete": len(values), "coverage": len(values)/len(rows) if rows else 0, "total_mean": sum(values)/len(rows) if values and len(values) == len(rows) else None, "available_mean": sum(values)/len(values) if values else None, "denominator": len(rows), "incomplete": len(rows)-len(values), "statuses": dict(Counter(r["status"] for r in rows)), "dimensions": {d: {"valid": len(v := [r["scores"][d] for r in rows if r.get("scores", {}).get(d) is not None]), "mean": sum(v)/len(v) if v else None} for d in DIMENSIONS}}
     return {"overall": group(results), "categories": {c: group([r for r in results if r["category"] == c]) for c in sorted({r["category"] for r in results})}, "modes": {m: group([r for r in results if r.get("mode") == m]) for m in ("required", "optional", "prohibited")}}
+
+
+def normalize_text(text: str) -> str:
+    if not isinstance(text, str):
+        raise ValueError("转写必须是字符串")
+    return "".join(c for c in unicodedata.normalize("NFKC", text) if not c.isspace() and not unicodedata.category(c).startswith("P"))
+
+
+def character_error_rate(reference: str, hypothesis: str) -> float:
+    ref, hyp = normalize_text(reference), normalize_text(hypothesis)
+    if not ref:
+        raise ValueError("参考台词不能为空")
+    previous = list(range(len(hyp) + 1))
+    for i, a in enumerate(ref, 1):
+        current = [i]
+        for j, b in enumerate(hyp, 1):
+            current.append(min(current[-1] + 1, previous[j] + 1, previous[j - 1] + (a != b)))
+        previous = current
+    return previous[-1] / len(ref)

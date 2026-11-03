@@ -10,105 +10,26 @@
     "language": "zh"
   },
   "jev": {
-    "url": "http://localhost:8020",
-    "questions": [
-      {
-        "id": "laugh",
-        "feature": "laugh",
-        "text": "音频中是否实际出现笑声？不要把念拟声词当成声音事件。",
-        "options": [
-          "有",
-          "没有",
-          "无法判断"
-        ],
-        "mapping": {
-          "有": "present",
-          "没有": "absent",
-          "无法判断": "unknown"
-        },
-        "calibrated": false
-      },
-      {
-        "id": "cry",
-        "feature": "cry",
-        "text": "音频中是否实际出现哭泣或抽泣？不要把念拟声词当成声音事件。",
-        "options": [
-          "有",
-          "没有",
-          "无法判断"
-        ],
-        "mapping": {
-          "有": "present",
-          "没有": "absent",
-          "无法判断": "unknown"
-        },
-        "calibrated": false
-      },
-      {
-        "id": "sigh",
-        "feature": "sigh",
-        "text": "音频中是否实际出现叹息？不要把念拟声词当成声音事件。",
-        "options": [
-          "有",
-          "没有",
-          "无法判断"
-        ],
-        "mapping": {
-          "有": "present",
-          "没有": "absent",
-          "无法判断": "unknown"
-        },
-        "calibrated": false
-      },
-      {
-        "id": "gasp",
-        "feature": "gasp",
-        "text": "音频中是否实际出现突然倒吸气？不要把念拟声词当成声音事件。",
-        "options": [
-          "有",
-          "没有",
-          "无法判断"
-        ],
-        "mapping": {
-          "有": "present",
-          "没有": "absent",
-          "无法判断": "unknown"
-        },
-        "calibrated": false
-      },
-      {
-        "id": "cough",
-        "feature": "cough",
-        "text": "音频中是否实际出现咳嗽？不要把念拟声词当成声音事件。",
-        "options": [
-          "有",
-          "没有",
-          "无法判断"
-        ],
-        "mapping": {
-          "有": "present",
-          "没有": "absent",
-          "无法判断": "unknown"
-        },
-        "calibrated": false
-      },
-      {
-        "id": "throat_clear",
-        "feature": "throat_clear",
-        "text": "音频中是否实际出现清嗓？不要把念拟声词当成声音事件。",
-        "options": [
-          "有",
-          "没有",
-          "无法判断"
-        ],
-        "mapping": {
-          "有": "present",
-          "没有": "absent",
-          "无法判断": "unknown"
-        },
-        "calibrated": false
-      }
-    ]
+    "url": "https://api.adventists.cn/duplexjev",
+    "request_interval_s": 2.1,
+    "max_audio_bytes": 4194304,
+    "calibrated": {
+      "cry": false,
+      "gasp": false,
+      "throat_clear": false,
+      "laugh.count": false,
+      "laugh.duration": false,
+      "laugh.intensity": false,
+      "cry.count": false,
+      "sigh.count": false,
+      "sigh.duration": false,
+      "gasp.count": false,
+      "gasp.duration": false,
+      "cough.count": false,
+      "cough.duration": false,
+      "throat_clear.count": false,
+      "throat_clear.intensity": false
+    }
   },
   "judge": {
     "provider": "openai_compatible",
@@ -117,5 +38,673 @@
     "api_key_env": "JUDGE_API_KEY",
     "json_mode": true,
     "temperature": 0
+  },
+  "align": {
+    "device": "cpu",
+    "model": null
+  },
+  "acoustic": {
+    "fmin_hz": 50,
+    "fmax_hz": 600,
+    "rules": {
+      "Q01": {
+        "Q01.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.rms_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.f0_hz_ratio",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q02": {
+        "Q02.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.rms_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.f0_hz_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target2.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target2.rms_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target2.f0_hz_ratio",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q03": {
+        "Q03.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.rms_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.f0_hz_ratio",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q04": {
+        "Q04.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.rms_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.f0_hz_ratio",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q05": {
+        "Q05.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.rms_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.f0_hz_ratio",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q06": {
+        "Q06.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "chars_per_second",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q07": {
+        "Q07.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "chars_per_second",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q08": {
+        "Q08.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "chars_per_second",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "max_char_duration_s",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q09": {
+        "Q09.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "chars_per_second",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q10": {
+        "Q10.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.after_before_rate_ratio",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q11": {
+        "Q11.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.voiced_fraction",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q12": {
+        "Q12.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.voiced_fraction",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q13": {
+        "Q13.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target2.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target3.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target4.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target5.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target6.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target7.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target8.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target9.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target10.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target11.duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target10.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target11.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target2.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target3.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target4.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target5.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target6.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target7.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target8.voiced_fraction",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target9.voiced_fraction",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q14": {
+        "Q14.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.rest_mean_duration_s",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.voiced_fraction",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q15": {
+        "Q15.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.duration_s_ratio",
+              "min": null,
+              "max": null
+            },
+            {
+              "metric": "target1.voiced_fraction",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q16": {
+        "Q16.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.pause_before_s",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q17": {
+        "Q17.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.pause_after_s",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q18": {
+        "Q18.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.pause_after_s",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q19": {
+        "Q19.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.pause_after_s",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      },
+      "Q20": {
+        "Q20.core": {
+          "calibrated": false,
+          "predicates": [
+            {
+              "metric": "target1.pause_after_s",
+              "min": null,
+              "max": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": {
+    "model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": null,
+    "device": "cpu",
+    "window_s": 1.0,
+    "hop_s": 0.25,
+    "features": {
+      "laugh": {
+        "labels": [
+          "Laughter"
+        ],
+        "threshold": null,
+        "calibrated": false
+      },
+      "cry": {
+        "labels": [
+          "Crying, sobbing"
+        ],
+        "threshold": null,
+        "calibrated": false
+      },
+      "sigh": {
+        "labels": [
+          "Sigh"
+        ],
+        "threshold": null,
+        "calibrated": false
+      },
+      "gasp": {
+        "labels": [
+          "Gasp"
+        ],
+        "threshold": null,
+        "calibrated": false
+      },
+      "cough": {
+        "labels": [
+          "Cough"
+        ],
+        "threshold": null,
+        "calibrated": false
+      },
+      "throat_clear": {
+        "labels": [
+          "Throat clearing"
+        ],
+        "threshold": null,
+        "calibrated": false
+      }
+    },
+    "check_rules": {
+      "Q21.position": {
+        "calibrated": false
+      },
+      "Q21.count": {
+        "calibrated": false
+      },
+      "Q22.position": {
+        "calibrated": false
+      },
+      "Q23.position": {
+        "calibrated": false
+      },
+      "Q23.count": {
+        "calibrated": false
+      },
+      "Q23.duration": {
+        "calibrated": false,
+        "min": null,
+        "max": null
+      },
+      "Q24.position": {
+        "calibrated": false
+      },
+      "Q25.position": {
+        "calibrated": false
+      },
+      "Q25.intensity": {
+        "calibrated": false,
+        "min": null,
+        "max": null
+      },
+      "Q26.position": {
+        "calibrated": false
+      },
+      "Q27.position": {
+        "calibrated": false
+      },
+      "Q27.count": {
+        "calibrated": false
+      },
+      "Q28.position": {
+        "calibrated": false
+      },
+      "Q31.position": {
+        "calibrated": false
+      },
+      "Q31.count": {
+        "calibrated": false
+      },
+      "Q32.position": {
+        "calibrated": false
+      },
+      "Q32.count": {
+        "calibrated": false
+      },
+      "Q33.position": {
+        "calibrated": false
+      },
+      "Q35.position": {
+        "calibrated": false
+      },
+      "Q35.count": {
+        "calibrated": false
+      },
+      "Q35.duration": {
+        "calibrated": false,
+        "min": null,
+        "max": null
+      },
+      "Q36.position": {
+        "calibrated": false
+      },
+      "Q36.count": {
+        "calibrated": false
+      },
+      "Q37.position": {
+        "calibrated": false
+      },
+      "Q37.count": {
+        "calibrated": false
+      },
+      "Q37.duration": {
+        "calibrated": false,
+        "min": null,
+        "max": null
+      },
+      "Q38.position": {
+        "calibrated": false
+      },
+      "Q38.count": {
+        "calibrated": false
+      },
+      "Q40.position": {
+        "calibrated": false
+      },
+      "Q40.count": {
+        "calibrated": false
+      },
+      "Q41.position": {
+        "calibrated": false
+      },
+      "Q41.count": {
+        "calibrated": false
+      },
+      "Q42.position": {
+        "calibrated": false
+      },
+      "Q42.count": {
+        "calibrated": false
+      },
+      "Q43.position": {
+        "calibrated": false
+      },
+      "Q43.count": {
+        "calibrated": false
+      },
+      "Q44.position": {
+        "calibrated": false
+      },
+      "Q44.count": {
+        "calibrated": false
+      },
+      "Q44.duration": {
+        "calibrated": false,
+        "min": null,
+        "max": null
+      },
+      "Q45.position": {
+        "calibrated": false
+      },
+      "Q45.count": {
+        "calibrated": false
+      },
+      "Q46.position": {
+        "calibrated": false
+      },
+      "Q46.count": {
+        "calibrated": false
+      },
+      "Q47.position": {
+        "calibrated": false
+      },
+      "Q47.intensity": {
+        "calibrated": false,
+        "min": null,
+        "max": null
+      },
+      "Q48.position": {
+        "calibrated": false
+      },
+      "Q49.position": {
+        "calibrated": false
+      },
+      "Q50.position": {
+        "calibrated": false
+      },
+      "Q50.count": {
+        "calibrated": false
+      }
+    }
+  },
+  "audio_judge": {
+    "base_url": "https://generativelanguage.googleapis.com/v1beta",
+    "model": "YOUR_GEMINI_AUDIO_MODEL",
+    "api_key_env": "GEMINI_API_KEY",
+    "timeout_s": 180
   }
 }

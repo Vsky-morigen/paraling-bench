@@ -4,11 +4,13 @@ from paraling_bench.core import score, summarize
 
 class ScoringTests(unittest.TestCase):
     def setUp(self):
-        self.item={"id":"Q40","category":"gasp"}
+        self.item={"id":"Q40","category":"gasp","script":"你好"}
         self.spec={"requirement_mode":"required","checks":[{"id":"c","kind":"core"},{"id":"q","kind":"qualifier"}]}
-        self.evidence={"asr_status":"ok","facts":[{"id":"e","observed":"present"}]}
-        self.judge={"id":"Q40","check_results":[{"id":c,"verdict":"pass","evidence_ids":["e"]} for c in ["c","q"]],"scores":{"content":2,"delivery":2,"appropriateness":2},"appropriateness_evidence_ids":["e"],"reasons":dict.fromkeys(["content","delivery","appropriateness"],"test")}
-    def result(self): return score(self.item,self.spec,self.evidence,self.judge)
+        self.evidence={"asr_status":"ok","spoken_text":"你好","facts":[{"id":"e","observed":"present"}]}
+        self.judge={"id":"Q40","check_results":[{"id":c,"verdict":"pass","evidence_ids":["e"]} for c in ["c","q"]],"scores":{"content":None,"delivery":5,"appropriateness":5},"appropriateness_evidence_ids":["e"],"reasons":dict.fromkeys(["content","delivery","appropriateness"],"test")}
+    def result(self):
+        self.evidence["check_results"] = copy.deepcopy(self.judge["check_results"])
+        return score(self.item,self.spec,self.evidence,self.judge)
     def test_full(self): self.assertEqual(self.result()["total_score"],100)
     def test_unknown_not_zero(self):
         self.judge["check_results"][1].update(verdict="unknown",evidence_ids=[])
@@ -18,14 +20,23 @@ class ScoringTests(unittest.TestCase):
         self.judge["check_results"][1].update(verdict="unknown",evidence_ids=[])
         self.assertEqual(self.result()["scores"]["delivery"],0)
     def test_qualifier_failure(self):
+        self.judge["scores"]["delivery"]=4
         self.judge["check_results"][1]["verdict"]="fail"
-        self.assertEqual(self.result()["scores"]["delivery"],1)
+        self.assertEqual(self.result()["scores"]["delivery"],4)
     def test_fabricated_evidence(self):
         self.judge["check_results"][0]["evidence_ids"]=["fake"]
         with self.assertRaises(ValueError): self.result()
     def test_asr_failure(self):
         self.evidence["asr_status"]="error"
         self.assertIsNone(self.result()["scores"]["content"])
+    def test_spoken_refusal(self):
+        self.evidence["spoken_text"]="抱歉，我不能完成这个请求。"
+        self.judge.update(generation_status="refused", refusal_quote="我不能完成这个请求")
+        self.assertEqual(self.result()["status"], "model_failure")
+        self.assertEqual(self.result()["total_score"], 0)
+    def test_fabricated_refusal_rejected(self):
+        self.judge.update(generation_status="refused", refusal_quote="我拒绝")
+        with self.assertRaises(ValueError): self.result()
     def test_unknown_fact(self):
         self.evidence["facts"][0]["observed"]="unknown"
         with self.assertRaises(ValueError): self.result()

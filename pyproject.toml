@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 [project]
 name = "paraling-bench"
-version = "0.1.0"
+version = "0.2.0"
 requires-python = ">=3.10"
 dependencies = ["openpyxl>=3.1,<4"]
 [project.scripts]
@@ -14,3 +14,5 @@ where = ["src"]
 [project.optional-dependencies]
 asr = ["faster-whisper>=1.1,<2"]
 funasr = ["funasr>=1.2,<2", "torch>=2.4", "torchaudio>=2.4"]
+
+analysis = ["whisperx>=3.3,<4", "librosa>=0.10,<1", "transformers>=4.48,<5", "torch>=2.4", "torchaudio>=2.4"]

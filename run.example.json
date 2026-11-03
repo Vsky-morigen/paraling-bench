@@ -3,7 +3,12 @@
   "versions": {
     "asr": "填写模型版本",
     "jev": "填写模型版本",
-    "judge": "填写模型版本"
+    "judge": "填写模型版本",
+    "align": "填写模型版本或版本标识",
+    "acoustic": "填写模型版本或版本标识",
+    "events": "填写模型版本或版本标识",
+    "audio_judge": "填写模型版本或版本标识",
+    "arbitration": "填写模型版本或版本标识"
   },
   "timeout_s": 600,
   "generate": [
@@ -33,5 +38,43 @@
     "paraling_bench.adapters",
     "judge",
     "settings.example.json"
-  ]
+  ],
+  "align": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "align",
+    "settings.example.json"
+  ],
+  "acoustic": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "acoustic",
+    "settings.example.json"
+  ],
+  "events": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "events",
+    "settings.example.json"
+  ],
+  "audio_judge": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "audio_judge",
+    "settings.example.json"
+  ],
+  "arbitration": [
+    "python",
+    "-m",
+    "paraling_bench.adapters",
+    "arbitration",
+    "settings.example.json"
+  ],
+  "audio_validation": {
+    "silence_rms_max": null
+  }
 }

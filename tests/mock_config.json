@@ -23,5 +23,30 @@
     "python",
     "tests/mock_service.py",
     "judge"
+  ],
+  "align": [
+    "python",
+    "tests/mock_service.py",
+    "align"
+  ],
+  "acoustic": [
+    "python",
+    "tests/mock_service.py",
+    "acoustic"
+  ],
+  "events": [
+    "python",
+    "tests/mock_service.py",
+    "events"
+  ],
+  "audio_judge": [
+    "python",
+    "tests/mock_service.py",
+    "audio_judge"
+  ],
+  "arbitration": [
+    "python",
+    "tests/mock_service.py",
+    "arbitration"
   ]
 }
