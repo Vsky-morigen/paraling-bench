@@ -48,7 +48,7 @@ def run(args: argparse.Namespace) -> None:
     if not selected:
         raise ValueError("未选中任何题")
     config["referenced_settings_hashes"] = {arg: digest(load(Path(arg))) for name in ("generate", "asr", "jev", "judge", "align", "acoustic", "events", "audio_judge", "arbitration") for arg in config.get(name, []) if arg.endswith(".json") and Path(arg).is_file()}
-    manifest = {"dataset_hash": digest(items), "spec_hash": digest(specs), "config_hash": digest(config), "model_id": config["model_id"], "versions": config["versions"], "ids": [x["id"] for x in selected], "code_version": "0.2.0", "scoring_version": "2.0", "source_hash": digest({p.name:p.read_text(encoding="utf-8") for p in Path(__file__).parent.glob("*.py")}), "simulation": config.get("simulation", False)}
+    manifest = {"dataset_hash": digest(items), "spec_hash": digest(specs), "config_hash": digest(config), "model_id": config["model_id"], "versions": config["versions"], "ids": [x["id"] for x in selected], "code_version": "0.2.1", "scoring_version": "2.1", "source_hash": digest({p.name:p.read_text(encoding="utf-8") for p in Path(__file__).parent.glob("*.py")}), "simulation": config.get("simulation", False)}
     args.output.mkdir(parents=True, exist_ok=True)
     manifest_path = args.output / "manifest.json"
     if manifest_path.exists():
@@ -136,7 +136,7 @@ def run(args: argparse.Namespace) -> None:
         except InvalidAudio as e:
             result = {"id": item["id"], "category": item["category"], "mode": specs[item["id"]]["requirement_mode"],
                       "status": "model_failure", "scores": dict.fromkeys(DIMENSIONS, 0), "total_score": 0,
-                      "scoring_version": "2.0", "error": str(e)}
+                      "scoring_version": "2.1", "error": str(e)}
         except (OSError, ValueError, KeyError, TypeError, RuntimeError, wave.Error) as e:
             result = {"id":item["id"], "category":item["category"], "mode":specs[item["id"]]["requirement_mode"], "status":"evaluator_error", "scores":dict.fromkeys(DIMENSIONS,None), "total_score":None, "error":str(e)}
         save(result_path,result)
@@ -147,7 +147,7 @@ def run(args: argparse.Namespace) -> None:
 def rescore(args: argparse.Namespace) -> None:
     items, specs = read_dataset(args.dataset), load(args.specs)
     manifest = load(args.run / "manifest.json")
-    if manifest.get("scoring_version") != "2.0" or digest(items) != manifest["dataset_hash"] or digest(specs) != manifest["spec_hash"]:
+    if manifest.get("scoring_version") not in {"2.0", "2.1"} or digest(items) != manifest["dataset_hash"] or digest(specs) != manifest["spec_hash"]:
         raise ValueError("scoring version or data mismatch")
     if args.output.exists():
         raise ValueError("rescore output already exists")
@@ -160,8 +160,9 @@ def rescore(args: argparse.Namespace) -> None:
             result = old
         else:
             result = score(by_id[iid], specs[iid], load(folder / "evidence.json"), load(folder / "judge_raw.json"))
+        result["scoring_version"] = "2.1"
         results.append(result)
-    save(args.output / "manifest.json", {**manifest, "rescore_source": str(args.run.resolve())})
+    save(args.output / "manifest.json", {**manifest, "scoring_version": "2.1", "rescore_source": str(args.run.resolve())})
     save(args.output / "summary.json", summarize(results))
     (args.output / "results.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in results), encoding="utf-8")
 

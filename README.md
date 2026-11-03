@@ -71,7 +71,7 @@ python -m paraling_bench.cli run --dataset data/questions.jsonl --specs data/che
 ## 分数与输出
 
 - 内容：`5 × max(0, 1 − CER)`，CER 为字错误率；统一全半角、忽略标点和空白，保留汉字、数字及拟声词。数字中文写法与阿拉伯数字不自动等价。
-- 表达完成、恰当性：分别为 0、1、2、3、4、5 整数。表达完成从核心未实现到全部到位；恰当性从严重违背情景到自然贴合。裁判提示包含逐档标准。核心失败表达分置 0；证据不足置 null。
+- 表达完成、恰当性：分别采用 0–5 分，允许小数。表达完成从核心未实现到全部到位；恰当性从严重违背情景到自然贴合。裁判提示包含逐档标准。核心失败表达分置 0；证据不足置 null。
 - 三项等权，总分为三项之和 / 15 × 100。拒答、生成超时、静音及结构损坏的音频三项均 0，保留在统计分母。
 - 评测工具故障和证据不足不冒充模型失败。存在未评分项时正式 `total_mean` 为 null；`available_mean` 仅是已评分子集均值，必须同时看 `coverage`、`denominator`、`incomplete` 和状态计数。
 
@@ -83,7 +83,7 @@ python -m paraling_bench.cli run --dataset data/questions.jsonl --specs data/che
 python -m paraling_bench.cli score --dataset data/questions.jsonl --specs data/checks.json --run runs/first --output runs/rescored
 ```
 
-评分版本 2.0 与旧版 0–2 分、失败处理及统计口径不同，结果不能直接比较。旧运行目录保留，升级后使用新目录；旧证据缺少第二路，不能直接转成新评分结果。
+评分版本 2.1 与旧版 0–2 分、失败处理及统计口径不同，结果不能直接比较。旧运行目录保留，升级后使用新目录；旧证据缺少第二路，不能直接转成新评分结果。
 
 ## 本地 ASR 选项
 
@@ -97,3 +97,5 @@ python -m paraling_bench.cli run --dataset data/questions.jsonl --specs data/che
 ```
 
 模拟路径使用合成音和固定结果，不下载权重、不调用收费接口，也不验证模型识别质量。
+
+评分 2.1 允许小数，整数档位作为判分锚点。2.0 的已保存整数评分可用 score 命令重新计算，数值保留。重新调用裁判可能得到不同的小数评分，比较实验时应统一评分版本。

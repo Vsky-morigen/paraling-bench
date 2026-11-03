@@ -1,6 +1,7 @@
 """题库校验、确定性评分和汇总；不猜测识别器能力。"""
 import hashlib
 import json
+import math
 import unicodedata
 from collections import Counter
 from pathlib import Path
@@ -107,12 +108,12 @@ def score(item: dict, spec: dict, evidence: dict, judge: dict) -> dict:
             raise ValueError("语音拒答须引用实际转写原文")
         return {"id": item["id"], "category": item["category"], "mode": spec["requirement_mode"],
                 "status": "model_failure", "scores": dict.fromkeys(DIMENSIONS, 0), "total_score": 0,
-                "scoring_version": "2.0", "error": "spoken_refusal", "refusal_quote": quote}
+                "scoring_version": "2.1", "error": "spoken_refusal", "refusal_quote": quote}
     scores = dict(judge["scores"])
     for name in ("delivery", "appropriateness"):
         v = scores.get(name)
-        if v is not None and (type(v) is not int or not 0 <= v <= 5):
-            raise ValueError("表达完成和恰当性须为0到5整数或null")
+        if v is not None and (type(v) not in (int, float) or not math.isfinite(v) or not 0 <= v <= 5):
+            raise ValueError("表达完成和恰当性须为0到5的有限数值或null")
     for name in DIMENSIONS:
         if not judge.get("reasons", {}).get(name):
             raise ValueError("每个维度须提供理由")
@@ -121,8 +122,8 @@ def score(item: dict, spec: dict, evidence: dict, judge: dict) -> dict:
         scores["delivery"] = 0
     elif any(r["verdict"] == "unknown" for r in results):
         scores["delivery"] = None
-    elif any(r["verdict"] == "fail" for r in results) and scores.get("delivery") not in (1, 2, 3, 4):
-        raise ValueError("核心完成但附加要求失败，表达完成须为1到4分")
+    elif any(r["verdict"] == "fail" for r in results) and (scores.get("delivery") is None or not 0 < scores["delivery"] < 5):
+        raise ValueError("核心完成但附加要求失败，表达完成须大于0且小于5分")
     cer = character_error_rate(item["script"], evidence["spoken_text"]) if evidence.get("asr_status") == "ok" else None
     scores["content"] = round(5 * max(0, 1 - cer), 6) if cer is not None else None
     judge["reasons"]["content"] = f"CER={cer}; NFKC normalization; punctuation and whitespace excluded"
@@ -131,7 +132,7 @@ def score(item: dict, spec: dict, evidence: dict, judge: dict) -> dict:
         raise ValueError("恰当性评分须引用有效声音证据")
     scores = {k: scores.get(k) for k in DIMENSIONS}
     complete = all(v is not None for v in scores.values())
-    return {"id": item["id"], "category": item["category"], "mode": spec["requirement_mode"], "status": "scored" if complete else "partial", "scores": scores, "total_score": round(sum(scores.values())/15*100,1) if complete else None, "scoring_version": "2.0", "cer": cer, "check_results": results, "reasons": judge["reasons"]}
+    return {"id": item["id"], "category": item["category"], "mode": spec["requirement_mode"], "status": "scored" if complete else "partial", "scores": scores, "total_score": round(sum(scores.values())/15*100,1) if complete else None, "scoring_version": "2.1", "cer": cer, "check_results": results, "reasons": judge["reasons"]}
 
 def summarize(results: list[dict]) -> dict:
     def group(rows: list[dict]) -> dict:

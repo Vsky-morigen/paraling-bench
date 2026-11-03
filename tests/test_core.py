@@ -23,6 +23,30 @@ class ScoringTests(unittest.TestCase):
         self.judge["scores"]["delivery"]=4
         self.judge["check_results"][1]["verdict"]="fail"
         self.assertEqual(self.result()["scores"]["delivery"],4)
+    def test_fractional_scores(self):
+        self.judge["scores"].update(delivery=4.5, appropriateness=3.75)
+        result = self.result()
+        self.assertEqual(result["scores"]["delivery"], 4.5)
+        self.assertEqual(result["scores"]["appropriateness"], 3.75)
+        self.assertEqual(result["total_score"], 88.3)
+
+    def test_fractional_qualifier_failure(self):
+        self.judge["check_results"][1]["verdict"] = "fail"
+        for value in (0.5, 2.75, 4.9):
+            self.judge["scores"]["delivery"] = value
+            self.assertEqual(self.result()["scores"]["delivery"], value)
+        for value in (0, 5):
+            self.judge["scores"]["delivery"] = value
+            with self.assertRaises(ValueError): self.result()
+
+    def test_invalid_numeric_scores(self):
+        for name in ("delivery", "appropriateness"):
+            for value in (True, False, -0.1, 5.1, float("nan"), float("inf"), "4.5"):
+                with self.subTest(name=name, value=value):
+                    self.judge["scores"].update(delivery=5, appropriateness=5)
+                    self.judge["scores"][name] = value
+                    with self.assertRaises(ValueError): self.result()
+
     def test_fabricated_evidence(self):
         self.judge["check_results"][0]["evidence_ids"]=["fake"]
         with self.assertRaises(ValueError): self.result()
