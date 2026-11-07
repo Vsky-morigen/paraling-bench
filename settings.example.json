@@ -1,12 +1,13 @@
 {
   "generate": {
+    "provider": "import",
     "audio_dir": "predictions"
   },
   "asr": {
     "provider": "openai_compatible",
-    "base_url": "https://YOUR_ASR_HOST/v1",
-    "model": "YOUR_ASR_MODEL",
-    "api_key_env": "ASR_API_KEY",
+    "base_url": "https://api.openai.com/v1",
+    "model": "gpt-4o-transcribe",
+    "api_key_env": "OPENAI_API_KEY",
     "language": "zh"
   },
   "jev": {
@@ -14,34 +15,45 @@
     "request_interval_s": 2.1,
     "max_audio_bytes": 4194304,
     "calibrated": {
-      "cry": false,
-      "gasp": false,
-      "throat_clear": false,
-      "laugh.count": false,
+      "cry": true,
+      "gasp": true,
+      "throat_clear": true,
+      "laugh.count": true,
       "laugh.duration": false,
       "laugh.intensity": false,
       "cry.count": false,
-      "sigh.count": false,
+      "sigh.count": true,
       "sigh.duration": false,
-      "gasp.count": false,
+      "gasp.count": true,
       "gasp.duration": false,
-      "cough.count": false,
+      "cough.count": true,
       "cough.duration": false,
-      "throat_clear.count": false,
+      "throat_clear.count": true,
       "throat_clear.intensity": false
     }
   },
   "judge": {
     "provider": "openai_compatible",
-    "base_url": "https://YOUR_JUDGE_HOST/v1",
-    "model": "YOUR_JUDGE_MODEL",
-    "api_key_env": "JUDGE_API_KEY",
+    "base_url": "https://api.openai.com/v1",
+    "model": "gpt-4.1-mini",
+    "api_key_env": "OPENAI_API_KEY",
     "json_mode": true,
     "temperature": 0
   },
   "align": {
-    "device": "cpu",
-    "model": null
+    "provider": "mfa",
+    "command": [
+      "conda",
+      "run",
+      "--no-capture-output",
+      "-n",
+      "paraling-mfa",
+      "mfa"
+    ],
+    "dictionary": "mandarin_china_mfa",
+    "acoustic_model": "mandarin_mfa",
+    "work_dir": "runs/mfa",
+    "timeout_s": 600
   },
   "acoustic": {
     "fmin_hz": 50,
@@ -174,26 +186,28 @@
       },
       "Q06": {
         "Q06.core": {
-          "calibrated": false,
+          "calibrated": true,
           "predicates": [
             {
               "metric": "chars_per_second",
               "min": null,
-              "max": null
+              "max": 3.5703315053451097
             }
-          ]
+          ],
+          "reference_alignment_provider": "mfa"
         }
       },
       "Q07": {
         "Q07.core": {
-          "calibrated": false,
+          "calibrated": true,
           "predicates": [
             {
               "metric": "chars_per_second",
-              "min": null,
+              "min": 4.855148214489768,
               "max": null
             }
-          ]
+          ],
+          "reference_alignment_provider": "mfa"
         }
       },
       "Q08": {
@@ -215,14 +229,15 @@
       },
       "Q09": {
         "Q09.core": {
-          "calibrated": false,
+          "calibrated": true,
           "predicates": [
             {
               "metric": "chars_per_second",
-              "min": null,
+              "min": 4.855148214489768,
               "max": null
             }
-          ]
+          ],
+          "reference_alignment_provider": "mfa"
         }
       },
       "Q10": {
@@ -243,7 +258,7 @@
           "predicates": [
             {
               "metric": "target1.duration_s_ratio",
-              "min": null,
+              "min": 1.82,
               "max": null
             },
             {
@@ -260,7 +275,7 @@
           "predicates": [
             {
               "metric": "target1.duration_s_ratio",
-              "min": null,
+              "min": 1.82,
               "max": null
             },
             {
@@ -273,117 +288,63 @@
       },
       "Q13": {
         "Q13.core": {
-          "calibrated": false,
+          "calibrated": true,
+          "reference_alignment_provider": "mfa",
           "predicates": [
             {
               "metric": "target1.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.27,
+              "min": 1.82
             },
             {
               "metric": "target2.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.14,
+              "min": 1.82
             },
             {
               "metric": "target3.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.21,
+              "min": 1.82
             },
             {
               "metric": "target4.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.21,
+              "min": 1.82
             },
             {
               "metric": "target5.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.22,
+              "min": 1.82
             },
             {
               "metric": "target6.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.19,
+              "min": 1.82
             },
             {
               "metric": "target7.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.24,
+              "min": 1.82
             },
             {
               "metric": "target8.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.2,
+              "min": 1.82
             },
             {
               "metric": "target9.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.18,
+              "min": 1.82
             },
             {
               "metric": "target10.duration_s",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.15,
+              "min": 1.82
             },
             {
               "metric": "target11.duration_s",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target1.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target10.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target11.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target2.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target3.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target4.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target5.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target6.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target7.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target8.voiced_fraction",
-              "min": null,
-              "max": null
-            },
-            {
-              "metric": "target9.voiced_fraction",
-              "min": null,
-              "max": null
+              "reference_duration_s": 0.32,
+              "min": 1.82
             }
           ]
         }
@@ -394,7 +355,7 @@
           "predicates": [
             {
               "metric": "target1.duration_s_ratio",
-              "min": null,
+              "min": 1.82,
               "max": null
             },
             {
@@ -416,7 +377,7 @@
           "predicates": [
             {
               "metric": "target1.duration_s_ratio",
-              "min": null,
+              "min": 1.82,
               "max": null
             },
             {
@@ -429,62 +390,67 @@
       },
       "Q16": {
         "Q16.core": {
-          "calibrated": false,
+          "calibrated": true,
           "predicates": [
             {
-              "metric": "target1.pause_before_s",
-              "min": null,
+              "metric": "target1.pause_after_s",
+              "min": 0.30500006675720215,
               "max": null
             }
-          ]
+          ],
+          "reference_alignment_provider": "mfa"
         }
       },
       "Q17": {
         "Q17.core": {
-          "calibrated": false,
+          "calibrated": true,
           "predicates": [
             {
               "metric": "target1.pause_after_s",
-              "min": null,
+              "min": 0.30500006675720215,
               "max": null
             }
-          ]
+          ],
+          "reference_alignment_provider": "mfa"
         }
       },
       "Q18": {
         "Q18.core": {
-          "calibrated": false,
+          "calibrated": true,
           "predicates": [
             {
               "metric": "target1.pause_after_s",
-              "min": null,
+              "min": 0.30500006675720215,
               "max": null
             }
-          ]
+          ],
+          "reference_alignment_provider": "mfa"
         }
       },
       "Q19": {
         "Q19.core": {
-          "calibrated": false,
+          "calibrated": true,
           "predicates": [
             {
               "metric": "target1.pause_after_s",
-              "min": null,
+              "min": 0.30500006675720215,
               "max": null
             }
-          ]
+          ],
+          "reference_alignment_provider": "mfa"
         }
       },
       "Q20": {
         "Q20.core": {
-          "calibrated": false,
+          "calibrated": true,
           "predicates": [
             {
               "metric": "target1.pause_after_s",
-              "min": null,
+              "min": 0.30500006675720215,
               "max": null
             }
-          ]
+          ],
+          "reference_alignment_provider": "mfa"
         }
       }
     }
@@ -500,36 +466,46 @@
         "labels": [
           "Laughter"
         ],
-        "threshold": null,
-        "calibrated": false
+        "threshold": 0.005942035699263215,
+        "calibrated": true,
+        "window_s": 0.5,
+        "hop_s": 0.125
       },
       "cry": {
         "labels": [
           "Crying, sobbing"
         ],
-        "threshold": null,
-        "calibrated": false
+        "threshold": 0.000529834593180567,
+        "calibrated": true,
+        "window_s": 1,
+        "hop_s": 0.25
       },
       "sigh": {
         "labels": [
           "Sigh"
         ],
-        "threshold": null,
-        "calibrated": false
+        "threshold": 0.4195939153432846,
+        "calibrated": true,
+        "window_s": 0.5,
+        "hop_s": 0.125
       },
       "gasp": {
         "labels": [
           "Gasp"
         ],
-        "threshold": null,
-        "calibrated": false
+        "threshold": 0.5974175035953522,
+        "calibrated": true,
+        "window_s": 0.5,
+        "hop_s": 0.125
       },
       "cough": {
         "labels": [
           "Cough"
         ],
-        "threshold": null,
-        "calibrated": false
+        "threshold": 0.002438586438074708,
+        "calibrated": true,
+        "window_s": 1,
+        "hop_s": 0.25
       },
       "throat_clear": {
         "labels": [
@@ -541,43 +517,30 @@
     },
     "check_rules": {
       "Q21.position": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q21.count": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q22.position": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q23.position": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q23.count": {
-        "calibrated": false
-      },
-      "Q23.duration": {
-        "calibrated": false,
-        "min": null,
-        "max": null
+        "calibrated": true
       },
       "Q24.position": {
         "calibrated": false
       },
       "Q25.position": {
-        "calibrated": false
-      },
-      "Q25.intensity": {
-        "calibrated": false,
-        "min": null,
-        "max": null
+        "calibrated": true
       },
       "Q26.position": {
         "calibrated": false
       },
       "Q27.position": {
-        "calibrated": false
-      },
-      "Q27.count": {
         "calibrated": false
       },
       "Q28.position": {
@@ -587,13 +550,13 @@
         "calibrated": false
       },
       "Q31.count": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q32.position": {
         "calibrated": false
       },
       "Q32.count": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q33.position": {
         "calibrated": false
@@ -602,41 +565,31 @@
         "calibrated": false
       },
       "Q35.count": {
-        "calibrated": false
-      },
-      "Q35.duration": {
-        "calibrated": false,
-        "min": null,
-        "max": null
+        "calibrated": true
       },
       "Q36.position": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q36.count": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q37.position": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q37.count": {
-        "calibrated": false
-      },
-      "Q37.duration": {
-        "calibrated": false,
-        "min": null,
-        "max": null
+        "calibrated": true
       },
       "Q38.position": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q38.count": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q40.position": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q40.count": {
-        "calibrated": false
+        "calibrated": true
       },
       "Q41.position": {
         "calibrated": false
@@ -662,11 +615,6 @@
       "Q44.count": {
         "calibrated": false
       },
-      "Q44.duration": {
-        "calibrated": false,
-        "min": null,
-        "max": null
-      },
       "Q45.position": {
         "calibrated": false
       },
@@ -681,11 +629,6 @@
       },
       "Q47.position": {
         "calibrated": false
-      },
-      "Q47.intensity": {
-        "calibrated": false,
-        "min": null,
-        "max": null
       },
       "Q48.position": {
         "calibrated": false
@@ -703,8 +646,15 @@
   },
   "audio_judge": {
     "base_url": "https://generativelanguage.googleapis.com/v1beta",
-    "model": "YOUR_GEMINI_AUDIO_MODEL",
+    "model": "gemini-3.5-flash-lite",
     "api_key_env": "GEMINI_API_KEY",
+    "timeout_s": 180
+  },
+  "arbitration": {
+    "provider": "openai_compatible",
+    "model": "gpt-audio-1.5",
+    "base_url": "https://api.openai.com/v1",
+    "api_key_env": "OPENAI_API_KEY",
     "timeout_s": 180
   }
 }

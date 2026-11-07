@@ -1,14 +1,15 @@
 {
-  "model_id": "imported-audio",
+  "model_id": "YOUR_MODEL_ID",
   "versions": {
-    "asr": "填写模型版本",
+    "asr": "gpt-4o-transcribe",
     "jev": "填写模型版本",
-    "judge": "填写模型版本",
-    "align": "填写模型版本或版本标识",
+    "judge": "gpt-4.1-mini",
+    "align": "mandarin_mfa",
     "acoustic": "填写模型版本或版本标识",
     "events": "填写模型版本或版本标识",
-    "audio_judge": "填写模型版本或版本标识",
-    "arbitration": "填写模型版本或版本标识"
+    "audio_judge": "gemini-3.5-flash-lite",
+    "arbitration": "gpt-audio-1.5",
+    "generate": "YOUR_MODEL_VERSION"
   },
   "timeout_s": 600,
   "generate": [

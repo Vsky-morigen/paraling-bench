@@ -6,9 +6,17 @@ from .core import normalize_text
 
 
 def align(settings: dict, request: dict) -> dict:
+    provider = settings.get('provider', 'whisperx')
+    if provider == 'mfa':
+        from .mfa_alignment import align_mfa
+        return align_mfa(settings, request)
+    if provider != 'whisperx':
+        raise ValueError(f'Unknown alignment provider: {provider}')
     import whisperx
     samples, meta = read_wav(Path(request["audio_path"]))
-    audio = whisperx.load_audio(request["audio_path"])
+    import numpy as np
+    import librosa
+    audio = librosa.resample(np.asarray(samples, dtype=np.float32), orig_sr=meta["sample_rate"], target_sr=16000)
     model, metadata = whisperx.load_align_model(language_code="zh", device=settings.get("device", "cpu"),
                                               model_name=settings.get("model"))
     text = normalize_text(request.get("spoken_text") or "")
@@ -100,8 +108,28 @@ def acoustic(settings: dict, request: dict) -> dict:
                 raise ValueError("non-finite or nonnumeric acoustic threshold")
             if all(v is not None for v in bounds) and bounds[0] > bounds[1]:
                 raise ValueError("acoustic min exceeds max")
-        known = rule.get("calibrated") is True and predicates and all(p["metric"] in metrics and (p.get("min") is not None or p.get("max") is not None) for p in predicates)
-        passed = known and all((p.get("min") is None or metrics[p["metric"]] >= p["min"]) and (p.get("max") is None or metrics[p["metric"]] <= p["max"]) for p in predicates)
+        reference_provider = rule.get("reference_alignment_provider")
+        reference_matches = reference_provider is None or (
+            request["alignment"].get("provider") == reference_provider
+            and "".join(char["char"] for char in chars) == normalize_text(request["item"]["script"])
+        )
+        values = []
+        for predicate in predicates:
+            value = metrics.get(predicate["metric"])
+            if "reference_duration_s" in predicate:
+                reference = predicate["reference_duration_s"]
+                if type(reference) not in (int, float) or not math.isfinite(reference) or reference <= 0:
+                    raise ValueError("invalid acoustic reference duration")
+                value = value / reference if value is not None else None
+            values.append(value)
+        known = rule.get("calibrated") is True and reference_matches and predicates and all(
+            v is not None and (p.get("min") is not None or p.get("max") is not None)
+            for p, v in zip(predicates, values)
+        )
+        passed = known and all(
+            (p.get("min") is None or v >= p["min"]) and (p.get("max") is None or v <= p["max"])
+            for p, v in zip(predicates, values)
+        )
         rows.append({"id": check["id"], "verdict": ("pass" if passed else "fail") if known else "unknown",
                      "reason": "calibrated acoustic predicates" if known else "missing target or uncalibrated acoustic thresholds"})
     return {"status": "ok", "check_results": rows, "metrics": metrics, "chars": measures, "rules": rules}
@@ -123,7 +151,8 @@ def events(settings: dict, request: dict) -> dict:
     indices = [int(i) for i, label in model.config.id2label.items() if label in labels]
     if not labels or len(indices) != len(labels):
         raise ValueError("event labels absent from configured model")
-    window, hop = settings["window_s"], settings["hop_s"]
+    window = rule.get("window_s", settings["window_s"])
+    hop = rule.get("hop_s", settings["hop_s"])
     if not 0 < hop <= window <= 10:
         raise ValueError("require 0 < hop_s <= window_s <= 10")
     windows = []
@@ -170,7 +199,7 @@ def events(settings: dict, request: dict) -> dict:
             metric = measurement.get("metric")
             if metric == "position":
                 verdict = location
-            elif metric in metrics and detected:
+            elif metric in metrics and (detected or metric == "event_count"):
                 # Counts of window clusters and their durations are estimates, requiring
                 # separate calibration from clip-level presence classification.
                 low = measurement.get("min", qualifier_rule.get("min"))
@@ -198,11 +227,20 @@ def event_position(events: list[dict], chars: list[dict], rule: dict | None) -> 
     if not chars or not events or not rule:
         return "unknown"
     relation = rule["relation"]
-    if relation == "before_and_during":
+    if relation == "between_words":
+        try:
+            _, left_end = span(chars, rule["left"])
+            right_start, _ = span(chars, rule["right"])
+        except ValueError:
+            return "unknown"
+        if left_end != right_start:
+            return "unknown"
+        low, high = chars[left_end - 1]["end"], chars[right_start]["start"]
+    elif relation == "before_and_during":
         before = [e for e in events if e["end"] <= chars[0]["start"]]
         during = [e for e in events if e["start"] >= chars[0]["start"] and e["end"] <= chars[-1]["end"]]
         return "pass" if before and during else "unknown"
-    if relation == "before_speech":
+    elif relation == "before_speech":
         low, high = 0, chars[0]["start"]
     elif relation == "after_speech":
         low, high = chars[-1]["end"], math.inf

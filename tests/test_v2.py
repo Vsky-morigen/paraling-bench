@@ -57,20 +57,32 @@ class EvidenceTests(unittest.TestCase):
         return {'check_results': [{'id': 'c', 'verdict': verdict, 'reason': 'test'}]}
 
     def test_agreement(self):
-        result = resolve(self.spec, {'jev': self.route('pass'), 'acoustic': self.route('pass')})
+        result = resolve(self.spec, {'audio_judge': self.route('pass'), 'acoustic': self.route('pass')})
         self.assertEqual(result['check_results'][0]['verdict'], 'pass')
         self.assertEqual(len(result['check_results'][0]['evidence_ids']), 2)
+
+    def test_q13_consensus_uses_audio_judge(self):
+        specs = load(Path('data/checks.json'))
+        for question, sources in [('Q13', ['audio_judge', 'acoustic']), ('Q14', ['jev', 'acoustic'])]:
+            spec = specs[question]
+            cid = spec['checks'][0]['id']
+            responses = {source: {'check_results': [
+                {'id': cid, 'verdict': verdict, 'reason': 'test'}
+            ]} for source, verdict in [('audio_judge', 'pass'), ('acoustic', 'pass'), ('jev', 'fail')]}
+            result = resolve(spec, responses)
+            self.assertEqual(result['routes'], sources)
+            self.assertEqual(result['check_results'][0]['verdict'], 'pass' if question == 'Q13' else 'unknown')
 
     def test_conflict_calls_arbitration(self):
         calls = []
         def arb(checks):
             calls.append(checks); return self.route('fail')
-        result = resolve(self.spec, {'jev': self.route('pass'), 'acoustic': self.route('fail')}, arb)
+        result = resolve(self.spec, {'audio_judge': self.route('pass'), 'acoustic': self.route('fail')}, arb)
         self.assertEqual(len(calls), 1)
         self.assertEqual(result['check_results'][0]['verdict'], 'fail')
 
     def test_missing_not_consensus(self):
-        result = resolve(self.spec, {'jev': self.route('pass')})
+        result = resolve(self.spec, {'audio_judge': self.route('pass')})
         self.assertEqual(result['check_results'][0]['verdict'], 'unknown')
 
     def test_duplicate_rejected(self):

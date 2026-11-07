@@ -1,7 +1,7 @@
 """Offline protocol fixture: synthetic tone, not speech evaluation."""
 import json,sys,wave,tempfile,math,struct
 from pathlib import Path
-request=json.load(sys.stdin)
+request=json.load(sys.stdin.buffer)
 kind=sys.argv[1]
 if kind=="generate":
     p=Path(tempfile.gettempdir())/("paraling_mock_"+request["id"]+".wav")

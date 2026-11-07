@@ -4,3 +4,15 @@ __pycache__/
 runs/
 predictions/
 .env
+
+generated_audio/
+
+/calibration_data/
+
+/data/nonverbal_calibration_samples.json
+/data/prosody_calibration_samples.json
+/scripts/synthesize_*_calibration.py
+/v1_50.xlsx
+/run.local.json
+/settings.local.json
+/my_generator.py

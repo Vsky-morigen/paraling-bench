@@ -17,21 +17,27 @@
     },
     "jev_questions": [
       {
-        "id": "Q01.target1",
+        "id": "Q01.stress",
         "check_id": "Q01.core",
-        "text": "“先”所在片段哪个词被重读？",
+        "text": "这句话里哪个词被重读？",
         "options": [
+          "陈宇",
           "先",
-          "陈",
-          "宇",
-          "核",
+          "核对",
+          "金额",
+          "再",
+          "合同",
+          "发出去",
           "没有明显重读"
         ],
         "mapping": {
+          "陈宇": "fail",
           "先": "pass",
-          "陈": "fail",
-          "宇": "fail",
-          "核": "fail",
+          "核对": "fail",
+          "金额": "fail",
+          "再": "fail",
+          "合同": "fail",
+          "发出去": "fail",
           "没有明显重读": "fail"
         }
       }
@@ -59,40 +65,25 @@
     },
     "jev_questions": [
       {
-        "id": "Q02.target1",
+        "id": "Q02.stress",
         "check_id": "Q02.core",
-        "text": "“三遍”所在片段哪个词被重读？",
+        "text": "这句话里哪个词被重读？",
         "options": [
+          "林浩",
+          "提醒过",
           "三遍",
-          "林",
-          "浩",
-          "我",
-          "没有明显重读"
-        ],
-        "mapping": {
-          "三遍": "pass",
-          "林": "fail",
-          "浩": "fail",
-          "我": "fail",
-          "没有明显重读": "fail"
-        }
-      },
-      {
-        "id": "Q02.target2",
-        "check_id": "Q02.core",
-        "text": "“不能碰”所在片段哪个词被重读？",
-        "options": [
+          "那个",
+          "开关",
           "不能碰",
-          "林",
-          "浩",
-          "我",
           "没有明显重读"
         ],
         "mapping": {
+          "林浩": "fail",
+          "提醒过": "fail",
+          "三遍": "pass",
+          "那个": "fail",
+          "开关": "fail",
           "不能碰": "pass",
-          "林": "fail",
-          "浩": "fail",
-          "我": "fail",
           "没有明显重读": "fail"
         }
       }
@@ -116,21 +107,23 @@
     },
     "jev_questions": [
       {
-        "id": "Q03.target1",
+        "id": "Q03.stress",
         "check_id": "Q03.core",
-        "text": "“任何人”所在片段哪个词被重读？",
+        "text": "这句话里哪个词被重读？",
         "options": [
+          "周航",
+          "这件事",
+          "别",
+          "告诉",
           "任何人",
-          "周",
-          "航",
-          "这",
           "没有明显重读"
         ],
         "mapping": {
+          "周航": "fail",
+          "这件事": "fail",
+          "别": "fail",
+          "告诉": "fail",
           "任何人": "pass",
-          "周": "fail",
-          "航": "fail",
-          "这": "fail",
           "没有明显重读": "fail"
         }
       }
@@ -154,21 +147,23 @@
     },
     "jev_questions": [
       {
-        "id": "Q04.target1",
+        "id": "Q04.stress",
         "check_id": "Q04.core",
-        "text": "“东门”所在片段哪个词被重读？",
+        "text": "这句话里哪个词被重读？",
         "options": [
           "东门",
-          "是",
-          "不",
-          "西",
+          "西门",
+          "别再",
+          "通知",
+          "错了",
           "没有明显重读"
         ],
         "mapping": {
           "东门": "pass",
-          "是": "fail",
-          "不": "fail",
-          "西": "fail",
+          "西门": "fail",
+          "别再": "fail",
+          "通知": "fail",
+          "错了": "fail",
           "没有明显重读": "fail"
         }
       }
@@ -192,21 +187,25 @@
     },
     "jev_questions": [
       {
-        "id": "Q05.target1",
+        "id": "Q05.stress",
         "check_id": "Q05.core",
-        "text": "“才”所在片段哪个词被重读？",
+        "text": "这句话里哪个词被重读？",
         "options": [
+          "小李",
           "才",
-          "小",
-          "李",
-          "我",
+          "四十岁",
+          "别把我",
+          "那么",
+          "老",
           "没有明显重读"
         ],
         "mapping": {
+          "小李": "fail",
           "才": "pass",
-          "小": "fail",
-          "李": "fail",
-          "我": "fail",
+          "四十岁": "fail",
+          "别把我": "fail",
+          "那么": "fail",
+          "老": "fail",
           "没有明显重读": "fail"
         }
       }
@@ -219,7 +218,7 @@
       {
         "id": "Q06.core",
         "kind": "core",
-        "requirement": "用舒缓的慢语速引导，让人跟得上。"
+        "requirement": "整句以偏慢语速说出台词。"
       }
     ],
     "targets": {},
@@ -232,7 +231,7 @@
       {
         "id": "Q07.core",
         "kind": "core",
-        "requirement": "语速快一些，保持字词清楚。"
+        "requirement": "整句以偏快语速说出台词。"
       }
     ],
     "targets": {},
@@ -258,7 +257,7 @@
       {
         "id": "Q09.core",
         "kind": "core",
-        "requirement": "急促、较快地说，保持每句话清楚。"
+        "requirement": "整句以偏快语速说出台词。"
       }
     ],
     "targets": {},
@@ -300,21 +299,23 @@
     },
     "jev_questions": [
       {
-        "id": "Q11.target1",
+        "id": "Q11.lengthening",
         "check_id": "Q11.core",
-        "text": "哪个字被拉长了？",
+        "text": "台词里哪个字的声音被持续拉长了？",
         "options": [
-          "雨",
           "小",
-          "回",
-          "家",
+          "雨",
+          "回家",
+          "吃饭",
+          "啦",
           "没有明显拖音"
         ],
         "mapping": {
-          "雨": "pass",
           "小": "fail",
-          "回": "fail",
-          "家": "fail",
+          "雨": "pass",
+          "回家": "fail",
+          "吃饭": "fail",
+          "啦": "fail",
           "没有明显拖音": "fail"
         }
       }
@@ -338,21 +339,25 @@
     },
     "jev_questions": [
       {
-        "id": "Q12.target1",
+        "id": "Q12.lengthening",
         "check_id": "Q12.core",
-        "text": "哪个字被拉长了？",
+        "text": "台词里哪个字的声音被持续拉长了？",
         "options": [
-          "嘛",
           "妈",
           "再",
-          "让",
+          "让我",
+          "玩",
+          "一会儿",
+          "嘛",
           "没有明显拖音"
         ],
         "mapping": {
-          "嘛": "pass",
           "妈": "fail",
           "再": "fail",
-          "让": "fail",
+          "让我": "fail",
+          "玩": "fail",
+          "一会儿": "fail",
+          "嘛": "pass",
           "没有明显拖音": "fail"
         }
       }
@@ -361,11 +366,12 @@
   "Q13": {
     "requirement_mode": "required",
     "feature": "lengthening",
+    "audio_judge_first": true,
     "checks": [
       {
         "id": "Q13.core",
         "kind": "core",
-        "requirement": "每个字有声拉长"
+        "requirement": "台词里的每个字都明显拉长。"
       }
     ],
     "targets": {
@@ -414,23 +420,7 @@
         "occurrence": 2
       }
     },
-    "jev_questions": [
-      {
-        "id": "Q13.all",
-        "check_id": "Q13.core",
-        "text": "哪些字被拉长了？",
-        "options": [
-          "每个字",
-          "只有部分字",
-          "没有明显拖音"
-        ],
-        "mapping": {
-          "每个字": "pass",
-          "只有部分字": "fail",
-          "没有明显拖音": "fail"
-        }
-      }
-    ]
+    "jev_questions": []
   },
   "Q14": {
     "requirement_mode": "required",
@@ -450,22 +440,26 @@
     },
     "jev_questions": [
       {
-        "id": "Q14.target1",
+        "id": "Q14.lengthening",
         "check_id": "Q14.core",
-        "text": "哪个字被拉长了？",
+        "text": "「我想想，还是点桂花拿铁吧。」哪个字有声拉长，且后续恢复正常语速？",
         "options": [
-          "第二个想",
-          "我",
-          "还",
-          "是",
-          "没有明显拖音"
+          "第一个「想」",
+          "第二个「想」",
+          "两个「想」",
+          "其他字",
+          "拖长后仍然说得慢",
+          "没有明显拖音",
+          "无法确定"
         ],
         "mapping": {
-          "第二个想": "pass",
-          "我": "fail",
-          "还": "fail",
-          "是": "fail",
-          "没有明显拖音": "fail"
+          "第一个「想」": "fail",
+          "第二个「想」": "pass",
+          "两个「想」": "fail",
+          "其他字": "fail",
+          "拖长后仍然说得慢": "fail",
+          "没有明显拖音": "fail",
+          "无法确定": "unknown"
         }
       }
     ]
@@ -488,21 +482,25 @@
     },
     "jev_questions": [
       {
-        "id": "Q15.target1",
+        "id": "Q15.lengthening",
         "check_id": "Q15.core",
-        "text": "哪个字被拉长了？",
+        "text": "台词里哪个字的声音被持续拉长了？",
         "options": [
-          "真",
           "哟",
-          "张",
-          "明",
+          "张明",
+          "今天",
+          "可",
+          "真",
+          "精神",
           "没有明显拖音"
         ],
         "mapping": {
-          "真": "pass",
           "哟": "fail",
-          "张": "fail",
-          "明": "fail",
+          "张明": "fail",
+          "今天": "fail",
+          "可": "fail",
+          "真": "pass",
+          "精神": "fail",
           "没有明显拖音": "fail"
         }
       }
@@ -515,26 +513,36 @@
       {
         "id": "Q16.core",
         "kind": "core",
-        "requirement": "在“钥匙”前稍停"
+        "requirement": "在“原来”后、“就在”前稍停"
       }
     ],
     "targets": {
       "target1": {
-        "text": "钥匙",
+        "text": "原来",
         "occurrence": 1
       }
     },
     "jev_questions": [
       {
-        "id": "Q16.pause_reference",
-        "text": "在哪个词前停顿了？",
+        "id": "Q16.pause",
+        "check_id": "Q16.core",
+        "text": "在哪个词后面停顿了？",
         "options": [
+          "我找遍了",
+          "抽屉",
           "钥匙",
-          "我找遍了抽屉",
-          "钥匙原来就在口袋里",
+          "原来",
+          "就在",
           "没有停顿"
         ],
-        "mapping": {}
+        "mapping": {
+          "我找遍了": "fail",
+          "抽屉": "fail",
+          "钥匙": "fail",
+          "原来": "pass",
+          "就在": "fail",
+          "没有停顿": "fail"
+        }
       }
     ]
   },
@@ -545,7 +553,7 @@
       {
         "id": "Q17.core",
         "kind": "core",
-        "requirement": "把六码按“四八二／六一七”分成两组报"
+        "requirement": "在「四八二」之后、「六一七」之前停顿，将六码分成两组。"
       }
     ],
     "targets": {
@@ -556,15 +564,25 @@
     },
     "jev_questions": [
       {
-        "id": "Q17.pause_reference",
-        "text": "在哪个词后停顿了？",
+        "id": "Q17.pause",
+        "check_id": "Q17.core",
+        "text": "报号码时，在哪个数字后面停顿了？",
         "options": [
-          "四八二",
-          "取件码是四八二六一七",
-          "记好后给我回个消息",
+          "四",
+          "八",
+          "二",
+          "六",
+          "一",
           "没有停顿"
         ],
-        "mapping": {}
+        "mapping": {
+          "四": "fail",
+          "八": "fail",
+          "二": "pass",
+          "六": "fail",
+          "一": "fail",
+          "没有停顿": "fail"
+        }
       }
     ]
   },
@@ -575,7 +593,7 @@
       {
         "id": "Q18.core",
         "kind": "core",
-        "requirement": "说到“请你”后停一下"
+        "requirement": "在「请你」之后、「明天」之前停顿。"
       }
     ],
     "targets": {
@@ -586,14 +604,25 @@
     },
     "jev_questions": [
       {
-        "id": "Q18.pause_reference",
-        "text": "在哪个词后停顿了？",
+        "id": "Q18.pause",
+        "check_id": "Q18.core",
+        "text": "在哪个词后面停顿了？",
         "options": [
+          "我想",
           "请你",
-          "我想请你明天陪我去见班主任",
+          "明天",
+          "陪我",
+          "去见",
           "没有停顿"
         ],
-        "mapping": {}
+        "mapping": {
+          "我想": "fail",
+          "请你": "pass",
+          "明天": "fail",
+          "陪我": "fail",
+          "去见": "fail",
+          "没有停顿": "fail"
+        }
       }
     ]
   },
@@ -604,7 +633,7 @@
       {
         "id": "Q19.core",
         "kind": "core",
-        "requirement": "在“住在”后停一下"
+        "requirement": "在「住在」之后、「幸福路」之前停顿。"
       }
     ],
     "targets": {
@@ -615,14 +644,23 @@
     },
     "jev_questions": [
       {
-        "id": "Q19.pause_reference",
-        "text": "在哪个词后停顿了？",
+        "id": "Q19.pause",
+        "check_id": "Q19.core",
+        "text": "在哪个词后面停顿了？",
         "options": [
+          "我记得",
+          "李宁",
           "住在",
-          "我记得李宁住在幸福路十八号",
+          "幸福路",
           "没有停顿"
         ],
-        "mapping": {}
+        "mapping": {
+          "我记得": "fail",
+          "李宁": "fail",
+          "住在": "pass",
+          "幸福路": "fail",
+          "没有停顿": "fail"
+        }
       }
     ]
   },
@@ -633,7 +671,7 @@
       {
         "id": "Q20.core",
         "kind": "core",
-        "requirement": "说到“是”后稍停"
+        "requirement": "在「是」之后、「王佳」之前停顿。"
       }
     ],
     "targets": {
@@ -644,15 +682,23 @@
     },
     "jev_questions": [
       {
-        "id": "Q20.pause_reference",
-        "text": "在哪个词后停顿了？",
+        "id": "Q20.pause",
+        "check_id": "Q20.core",
+        "text": "说到“王佳”之前，在哪个词后面停顿了？",
         "options": [
+          "这次",
+          "一等奖的",
+          "获得者",
           "是",
-          "这次一等奖的获得者是王佳",
-          "请上台领奖",
           "没有停顿"
         ],
-        "mapping": {}
+        "mapping": {
+          "这次": "fail",
+          "一等奖的": "fail",
+          "获得者": "fail",
+          "是": "pass",
+          "没有停顿": "fail"
+        }
       }
     ]
   },
@@ -668,7 +714,7 @@
       {
         "id": "Q21.position",
         "kind": "qualifier",
-        "requirement": "笑声位于说话前",
+        "requirement": "笑声的位置符合：「图纸到手了」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -676,7 +722,7 @@
       {
         "id": "Q21.count",
         "kind": "qualifier",
-        "requirement": "笑声一次",
+        "requirement": "独立笑声段恰好一段，连续的「哈哈」算一段",
         "measurement": {
           "metric": "event_count",
           "min": 1,
@@ -688,49 +734,67 @@
     "position_question_id": "Q21.position",
     "jev_questions": [
       {
-        "id": "Q21.position",
+        "id": "Q21.core",
         "check_id": "Q21.core",
-        "text": "笑声出现在哪里？",
+        "text": "音频里有没有可听辨的笑声？连续的「哈哈」算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有笑声"
+          "有笑声",
+          "没有笑声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有笑声": "fail"
-        },
-        "check_mappings": {
-          "Q21.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有笑声": "fail"
-          }
+          "有笑声": "pass",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q21.position",
+        "check_id": "Q21.position",
+        "text": "台词是「图纸到手了，你们还是晚了一步。」。笑声出现在哪里？连续的「哈哈」算同一段、同一处。",
+        "options": [
+          "「图纸到手了」之前",
+          "「图纸到手了」之后，「你们还是晚了一步」之前",
+          "「你们还是晚了一步」之后",
+          "与从「图纸到手了」到「你们还是晚了一步」的台词重叠",
+          "其他位置",
+          "没有笑声",
+          "无法确定"
+        ],
+        "mapping": {
+          "「图纸到手了」之前": "pass",
+          "「图纸到手了」之后，「你们还是晚了一步」之前": "fail",
+          "「你们还是晚了一步」之后": "fail",
+          "与从「图纸到手了」到「你们还是晚了一步」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q21.count",
         "check_id": "Q21.count",
-        "calibration_key": "laugh.count",
-        "text": "笑声出现几次？",
+        "text": "听到了几段独立的笑声？连续的「哈哈」算同一段、同一处。",
         "options": [
-          "一次",
-          "多次",
-          "没有笑声"
+          "没有笑声",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有笑声": "fail"
-        }
+          "没有笑声": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "laugh.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "图纸到手了"
     }
   },
   "Q22": {
@@ -745,7 +809,7 @@
       {
         "id": "Q22.position",
         "kind": "qualifier",
-        "requirement": "笑声位于说话前",
+        "requirement": "笑声的位置符合：「过了」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -755,33 +819,47 @@
     "position_question_id": "Q22.position",
     "jev_questions": [
       {
-        "id": "Q22.position",
+        "id": "Q22.core",
         "check_id": "Q22.core",
-        "text": "笑声出现在哪里？",
+        "text": "音频里有没有可听辨的笑声？连续的「哈哈」算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有笑声"
+          "有笑声",
+          "没有笑声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有笑声": "fail"
-        },
-        "check_mappings": {
-          "Q22.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有笑声": "fail"
-          }
+          "有笑声": "pass",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q22.position",
+        "check_id": "Q22.position",
+        "text": "台词是「过了！终于过了！你刚才那一下也太帅了！」。笑声出现在哪里？连续的「哈哈」算同一段、同一处。",
+        "options": [
+          "「过了」之前",
+          "「过了」之后，「终于过了」之前",
+          "「你刚才那一下也太帅了」之后",
+          "与从「过了」到「你刚才那一下也太帅了」的台词重叠",
+          "其他位置",
+          "没有笑声",
+          "无法确定"
+        ],
+        "mapping": {
+          "「过了」之前": "pass",
+          "「过了」之后，「终于过了」之前": "fail",
+          "「你刚才那一下也太帅了」之后": "fail",
+          "与从「过了」到「你刚才那一下也太帅了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "过了"
     }
   },
   "Q23": {
@@ -796,7 +874,7 @@
       {
         "id": "Q23.position",
         "kind": "qualifier",
-        "requirement": "笑声位于说话后",
+        "requirement": "笑声的位置符合：「实在不好意思」之后。",
         "measurement": {
           "metric": "position"
         }
@@ -804,19 +882,11 @@
       {
         "id": "Q23.count",
         "kind": "qualifier",
-        "requirement": "笑声一次",
+        "requirement": "独立笑声段恰好一段，连续的「哈哈」算一段",
         "measurement": {
           "metric": "event_count",
           "min": 1,
           "max": 1
-        }
-      },
-      {
-        "id": "Q23.duration",
-        "kind": "qualifier",
-        "requirement": "笑声短促",
-        "measurement": {
-          "metric": "event_duration_s"
         }
       }
     ],
@@ -824,65 +894,67 @@
     "position_question_id": "Q23.position",
     "jev_questions": [
       {
-        "id": "Q23.position",
+        "id": "Q23.core",
         "check_id": "Q23.core",
-        "text": "笑声出现在哪里？",
+        "text": "音频里有没有可听辨的笑声？连续的「哈哈」算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有笑声"
+          "有笑声",
+          "没有笑声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有笑声": "fail"
-        },
-        "check_mappings": {
-          "Q23.position": {
-            "说话前": "fail",
-            "说话后": "pass",
-            "说话中": "fail",
-            "没有笑声": "fail"
-          }
+          "有笑声": "pass",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q23.position",
+        "check_id": "Q23.position",
+        "text": "台词是「对不起，我认错人了，实在不好意思。」。笑声出现在哪里？连续的「哈哈」算同一段、同一处。",
+        "options": [
+          "「对不起」之前",
+          "「对不起」之后，「我认错人了」之前",
+          "「实在不好意思」之后",
+          "与从「对不起」到「实在不好意思」的台词重叠",
+          "其他位置",
+          "没有笑声",
+          "无法确定"
+        ],
+        "mapping": {
+          "「对不起」之前": "fail",
+          "「对不起」之后，「我认错人了」之前": "fail",
+          "「实在不好意思」之后": "pass",
+          "与从「对不起」到「实在不好意思」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q23.count",
         "check_id": "Q23.count",
-        "calibration_key": "laugh.count",
-        "text": "笑声出现几次？",
+        "text": "听到了几段独立的笑声？连续的「哈哈」算同一段、同一处。",
         "options": [
-          "一次",
-          "多次",
-          "没有笑声"
+          "没有笑声",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有笑声": "fail"
-        }
-      },
-      {
-        "id": "Q23.duration",
-        "check_id": "Q23.duration",
-        "calibration_key": "laugh.duration",
-        "text": "笑声持续时间如何？",
-        "options": [
-          "短促",
-          "较长",
-          "没有笑声"
-        ],
-        "mapping": {
-          "短促": "pass",
-          "较长": "fail",
-          "没有笑声": "fail"
-        }
+          "没有笑声": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "laugh.count"
       }
     ],
     "event_position": {
-      "relation": "after_speech"
+      "relation": "after_word",
+      "text": "实在不好意思"
     }
   },
   "Q24": {
@@ -897,7 +969,7 @@
       {
         "id": "Q24.position",
         "kind": "qualifier",
-        "requirement": "笑声位于说话前且说话中",
+        "requirement": "笑声的位置符合：「你先把猫脸关掉」之前有笑声，并与后续台词重叠。",
         "measurement": {
           "metric": "position"
         }
@@ -907,31 +979,43 @@
     "position_question_id": "Q24.position",
     "jev_questions": [
       {
-        "id": "Q24.position",
+        "id": "Q24.core",
         "check_id": "Q24.core",
-        "text": "笑声出现在哪里？",
+        "text": "音频里有没有可听辨的笑声？连续的「哈哈」算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话中",
-          "说话前且说话中",
-          "说话后",
-          "没有笑声"
+          "有笑声",
+          "没有笑声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话中": "pass",
-          "说话前且说话中": "pass",
-          "说话后": "pass",
-          "没有笑声": "fail"
-        },
-        "check_mappings": {
-          "Q24.position": {
-            "说话前": "fail",
-            "说话中": "fail",
-            "说话前且说话中": "pass",
-            "说话后": "fail",
-            "没有笑声": "fail"
-          }
+          "有笑声": "pass",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q24.position",
+        "check_id": "Q24.position",
+        "text": "台词是「你先把猫脸关掉，我真的严肃不起来了！」。笑声出现在哪里？连续的「哈哈」算同一段、同一处。",
+        "options": [
+          "仅「你先把猫脸关掉」之前",
+          "仅「你先把猫脸关掉」之后，「我真的严肃不起来了」之前",
+          "仅「我真的严肃不起来了」之后",
+          "仅与从「你先把猫脸关掉」到「我真的严肃不起来了」的台词重叠",
+          "「你先把猫脸关掉」之前有笑声，并与后续台词重叠",
+          "其他位置",
+          "没有笑声",
+          "无法确定"
+        ],
+        "mapping": {
+          "仅「你先把猫脸关掉」之前": "fail",
+          "仅「你先把猫脸关掉」之后，「我真的严肃不起来了」之前": "fail",
+          "仅「我真的严肃不起来了」之后": "fail",
+          "仅与从「你先把猫脸关掉」到「我真的严肃不起来了」的台词重叠": "fail",
+          "「你先把猫脸关掉」之前有笑声，并与后续台词重叠": "pass",
+          "其他位置": "fail",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
@@ -951,17 +1035,9 @@
       {
         "id": "Q25.position",
         "kind": "qualifier",
-        "requirement": "笑声位于说话前",
+        "requirement": "笑声的位置符合：「真的是我」之前。",
         "measurement": {
           "metric": "position"
-        }
-      },
-      {
-        "id": "Q25.intensity",
-        "kind": "qualifier",
-        "requirement": "笑声响亮",
-        "measurement": {
-          "metric": "event_speech_rms_ratio"
         }
       }
     ],
@@ -969,49 +1045,47 @@
     "position_question_id": "Q25.position",
     "jev_questions": [
       {
-        "id": "Q25.position",
+        "id": "Q25.core",
         "check_id": "Q25.core",
-        "text": "笑声出现在哪里？",
+        "text": "音频里有没有可听辨的笑声？连续的「哈哈」算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有笑声"
+          "有笑声",
+          "没有笑声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有笑声": "fail"
-        },
-        "check_mappings": {
-          "Q25.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有笑声": "fail"
-          }
+          "有笑声": "pass",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
         }
       },
       {
-        "id": "Q25.intensity",
-        "check_id": "Q25.intensity",
-        "calibration_key": "laugh.intensity",
-        "text": "笑声强度如何？",
+        "id": "Q25.position",
+        "check_id": "Q25.position",
+        "text": "台词是「真的是我？太好了，这回终于轮到我了！」。笑声出现在哪里？连续的「哈哈」算同一段、同一处。",
         "options": [
-          "响亮",
-          "轻微",
-          "没有笑声"
+          "「真的是我」之前",
+          "「真的是我」之后，「太好了」之前",
+          "「这回终于轮到我了」之后",
+          "与从「真的是我」到「这回终于轮到我了」的台词重叠",
+          "其他位置",
+          "没有笑声",
+          "无法确定"
         ],
         "mapping": {
-          "响亮": "pass",
-          "轻微": "fail",
-          "没有笑声": "fail"
+          "「真的是我」之前": "pass",
+          "「真的是我」之后，「太好了」之前": "fail",
+          "「这回终于轮到我了」之后": "fail",
+          "与从「真的是我」到「这回终于轮到我了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有笑声": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "真的是我"
     }
   },
   "Q26": {
@@ -1026,7 +1100,7 @@
       {
         "id": "Q26.position",
         "kind": "qualifier",
-        "requirement": "哭声位于说话前",
+        "requirement": "哭声的位置符合：「爸」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1036,33 +1110,47 @@
     "position_question_id": "Q26.position",
     "jev_questions": [
       {
-        "id": "Q26.position",
+        "id": "Q26.core",
         "check_id": "Q26.core",
-        "text": "哭声出现在哪里？",
+        "text": "音频里有没有可听辨的哭声？相近且连续的呜咽或抽泣算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有哭声"
+          "有哭声",
+          "没有哭声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有哭声": "fail"
-        },
-        "check_mappings": {
-          "Q26.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有哭声": "fail"
-          }
+          "有哭声": "pass",
+          "没有哭声": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q26.position",
+        "check_id": "Q26.position",
+        "text": "台词是「爸，我考上了，这次真的考上了。」。哭声出现在哪里？相近且连续的呜咽或抽泣算同一段、同一处。",
+        "options": [
+          "「爸」之前",
+          "「爸」之后，「我考上了」之前",
+          "「这次真的考上了」之后",
+          "与从「爸」到「这次真的考上了」的台词重叠",
+          "其他位置",
+          "没有哭声",
+          "无法确定"
+        ],
+        "mapping": {
+          "「爸」之前": "pass",
+          "「爸」之后，「我考上了」之前": "fail",
+          "「这次真的考上了」之后": "fail",
+          "与从「爸」到「这次真的考上了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有哭声": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "爸"
     }
   },
   "Q27": {
@@ -1077,19 +1165,9 @@
       {
         "id": "Q27.position",
         "kind": "qualifier",
-        "requirement": "哭声位于说话前",
+        "requirement": "哭声的位置符合：「这条围裙留下吧」之前。",
         "measurement": {
           "metric": "position"
-        }
-      },
-      {
-        "id": "Q27.count",
-        "kind": "qualifier",
-        "requirement": "哭声一次",
-        "measurement": {
-          "metric": "event_count",
-          "min": 1,
-          "max": 1
         }
       }
     ],
@@ -1097,49 +1175,47 @@
     "position_question_id": "Q27.position",
     "jev_questions": [
       {
-        "id": "Q27.position",
+        "id": "Q27.core",
         "check_id": "Q27.core",
-        "text": "哭声出现在哪里？",
+        "text": "音频里有没有可听辨的哭声？相近且连续的呜咽或抽泣算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有哭声"
+          "有哭声",
+          "没有哭声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有哭声": "fail"
-        },
-        "check_mappings": {
-          "Q27.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有哭声": "fail"
-          }
+          "有哭声": "pass",
+          "没有哭声": "fail",
+          "无法确定": "unknown"
         }
       },
       {
-        "id": "Q27.count",
-        "check_id": "Q27.count",
-        "calibration_key": "cry.count",
-        "text": "哭声出现几次？",
+        "id": "Q27.position",
+        "check_id": "Q27.position",
+        "text": "台词是「这条围裙留下吧，我还想再看看它。」。哭声出现在哪里？相近且连续的呜咽或抽泣算同一段、同一处。",
         "options": [
-          "一次",
-          "多次",
-          "没有哭声"
+          "「这条围裙留下吧」之前",
+          "「这条围裙留下吧」之后，「我还想再看看它」之前",
+          "「我还想再看看它」之后",
+          "与从「这条围裙留下吧」到「我还想再看看它」的台词重叠",
+          "其他位置",
+          "没有哭声",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有哭声": "fail"
+          "「这条围裙留下吧」之前": "pass",
+          "「这条围裙留下吧」之后，「我还想再看看它」之前": "fail",
+          "「我还想再看看它」之后": "fail",
+          "与从「这条围裙留下吧」到「我还想再看看它」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有哭声": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "这条围裙留下吧"
     }
   },
   "Q28": {
@@ -1154,7 +1230,7 @@
       {
         "id": "Q28.position",
         "kind": "qualifier",
-        "requirement": "哭声位于说话中",
+        "requirement": "哭声的位置符合：与从「是我最后那个球没处理好」到「大家」的台词重叠。",
         "measurement": {
           "metric": "position"
         }
@@ -1164,28 +1240,41 @@
     "position_question_id": "Q28.position",
     "jev_questions": [
       {
-        "id": "Q28.position",
+        "id": "Q28.core",
         "check_id": "Q28.core",
-        "text": "哭声出现在哪里？",
+        "text": "音频里有没有可听辨的哭声？相近且连续的呜咽或抽泣算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有哭声"
+          "有哭声",
+          "没有哭声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有哭声": "fail"
-        },
-        "check_mappings": {
-          "Q28.position": {
-            "说话前": "fail",
-            "说话后": "fail",
-            "说话中": "pass",
-            "没有哭声": "fail"
-          }
+          "有哭声": "pass",
+          "没有哭声": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q28.position",
+        "check_id": "Q28.position",
+        "text": "台词是「是我最后那个球没处理好，对不起，大家。」。哭声出现在哪里？相近且连续的呜咽或抽泣算同一段、同一处。",
+        "options": [
+          "「是我最后那个球没处理好」之前",
+          "「是我最后那个球没处理好」之后，「对不起」之前",
+          "「大家」之后",
+          "与从「是我最后那个球没处理好」到「大家」的台词重叠",
+          "其他位置",
+          "没有哭声",
+          "无法确定"
+        ],
+        "mapping": {
+          "「是我最后那个球没处理好」之前": "fail",
+          "「是我最后那个球没处理好」之后，「对不起」之前": "fail",
+          "「大家」之后": "fail",
+          "与从「是我最后那个球没处理好」到「大家」的台词重叠": "pass",
+          "其他位置": "fail",
+          "没有哭声": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
@@ -1207,20 +1296,18 @@
     "position_question_id": "Q29.position",
     "jev_questions": [
       {
-        "id": "Q29.position",
+        "id": "Q29.core",
         "check_id": "Q29.core",
-        "text": "哭声出现在哪里？",
+        "text": "音频里有没有可听辨的哭声？相近且连续的呜咽或抽泣算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有哭声"
+          "有哭声",
+          "没有哭声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "fail",
-          "说话后": "fail",
-          "说话中": "fail",
-          "没有哭声": "pass"
+          "有哭声": "fail",
+          "没有哭声": "pass",
+          "无法确定": "unknown"
         }
       }
     ]
@@ -1239,20 +1326,18 @@
     "position_question_id": "Q30.position",
     "jev_questions": [
       {
-        "id": "Q30.position",
+        "id": "Q30.core",
         "check_id": "Q30.core",
-        "text": "哭声出现在哪里？",
+        "text": "音频里有没有可听辨的哭声？相近且连续的呜咽或抽泣算同一段、同一处。",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有哭声"
+          "有哭声",
+          "没有哭声",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有哭声": "pass"
+          "有哭声": "pass",
+          "没有哭声": "pass",
+          "无法确定": "unknown"
         }
       }
     ]
@@ -1269,7 +1354,7 @@
       {
         "id": "Q31.position",
         "kind": "qualifier",
-        "requirement": "叹气位于说话前",
+        "requirement": "叹气的位置符合：「今天的号没了」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1289,49 +1374,67 @@
     "position_question_id": "Q31.position",
     "jev_questions": [
       {
-        "id": "Q31.position",
+        "id": "Q31.core",
         "check_id": "Q31.core",
-        "text": "叹气出现在哪里？",
+        "text": "音频里有没有可听辨的叹气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有叹气"
+          "有叹气",
+          "没有叹气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有叹气": "fail"
-        },
-        "check_mappings": {
-          "Q31.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有叹气": "fail"
-          }
+          "有叹气": "pass",
+          "没有叹气": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q31.position",
+        "check_id": "Q31.position",
+        "text": "台词是「今天的号没了，咱们明天早点来吧。」。叹气出现在哪里？",
+        "options": [
+          "「今天的号没了」之前",
+          "「今天的号没了」之后，「咱们明天早点来吧」之前",
+          "「咱们明天早点来吧」之后",
+          "与从「今天的号没了」到「咱们明天早点来吧」的台词重叠",
+          "其他位置",
+          "没有叹气",
+          "无法确定"
+        ],
+        "mapping": {
+          "「今天的号没了」之前": "pass",
+          "「今天的号没了」之后，「咱们明天早点来吧」之前": "fail",
+          "「咱们明天早点来吧」之后": "fail",
+          "与从「今天的号没了」到「咱们明天早点来吧」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有叹气": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q31.count",
         "check_id": "Q31.count",
-        "calibration_key": "sigh.count",
-        "text": "叹气出现几次？",
+        "text": "听到了几次叹气？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有叹气"
+          "没有叹气",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有叹气": "fail"
-        }
+          "没有叹气": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "sigh.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "今天的号没了"
     }
   },
   "Q32": {
@@ -1346,7 +1449,7 @@
       {
         "id": "Q32.position",
         "kind": "qualifier",
-        "requirement": "叹气位于说话前",
+        "requirement": "叹气的位置符合：「找到了」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1366,49 +1469,67 @@
     "position_question_id": "Q32.position",
     "jev_questions": [
       {
-        "id": "Q32.position",
+        "id": "Q32.core",
         "check_id": "Q32.core",
-        "text": "叹气出现在哪里？",
+        "text": "音频里有没有可听辨的叹气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有叹气"
+          "有叹气",
+          "没有叹气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有叹气": "fail"
-        },
-        "check_mappings": {
-          "Q32.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有叹气": "fail"
-          }
+          "有叹气": "pass",
+          "没有叹气": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q32.position",
+        "check_id": "Q32.position",
+        "text": "台词是「找到了，原来在外套里，咱们走吧。」。叹气出现在哪里？",
+        "options": [
+          "「找到了」之前",
+          "「找到了」之后，「原来在外套里」之前",
+          "「咱们走吧」之后",
+          "与从「找到了」到「咱们走吧」的台词重叠",
+          "其他位置",
+          "没有叹气",
+          "无法确定"
+        ],
+        "mapping": {
+          "「找到了」之前": "pass",
+          "「找到了」之后，「原来在外套里」之前": "fail",
+          "「咱们走吧」之后": "fail",
+          "与从「找到了」到「咱们走吧」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有叹气": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q32.count",
         "check_id": "Q32.count",
-        "calibration_key": "sigh.count",
-        "text": "叹气出现几次？",
+        "text": "听到了几次叹气？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有叹气"
+          "没有叹气",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有叹气": "fail"
-        }
+          "没有叹气": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "sigh.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "找到了"
     }
   },
   "Q33": {
@@ -1423,7 +1544,7 @@
       {
         "id": "Q33.position",
         "kind": "qualifier",
-        "requirement": "叹气位于说话后",
+        "requirement": "叹气的位置符合：「我先坐一会儿」之后。",
         "measurement": {
           "metric": "position"
         }
@@ -1433,33 +1554,47 @@
     "position_question_id": "Q33.position",
     "jev_questions": [
       {
-        "id": "Q33.position",
+        "id": "Q33.core",
         "check_id": "Q33.core",
-        "text": "叹气出现在哪里？",
+        "text": "音频里有没有可听辨的叹气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有叹气"
+          "有叹气",
+          "没有叹气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有叹气": "fail"
-        },
-        "check_mappings": {
-          "Q33.position": {
-            "说话前": "fail",
-            "说话后": "pass",
-            "说话中": "fail",
-            "没有叹气": "fail"
-          }
+          "有叹气": "pass",
+          "没有叹气": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q33.position",
+        "check_id": "Q33.position",
+        "text": "台词是「总算忙完了，我先坐一会儿。」。叹气出现在哪里？",
+        "options": [
+          "「总算忙完了」之前",
+          "「总算忙完了」之后，「我先坐一会儿」之前",
+          "「我先坐一会儿」之后",
+          "与从「总算忙完了」到「我先坐一会儿」的台词重叠",
+          "其他位置",
+          "没有叹气",
+          "无法确定"
+        ],
+        "mapping": {
+          "「总算忙完了」之前": "fail",
+          "「总算忙完了」之后，「我先坐一会儿」之前": "fail",
+          "「我先坐一会儿」之后": "pass",
+          "与从「总算忙完了」到「我先坐一会儿」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有叹气": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
     "event_position": {
-      "relation": "after_speech"
+      "relation": "after_word",
+      "text": "我先坐一会儿"
     }
   },
   "Q34": {
@@ -1476,20 +1611,18 @@
     "position_question_id": "Q34.position",
     "jev_questions": [
       {
-        "id": "Q34.position",
+        "id": "Q34.core",
         "check_id": "Q34.core",
-        "text": "叹气出现在哪里？",
+        "text": "音频里有没有可听辨的叹气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有叹气"
+          "有叹气",
+          "没有叹气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有叹气": "pass"
+          "有叹气": "pass",
+          "没有叹气": "pass",
+          "无法确定": "unknown"
         }
       }
     ]
@@ -1506,7 +1639,7 @@
       {
         "id": "Q35.position",
         "kind": "qualifier",
-        "requirement": "叹气位于说话前",
+        "requirement": "叹气的位置符合：「又没保存」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1520,79 +1653,73 @@
           "min": 1,
           "max": 1
         }
-      },
-      {
-        "id": "Q35.duration",
-        "kind": "qualifier",
-        "requirement": "叹气有明显延长",
-        "measurement": {
-          "metric": "event_duration_s"
-        }
       }
     ],
     "targets": {},
     "position_question_id": "Q35.position",
     "jev_questions": [
       {
-        "id": "Q35.position",
+        "id": "Q35.core",
         "check_id": "Q35.core",
-        "text": "叹气出现在哪里？",
+        "text": "音频里有没有可听辨的叹气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有叹气"
+          "有叹气",
+          "没有叹气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有叹气": "fail"
-        },
-        "check_mappings": {
-          "Q35.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有叹气": "fail"
-          }
+          "有叹气": "pass",
+          "没有叹气": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q35.position",
+        "check_id": "Q35.position",
+        "text": "台词是「又没保存？好吧，咱们只能从头再来一遍了。」。叹气出现在哪里？",
+        "options": [
+          "「又没保存」之前",
+          "「又没保存」之后，「好吧」之前",
+          "「咱们只能从头再来一遍了」之后",
+          "与从「又没保存」到「咱们只能从头再来一遍了」的台词重叠",
+          "其他位置",
+          "没有叹气",
+          "无法确定"
+        ],
+        "mapping": {
+          "「又没保存」之前": "pass",
+          "「又没保存」之后，「好吧」之前": "fail",
+          "「咱们只能从头再来一遍了」之后": "fail",
+          "与从「又没保存」到「咱们只能从头再来一遍了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有叹气": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q35.count",
         "check_id": "Q35.count",
-        "calibration_key": "sigh.count",
-        "text": "叹气出现几次？",
+        "text": "听到了几次叹气？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有叹气"
+          "没有叹气",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有叹气": "fail"
-        }
-      },
-      {
-        "id": "Q35.duration",
-        "check_id": "Q35.duration",
-        "calibration_key": "sigh.duration",
-        "text": "叹气持续时间如何？",
-        "options": [
-          "短促",
-          "较长",
-          "没有叹气"
-        ],
-        "mapping": {
-          "短促": "fail",
-          "较长": "pass",
-          "没有叹气": "fail"
-        }
+          "没有叹气": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "sigh.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "又没保存"
     }
   },
   "Q36": {
@@ -1607,7 +1734,7 @@
       {
         "id": "Q36.position",
         "kind": "qualifier",
-        "requirement": "倒吸气位于说话前",
+        "requirement": "倒吸气的位置符合：「小陈」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1627,49 +1754,67 @@
     "position_question_id": "Q36.position",
     "jev_questions": [
       {
-        "id": "Q36.position",
+        "id": "Q36.core",
         "check_id": "Q36.core",
-        "text": "倒吸气出现在哪里？",
+        "text": "音频里有没有可听辨的倒吸气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有倒吸气"
+          "有倒吸气",
+          "没有倒吸气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有倒吸气": "fail"
-        },
-        "check_mappings": {
-          "Q36.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有倒吸气": "fail"
-          }
+          "有倒吸气": "pass",
+          "没有倒吸气": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q36.position",
+        "check_id": "Q36.position",
+        "text": "台词是「小陈，你吓我一跳！」。倒吸气出现在哪里？",
+        "options": [
+          "「小陈」之前",
+          "「小陈」之后，「你吓我一跳」之前",
+          "「你吓我一跳」之后",
+          "与从「小陈」到「你吓我一跳」的台词重叠",
+          "其他位置",
+          "没有倒吸气",
+          "无法确定"
+        ],
+        "mapping": {
+          "「小陈」之前": "pass",
+          "「小陈」之后，「你吓我一跳」之前": "fail",
+          "「你吓我一跳」之后": "fail",
+          "与从「小陈」到「你吓我一跳」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有倒吸气": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q36.count",
         "check_id": "Q36.count",
-        "calibration_key": "gasp.count",
-        "text": "倒吸气出现几次？",
+        "text": "听到了几次倒吸气？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有倒吸气"
+          "没有倒吸气",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有倒吸气": "fail"
-        }
+          "没有倒吸气": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "gasp.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "小陈"
     }
   },
   "Q37": {
@@ -1684,7 +1829,7 @@
       {
         "id": "Q37.position",
         "kind": "qualifier",
-        "requirement": "倒吸气位于说话前",
+        "requirement": "倒吸气的位置符合：「你说什么」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1698,79 +1843,73 @@
           "min": 1,
           "max": 1
         }
-      },
-      {
-        "id": "Q37.duration",
-        "kind": "qualifier",
-        "requirement": "倒吸气短促",
-        "measurement": {
-          "metric": "event_duration_s"
-        }
       }
     ],
     "targets": {},
     "position_question_id": "Q37.position",
     "jev_questions": [
       {
-        "id": "Q37.position",
+        "id": "Q37.core",
         "check_id": "Q37.core",
-        "text": "倒吸气出现在哪里？",
+        "text": "音频里有没有可听辨的倒吸气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有倒吸气"
+          "有倒吸气",
+          "没有倒吸气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有倒吸气": "fail"
-        },
-        "check_mappings": {
-          "Q37.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有倒吸气": "fail"
-          }
+          "有倒吸气": "pass",
+          "没有倒吸气": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q37.position",
+        "check_id": "Q37.position",
+        "text": "台词是「你说什么？我真的被录取了？」。倒吸气出现在哪里？",
+        "options": [
+          "「你说什么」之前",
+          "「你说什么」之后，「我真的被录取了」之前",
+          "「我真的被录取了」之后",
+          "与从「你说什么」到「我真的被录取了」的台词重叠",
+          "其他位置",
+          "没有倒吸气",
+          "无法确定"
+        ],
+        "mapping": {
+          "「你说什么」之前": "pass",
+          "「你说什么」之后，「我真的被录取了」之前": "fail",
+          "「我真的被录取了」之后": "fail",
+          "与从「你说什么」到「我真的被录取了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有倒吸气": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q37.count",
         "check_id": "Q37.count",
-        "calibration_key": "gasp.count",
-        "text": "倒吸气出现几次？",
+        "text": "听到了几次倒吸气？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有倒吸气"
+          "没有倒吸气",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有倒吸气": "fail"
-        }
-      },
-      {
-        "id": "Q37.duration",
-        "check_id": "Q37.duration",
-        "calibration_key": "gasp.duration",
-        "text": "倒吸气持续时间如何？",
-        "options": [
-          "短促",
-          "较长",
-          "没有倒吸气"
-        ],
-        "mapping": {
-          "短促": "pass",
-          "较长": "fail",
-          "没有倒吸气": "fail"
-        }
+          "没有倒吸气": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "gasp.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "你说什么"
     }
   },
   "Q38": {
@@ -1785,7 +1924,7 @@
       {
         "id": "Q38.position",
         "kind": "qualifier",
-        "requirement": "倒吸气位于说话前",
+        "requirement": "倒吸气的位置符合：「扶住了」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1805,49 +1944,67 @@
     "position_question_id": "Q38.position",
     "jev_questions": [
       {
-        "id": "Q38.position",
+        "id": "Q38.core",
         "check_id": "Q38.core",
-        "text": "倒吸气出现在哪里？",
+        "text": "音频里有没有可听辨的倒吸气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有倒吸气"
+          "有倒吸气",
+          "没有倒吸气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有倒吸气": "fail"
-        },
-        "check_mappings": {
-          "Q38.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有倒吸气": "fail"
-          }
+          "有倒吸气": "pass",
+          "没有倒吸气": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q38.position",
+        "check_id": "Q38.position",
+        "text": "台词是「扶住了，差一点就摔了！」。倒吸气出现在哪里？",
+        "options": [
+          "「扶住了」之前",
+          "「扶住了」之后，「差一点就摔了」之前",
+          "「差一点就摔了」之后",
+          "与从「扶住了」到「差一点就摔了」的台词重叠",
+          "其他位置",
+          "没有倒吸气",
+          "无法确定"
+        ],
+        "mapping": {
+          "「扶住了」之前": "pass",
+          "「扶住了」之后，「差一点就摔了」之前": "fail",
+          "「差一点就摔了」之后": "fail",
+          "与从「扶住了」到「差一点就摔了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有倒吸气": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q38.count",
         "check_id": "Q38.count",
-        "calibration_key": "gasp.count",
-        "text": "倒吸气出现几次？",
+        "text": "听到了几次倒吸气？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有倒吸气"
+          "没有倒吸气",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有倒吸气": "fail"
-        }
+          "没有倒吸气": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "gasp.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "扶住了"
     }
   },
   "Q39": {
@@ -1864,20 +2021,18 @@
     "position_question_id": "Q39.position",
     "jev_questions": [
       {
-        "id": "Q39.position",
+        "id": "Q39.core",
         "check_id": "Q39.core",
-        "text": "倒吸气出现在哪里？",
+        "text": "音频里有没有可听辨的倒吸气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有倒吸气"
+          "有倒吸气",
+          "没有倒吸气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有倒吸气": "pass"
+          "有倒吸气": "pass",
+          "没有倒吸气": "pass",
+          "无法确定": "unknown"
         }
       }
     ]
@@ -1894,7 +2049,7 @@
       {
         "id": "Q40.position",
         "kind": "qualifier",
-        "requirement": "倒吸气位于说话前",
+        "requirement": "倒吸气的位置符合：「你们怎么都在这儿」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1914,49 +2069,67 @@
     "position_question_id": "Q40.position",
     "jev_questions": [
       {
-        "id": "Q40.position",
+        "id": "Q40.core",
         "check_id": "Q40.core",
-        "text": "倒吸气出现在哪里？",
+        "text": "音频里有没有可听辨的倒吸气？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有倒吸气"
+          "有倒吸气",
+          "没有倒吸气",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有倒吸气": "fail"
-        },
-        "check_mappings": {
-          "Q40.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有倒吸气": "fail"
-          }
+          "有倒吸气": "pass",
+          "没有倒吸气": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q40.position",
+        "check_id": "Q40.position",
+        "text": "台词是「你们怎么都在这儿？我还以为你们都忘了！」。倒吸气出现在哪里？",
+        "options": [
+          "「你们怎么都在这儿」之前",
+          "「你们怎么都在这儿」之后，「我还以为你们都忘了」之前",
+          "「我还以为你们都忘了」之后",
+          "与从「你们怎么都在这儿」到「我还以为你们都忘了」的台词重叠",
+          "其他位置",
+          "没有倒吸气",
+          "无法确定"
+        ],
+        "mapping": {
+          "「你们怎么都在这儿」之前": "pass",
+          "「你们怎么都在这儿」之后，「我还以为你们都忘了」之前": "fail",
+          "「我还以为你们都忘了」之后": "fail",
+          "与从「你们怎么都在这儿」到「我还以为你们都忘了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有倒吸气": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q40.count",
         "check_id": "Q40.count",
-        "calibration_key": "gasp.count",
-        "text": "倒吸气出现几次？",
+        "text": "听到了几次倒吸气？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有倒吸气"
+          "没有倒吸气",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有倒吸气": "fail"
-        }
+          "没有倒吸气": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "gasp.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "你们怎么都在这儿"
     }
   },
   "Q41": {
@@ -1971,7 +2144,7 @@
       {
         "id": "Q41.position",
         "kind": "qualifier",
-        "requirement": "咳嗽位于说话前",
+        "requirement": "咳嗽的位置符合：「王老师」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -1991,49 +2164,67 @@
     "position_question_id": "Q41.position",
     "jev_questions": [
       {
-        "id": "Q41.position",
+        "id": "Q41.core",
         "check_id": "Q41.core",
-        "text": "咳嗽出现在哪里？",
+        "text": "音频里有没有可听辨的咳嗽？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有咳嗽"
+          "有咳嗽",
+          "没有咳嗽",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有咳嗽": "fail"
-        },
-        "check_mappings": {
-          "Q41.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有咳嗽": "fail"
-          }
+          "有咳嗽": "pass",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q41.position",
+        "check_id": "Q41.position",
+        "text": "台词是「王老师，我今天有点发烧，想请一天假，作业我会补上。」。咳嗽出现在哪里？",
+        "options": [
+          "「王老师」之前",
+          "「王老师」之后，「我今天有点发烧」之前",
+          "「作业我会补上」之后",
+          "与从「王老师」到「作业我会补上」的台词重叠",
+          "其他位置",
+          "没有咳嗽",
+          "无法确定"
+        ],
+        "mapping": {
+          "「王老师」之前": "pass",
+          "「王老师」之后，「我今天有点发烧」之前": "fail",
+          "「作业我会补上」之后": "fail",
+          "与从「王老师」到「作业我会补上」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q41.count",
         "check_id": "Q41.count",
-        "calibration_key": "cough.count",
-        "text": "咳嗽出现几次？",
+        "text": "听到了几次咳嗽？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有咳嗽"
+          "没有咳嗽",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有咳嗽": "fail"
-        }
+          "没有咳嗽": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "cough.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "王老师"
     }
   },
   "Q42": {
@@ -2048,7 +2239,7 @@
       {
         "id": "Q42.position",
         "kind": "qualifier",
-        "requirement": "咳嗽位于发痒",
+        "requirement": "咳嗽的位置符合：「我这两天嗓子一直发痒」之后，「晚上会干咳」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -2068,50 +2259,70 @@
     "position_question_id": "Q42.position",
     "jev_questions": [
       {
-        "id": "Q42.position",
+        "id": "Q42.core",
         "check_id": "Q42.core",
-        "text": "咳嗽出现在哪个词后面？",
+        "text": "音频里有没有可听辨的咳嗽？",
         "options": [
-          "医生",
-          "发痒",
-          "晚上",
-          "没有咳嗽"
+          "有咳嗽",
+          "没有咳嗽",
+          "无法确定"
         ],
         "mapping": {
-          "医生": "pass",
-          "发痒": "pass",
-          "晚上": "pass",
-          "没有咳嗽": "fail"
-        },
-        "check_mappings": {
-          "Q42.position": {
-            "医生": "fail",
-            "发痒": "pass",
-            "晚上": "fail",
-            "没有咳嗽": "fail"
-          }
+          "有咳嗽": "pass",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q42.position",
+        "check_id": "Q42.position",
+        "text": "台词是「医生，我这两天嗓子一直发痒，晚上会干咳。」。咳嗽出现在哪里？",
+        "options": [
+          "「医生」之前",
+          "「医生」之后，「我这两天嗓子一直发痒」之前",
+          "「晚上会干咳」之后",
+          "与从「医生」到「晚上会干咳」的台词重叠",
+          "「我这两天嗓子一直发痒」之后，「晚上会干咳」之前",
+          "其他位置",
+          "没有咳嗽",
+          "无法确定"
+        ],
+        "mapping": {
+          "「医生」之前": "fail",
+          "「医生」之后，「我这两天嗓子一直发痒」之前": "fail",
+          "「晚上会干咳」之后": "fail",
+          "与从「医生」到「晚上会干咳」的台词重叠": "fail",
+          "「我这两天嗓子一直发痒」之后，「晚上会干咳」之前": "pass",
+          "其他位置": "fail",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q42.count",
         "check_id": "Q42.count",
-        "calibration_key": "cough.count",
-        "text": "咳嗽出现几次？",
+        "text": "听到了几次咳嗽？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有咳嗽"
+          "没有咳嗽",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有咳嗽": "fail"
-        }
+          "没有咳嗽": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "cough.count"
       }
     ],
     "event_position": {
-      "relation": "after_word",
-      "text": "发痒"
+      "relation": "between_words",
+      "left": "我这两天嗓子一直发痒",
+      "right": "晚上会干咳"
     }
   },
   "Q43": {
@@ -2126,7 +2337,7 @@
       {
         "id": "Q43.position",
         "kind": "qualifier",
-        "requirement": "咳嗽位于说话前",
+        "requirement": "咳嗽的位置符合：「先停一下」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -2146,49 +2357,67 @@
     "position_question_id": "Q43.position",
     "jev_questions": [
       {
-        "id": "Q43.position",
+        "id": "Q43.core",
         "check_id": "Q43.core",
-        "text": "咳嗽出现在哪里？",
+        "text": "音频里有没有可听辨的咳嗽？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有咳嗽"
+          "有咳嗽",
+          "没有咳嗽",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有咳嗽": "fail"
-        },
-        "check_mappings": {
-          "Q43.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有咳嗽": "fail"
-          }
+          "有咳嗽": "pass",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q43.position",
+        "check_id": "Q43.position",
+        "text": "台词是「先停一下，把窗户打开，等灰散了再做。」。咳嗽出现在哪里？",
+        "options": [
+          "「先停一下」之前",
+          "「先停一下」之后，「把窗户打开」之前",
+          "「等灰散了再做」之后",
+          "与从「先停一下」到「等灰散了再做」的台词重叠",
+          "其他位置",
+          "没有咳嗽",
+          "无法确定"
+        ],
+        "mapping": {
+          "「先停一下」之前": "pass",
+          "「先停一下」之后，「把窗户打开」之前": "fail",
+          "「等灰散了再做」之后": "fail",
+          "与从「先停一下」到「等灰散了再做」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q43.count",
         "check_id": "Q43.count",
-        "calibration_key": "cough.count",
-        "text": "咳嗽出现几次？",
+        "text": "听到了几次咳嗽？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有咳嗽"
+          "没有咳嗽",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有咳嗽": "fail"
-        }
+          "没有咳嗽": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "cough.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "先停一下"
     }
   },
   "Q44": {
@@ -2203,7 +2432,7 @@
       {
         "id": "Q44.position",
         "kind": "qualifier",
-        "requirement": "咳嗽位于说话前",
+        "requirement": "咳嗽的位置符合：「没事」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -2216,79 +2445,73 @@
           "metric": "event_count",
           "min": 2
         }
-      },
-      {
-        "id": "Q44.duration",
-        "kind": "qualifier",
-        "requirement": "咳嗽短促",
-        "measurement": {
-          "metric": "event_duration_s"
-        }
       }
     ],
     "targets": {},
     "position_question_id": "Q44.position",
     "jev_questions": [
       {
-        "id": "Q44.position",
+        "id": "Q44.core",
         "check_id": "Q44.core",
-        "text": "咳嗽出现在哪里？",
+        "text": "音频里有没有可听辨的咳嗽？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有咳嗽"
+          "有咳嗽",
+          "没有咳嗽",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有咳嗽": "fail"
-        },
-        "check_mappings": {
-          "Q44.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有咳嗽": "fail"
-          }
+          "有咳嗽": "pass",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q44.position",
+        "check_id": "Q44.position",
+        "text": "台词是「没事，刚才喝急了，现在好多了。」。咳嗽出现在哪里？",
+        "options": [
+          "「没事」之前",
+          "「没事」之后，「刚才喝急了」之前",
+          "「现在好多了」之后",
+          "与从「没事」到「现在好多了」的台词重叠",
+          "其他位置",
+          "没有咳嗽",
+          "无法确定"
+        ],
+        "mapping": {
+          "「没事」之前": "pass",
+          "「没事」之后，「刚才喝急了」之前": "fail",
+          "「现在好多了」之后": "fail",
+          "与从「没事」到「现在好多了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q44.count",
         "check_id": "Q44.count",
-        "calibration_key": "cough.count",
-        "text": "咳嗽出现几次？",
+        "text": "听到了几次咳嗽？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有咳嗽"
+          "没有咳嗽",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "fail",
-          "多次": "pass",
-          "没有咳嗽": "fail"
-        }
-      },
-      {
-        "id": "Q44.duration",
-        "check_id": "Q44.duration",
-        "calibration_key": "cough.duration",
-        "text": "咳嗽持续时间如何？",
-        "options": [
-          "短促",
-          "较长",
-          "没有咳嗽"
-        ],
-        "mapping": {
-          "短促": "pass",
-          "较长": "fail",
-          "没有咳嗽": "fail"
-        }
+          "没有咳嗽": "fail",
+          "一段": "fail",
+          "两段": "pass",
+          "三段或更多": "pass",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "cough.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "没事"
     }
   },
   "Q45": {
@@ -2303,7 +2526,7 @@
       {
         "id": "Q45.position",
         "kind": "qualifier",
-        "requirement": "咳嗽位于说话前",
+        "requirement": "咳嗽的位置符合：「这也太辣了」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -2322,49 +2545,67 @@
     "position_question_id": "Q45.position",
     "jev_questions": [
       {
-        "id": "Q45.position",
+        "id": "Q45.core",
         "check_id": "Q45.core",
-        "text": "咳嗽出现在哪里？",
+        "text": "音频里有没有可听辨的咳嗽？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有咳嗽"
+          "有咳嗽",
+          "没有咳嗽",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有咳嗽": "fail"
-        },
-        "check_mappings": {
-          "Q45.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有咳嗽": "fail"
-          }
+          "有咳嗽": "pass",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q45.position",
+        "check_id": "Q45.position",
+        "text": "台词是「这也太辣了，我得先缓一缓。」。咳嗽出现在哪里？",
+        "options": [
+          "「这也太辣了」之前",
+          "「这也太辣了」之后，「我得先缓一缓」之前",
+          "「我得先缓一缓」之后",
+          "与从「这也太辣了」到「我得先缓一缓」的台词重叠",
+          "其他位置",
+          "没有咳嗽",
+          "无法确定"
+        ],
+        "mapping": {
+          "「这也太辣了」之前": "pass",
+          "「这也太辣了」之后，「我得先缓一缓」之前": "fail",
+          "「我得先缓一缓」之后": "fail",
+          "与从「这也太辣了」到「我得先缓一缓」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有咳嗽": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q45.count",
         "check_id": "Q45.count",
-        "calibration_key": "cough.count",
-        "text": "咳嗽出现几次？",
+        "text": "听到了几次咳嗽？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有咳嗽"
+          "没有咳嗽",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "fail",
-          "多次": "pass",
-          "没有咳嗽": "fail"
-        }
+          "没有咳嗽": "fail",
+          "一段": "fail",
+          "两段": "pass",
+          "三段或更多": "pass",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "cough.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "这也太辣了"
     }
   },
   "Q46": {
@@ -2379,7 +2620,7 @@
       {
         "id": "Q46.position",
         "kind": "qualifier",
-        "requirement": "清嗓位于说话前",
+        "requirement": "清嗓的位置符合：「大家先安静一下」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -2399,49 +2640,67 @@
     "position_question_id": "Q46.position",
     "jev_questions": [
       {
-        "id": "Q46.position",
+        "id": "Q46.core",
         "check_id": "Q46.core",
-        "text": "清嗓出现在哪里？",
+        "text": "音频里有没有可听辨的清嗓？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有清嗓"
+          "有清嗓",
+          "没有清嗓",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有清嗓": "fail"
-        },
-        "check_mappings": {
-          "Q46.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有清嗓": "fail"
-          }
+          "有清嗓": "pass",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q46.position",
+        "check_id": "Q46.position",
+        "text": "台词是「大家先安静一下，咱们说说运动会报名的事。」。清嗓出现在哪里？",
+        "options": [
+          "「大家先安静一下」之前",
+          "「大家先安静一下」之后，「咱们说说运动会报名的事」之前",
+          "「咱们说说运动会报名的事」之后",
+          "与从「大家先安静一下」到「咱们说说运动会报名的事」的台词重叠",
+          "其他位置",
+          "没有清嗓",
+          "无法确定"
+        ],
+        "mapping": {
+          "「大家先安静一下」之前": "pass",
+          "「大家先安静一下」之后，「咱们说说运动会报名的事」之前": "fail",
+          "「咱们说说运动会报名的事」之后": "fail",
+          "与从「大家先安静一下」到「咱们说说运动会报名的事」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q46.count",
         "check_id": "Q46.count",
-        "calibration_key": "throat_clear.count",
-        "text": "清嗓出现几次？",
+        "text": "听到了几次清嗓？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有清嗓"
+          "没有清嗓",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有清嗓": "fail"
-        }
+          "没有清嗓": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "throat_clear.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "大家先安静一下"
     }
   },
   "Q47": {
@@ -2456,17 +2715,9 @@
       {
         "id": "Q47.position",
         "kind": "qualifier",
-        "requirement": "清嗓位于说话前",
+        "requirement": "清嗓的位置符合：「您好」之前。",
         "measurement": {
           "metric": "position"
-        }
-      },
-      {
-        "id": "Q47.intensity",
-        "kind": "qualifier",
-        "requirement": "清嗓轻微",
-        "measurement": {
-          "metric": "event_speech_rms_ratio"
         }
       }
     ],
@@ -2474,49 +2725,47 @@
     "position_question_id": "Q47.position",
     "jev_questions": [
       {
-        "id": "Q47.position",
+        "id": "Q47.core",
         "check_id": "Q47.core",
-        "text": "清嗓出现在哪里？",
+        "text": "音频里有没有可听辨的清嗓？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有清嗓"
+          "有清嗓",
+          "没有清嗓",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有清嗓": "fail"
-        },
-        "check_mappings": {
-          "Q47.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有清嗓": "fail"
-          }
+          "有清嗓": "pass",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
         }
       },
       {
-        "id": "Q47.intensity",
-        "check_id": "Q47.intensity",
-        "calibration_key": "throat_clear.intensity",
-        "text": "清嗓强度如何？",
+        "id": "Q47.position",
+        "check_id": "Q47.position",
+        "text": "台词是「您好，这里是社区服务中心，请问您有什么事？」。清嗓出现在哪里？",
         "options": [
-          "响亮",
-          "轻微",
-          "没有清嗓"
+          "「您好」之前",
+          "「您好」之后，「这里是社区服务中心」之前",
+          "「请问您有什么事」之后",
+          "与从「您好」到「请问您有什么事」的台词重叠",
+          "其他位置",
+          "没有清嗓",
+          "无法确定"
         ],
         "mapping": {
-          "响亮": "fail",
-          "轻微": "pass",
-          "没有清嗓": "fail"
+          "「您好」之前": "pass",
+          "「您好」之后，「这里是社区服务中心」之前": "fail",
+          "「请问您有什么事」之后": "fail",
+          "与从「您好」到「请问您有什么事」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "您好"
     }
   },
   "Q48": {
@@ -2531,7 +2780,7 @@
       {
         "id": "Q48.position",
         "kind": "qualifier",
-        "requirement": "清嗓位于对不起",
+        "requirement": "清嗓的位置符合：「我心里就乱了」之后，「对不起」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -2541,34 +2790,50 @@
     "position_question_id": "Q48.position",
     "jev_questions": [
       {
-        "id": "Q48.position",
+        "id": "Q48.core",
         "check_id": "Q48.core",
-        "text": "清嗓出现在哪个词前面？",
+        "text": "音频里有没有可听辨的清嗓？",
         "options": [
-          "她每次",
-          "对不起",
-          "我又说多了",
-          "没有清嗓"
+          "有清嗓",
+          "没有清嗓",
+          "无法确定"
         ],
         "mapping": {
-          "她每次": "pass",
-          "对不起": "pass",
-          "我又说多了": "pass",
-          "没有清嗓": "fail"
-        },
-        "check_mappings": {
-          "Q48.position": {
-            "她每次": "fail",
-            "对不起": "pass",
-            "我又说多了": "fail",
-            "没有清嗓": "fail"
-          }
+          "有清嗓": "pass",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q48.position",
+        "check_id": "Q48.position",
+        "text": "台词是「她每次朝我笑，我心里就乱了。对不起，我又说多了。」。清嗓出现在哪里？",
+        "options": [
+          "「她每次朝我笑」之前",
+          "「她每次朝我笑」之后，「我心里就乱了」之前",
+          "「我又说多了」之后",
+          "与从「她每次朝我笑」到「我又说多了」的台词重叠",
+          "「我心里就乱了」之后，「对不起」之前",
+          "其他位置",
+          "没有清嗓",
+          "无法确定"
+        ],
+        "mapping": {
+          "「她每次朝我笑」之前": "fail",
+          "「她每次朝我笑」之后，「我心里就乱了」之前": "fail",
+          "「我又说多了」之后": "fail",
+          "与从「她每次朝我笑」到「我又说多了」的台词重叠": "fail",
+          "「我心里就乱了」之后，「对不起」之前": "pass",
+          "其他位置": "fail",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
     "event_position": {
-      "relation": "before_word",
-      "text": "对不起"
+      "relation": "between_words",
+      "left": "我心里就乱了",
+      "right": "对不起"
     }
   },
   "Q49": {
@@ -2583,7 +2848,7 @@
       {
         "id": "Q49.position",
         "kind": "qualifier",
-        "requirement": "清嗓位于说话前",
+        "requirement": "清嗓的位置符合：「试音」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -2593,33 +2858,47 @@
     "position_question_id": "Q49.position",
     "jev_questions": [
       {
-        "id": "Q49.position",
+        "id": "Q49.core",
         "check_id": "Q49.core",
-        "text": "清嗓出现在哪里？",
+        "text": "音频里有没有可听辨的清嗓？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有清嗓"
+          "有清嗓",
+          "没有清嗓",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有清嗓": "fail"
-        },
-        "check_mappings": {
-          "Q49.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有清嗓": "fail"
-          }
+          "有清嗓": "pass",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q49.position",
+        "check_id": "Q49.position",
+        "text": "台词是「试音，一二三。这里是校园午间站。」。清嗓出现在哪里？",
+        "options": [
+          "「试音」之前",
+          "「试音」之后，「一二三」之前",
+          "「这里是校园午间站」之后",
+          "与从「试音」到「这里是校园午间站」的台词重叠",
+          "其他位置",
+          "没有清嗓",
+          "无法确定"
+        ],
+        "mapping": {
+          "「试音」之前": "pass",
+          "「试音」之后，「一二三」之前": "fail",
+          "「这里是校园午间站」之后": "fail",
+          "与从「试音」到「这里是校园午间站」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
         }
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "试音"
     }
   },
   "Q50": {
@@ -2634,7 +2913,7 @@
       {
         "id": "Q50.position",
         "kind": "qualifier",
-        "requirement": "清嗓位于说话前",
+        "requirement": "清嗓的位置符合：「大家先听我说一句」之前。",
         "measurement": {
           "metric": "position"
         }
@@ -2654,49 +2933,67 @@
     "position_question_id": "Q50.position",
     "jev_questions": [
       {
-        "id": "Q50.position",
+        "id": "Q50.core",
         "check_id": "Q50.core",
-        "text": "清嗓出现在哪里？",
+        "text": "音频里有没有可听辨的清嗓？",
         "options": [
-          "说话前",
-          "说话后",
-          "说话中",
-          "没有清嗓"
+          "有清嗓",
+          "没有清嗓",
+          "无法确定"
         ],
         "mapping": {
-          "说话前": "pass",
-          "说话后": "pass",
-          "说话中": "pass",
-          "没有清嗓": "fail"
-        },
-        "check_mappings": {
-          "Q50.position": {
-            "说话前": "pass",
-            "说话后": "fail",
-            "说话中": "fail",
-            "没有清嗓": "fail"
-          }
+          "有清嗓": "pass",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
+        }
+      },
+      {
+        "id": "Q50.position",
+        "check_id": "Q50.position",
+        "text": "台词是「大家先听我说一句，我和林悦准备结婚了。」。清嗓出现在哪里？",
+        "options": [
+          "「大家先听我说一句」之前",
+          "「大家先听我说一句」之后，「我和林悦准备结婚了」之前",
+          "「我和林悦准备结婚了」之后",
+          "与从「大家先听我说一句」到「我和林悦准备结婚了」的台词重叠",
+          "其他位置",
+          "没有清嗓",
+          "无法确定"
+        ],
+        "mapping": {
+          "「大家先听我说一句」之前": "pass",
+          "「大家先听我说一句」之后，「我和林悦准备结婚了」之前": "fail",
+          "「我和林悦准备结婚了」之后": "fail",
+          "与从「大家先听我说一句」到「我和林悦准备结婚了」的台词重叠": "fail",
+          "其他位置": "fail",
+          "没有清嗓": "fail",
+          "无法确定": "unknown"
         }
       },
       {
         "id": "Q50.count",
         "check_id": "Q50.count",
-        "calibration_key": "throat_clear.count",
-        "text": "清嗓出现几次？",
+        "text": "听到了几次清嗓？按能独立听辨的事件计数。",
         "options": [
-          "一次",
-          "多次",
-          "没有清嗓"
+          "没有清嗓",
+          "一段",
+          "两段",
+          "三段或更多",
+          "无法确定"
         ],
         "mapping": {
-          "一次": "pass",
-          "多次": "fail",
-          "没有清嗓": "fail"
-        }
+          "没有清嗓": "fail",
+          "一段": "pass",
+          "两段": "fail",
+          "三段或更多": "fail",
+          "无法确定": "unknown"
+        },
+        "calibration_key": "throat_clear.count"
       }
     ],
     "event_position": {
-      "relation": "before_speech"
+      "relation": "before_word",
+      "text": "大家先听我说一句"
     }
   }
 }

@@ -8,7 +8,7 @@ import subprocess
 import sys
 import wave
 from .audio import InvalidAudio, validate_audio
-from .evidence import resolve, routes_for, unknown_route, validate_route
+from .evidence import resolve, routes_for, specs_for_mode, unknown_route, validate_route
 from pathlib import Path
 from .core import DIMENSIONS, digest, load, read_dataset, save, score, summarize, validate_bank, validate_specs
 
@@ -17,6 +17,8 @@ PROMPT = "请代入情景中的角色，按读法要求说出台词；不要朗�
 def call(command: list[str], payload: dict, timeout: int) -> dict:
     if not isinstance(command, list) or not all(isinstance(s,str) for s in command):
         raise ValueError("command必须是参数数组")
+    if command and command[0] == "python":
+        command = [sys.executable, *command[1:]]
     result = subprocess.run(command, input=json.dumps(payload, ensure_ascii=False), capture_output=True, text=True, encoding="utf-8", timeout=timeout, check=False)
     if result.returncode:
         # 子进程可能输出密钥，不直接复制stderr。
@@ -41,6 +43,8 @@ def run(args: argparse.Namespace) -> None:
     validate_bank(items)
     config, specs = load(args.config), load(args.specs)
     validate_specs(items, specs)
+    mode = getattr(args, "mode", "complex")
+    specs = specs_for_mode(specs, mode)
     requested = args.ids.split(",") if args.ids else [x["id"] for x in items]
     if len(requested) != len(set(requested)) or set(requested) - {x["id"] for x in items}:
         raise ValueError("duplicate or unknown requested IDs")
@@ -49,6 +53,7 @@ def run(args: argparse.Namespace) -> None:
         raise ValueError("未选中任何题")
     config["referenced_settings_hashes"] = {arg: digest(load(Path(arg))) for name in ("generate", "asr", "jev", "judge", "align", "acoustic", "events", "audio_judge", "arbitration") for arg in config.get(name, []) if arg.endswith(".json") and Path(arg).is_file()}
     manifest = {"dataset_hash": digest(items), "spec_hash": digest(specs), "config_hash": digest(config), "model_id": config["model_id"], "versions": config["versions"], "ids": [x["id"] for x in selected], "code_version": "0.2.1", "scoring_version": "2.1", "source_hash": digest({p.name:p.read_text(encoding="utf-8") for p in Path(__file__).parent.glob("*.py")}), "simulation": config.get("simulation", False)}
+    manifest["evaluation_mode"] = mode
     args.output.mkdir(parents=True, exist_ok=True)
     manifest_path = args.output / "manifest.json"
     if manifest_path.exists():
@@ -92,36 +97,35 @@ def run(args: argparse.Namespace) -> None:
             spec = specs[item["id"]]
             payload = {"audio_path": str(audio.resolve()), "item": item, "evaluation_spec": spec}
             def observe(name: str, data: dict) -> dict:
+                checks = data.get("evaluation_spec", spec)["checks"]
                 if name not in config:
-                    return unknown_route(spec["checks"], name + " not configured")
+                    return unknown_route(checks, name + " not configured")
                 try:
                     value = stage(folder, name, config, data)
-                    if name in {"jev", "acoustic", "events", "audio_judge"}:
-                        validate_route(value, spec["checks"], name)
+                    if name in {"jev", "acoustic", "events", "audio_judge", "arbitration"}:
+                        validate_route(value, checks, name)
                     return value
                 except (RuntimeError, ValueError, KeyError, TypeError) as exc:
                     save(folder / (name + "_validation_error.json"), {"id": item["id"], "stage": name, "error_type": type(exc).__name__, "reason": "invalid/unavailable evaluator response"})
-                    return unknown_route(spec["checks"], name + " unavailable or invalid")
-            names = ["asr"] + [n for n in routes_for(spec["feature"]) if n not in {"acoustic", "events"}]
+                    return unknown_route(checks, name + " unavailable or invalid")
+            routes = routes_for(spec)
+            names = ["asr"] + [n for n in routes if n not in {"acoustic", "events"}]
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
                 futures = {n: pool.submit(observe, n, {"audio_path": payload["audio_path"]} if n == "asr" else payload) for n in names}
                 identified = {n: f.result() for n, f in futures.items()}
-            if any(n in routes_for(spec["feature"]) for n in ("acoustic", "events")):
+            if any(n in routes for n in ("acoustic", "events")):
                 alignment = observe("align", {**payload, "spoken_text": identified["asr"].get("spoken_text")})
-                local_route = "acoustic" if "acoustic" in routes_for(spec["feature"]) else "events"
+                local_route = "acoustic" if "acoustic" in routes else "events"
                 identified[local_route] = observe(local_route, {**payload, "alignment": alignment})
+            def supplemental(checks: list[dict]) -> dict:
+                data = {**payload, "evaluation_spec": {**spec, "checks": checks}}
+                identified["audio_judge"] = observe("audio_judge", data)
+                return identified["audio_judge"]
+
             def arbitrate(checks: list[dict]) -> dict:
-                data = {**payload, "evaluation_spec": {**spec, "checks": checks}, "arbitration": True,
-                        "disagreement": {n: r for n, r in identified.items() if n != "asr"}}
-                try:
-                    if "arbitration" not in config:
-                        return unknown_route(checks, "arbitration not configured")
-                    response = stage(folder, "arbitration", config, data)
-                    validate_route(response, checks, "arbitration")
-                    return response
-                except (RuntimeError, ValueError, KeyError, TypeError):
-                    return unknown_route(checks, "arbitration failed")
-            evidence = {**resolve(spec, identified, arbitrate), "asr_status": identified["asr"].get("status"),
+                return observe("arbitration", {**payload, "evaluation_spec": {**spec, "checks": checks}})
+
+            evidence = {**resolve(spec, identified, arbitrate, supplemental), "asr_status": identified["asr"].get("status"),
                         "spoken_text": identified["asr"].get("spoken_text"), "raw_routes": identified}
             save(folder / "evidence.json", evidence)
             judge_payload = {"item": item, "evaluation_spec": spec, "evidence": evidence}
@@ -147,6 +151,7 @@ def run(args: argparse.Namespace) -> None:
 def rescore(args: argparse.Namespace) -> None:
     items, specs = read_dataset(args.dataset), load(args.specs)
     manifest = load(args.run / "manifest.json")
+    specs = specs_for_mode(specs, manifest.get("evaluation_mode", "complex"))
     if manifest.get("scoring_version") not in {"2.0", "2.1"} or digest(items) != manifest["dataset_hash"] or digest(specs) != manifest["spec_hash"]:
         raise ValueError("scoring version or data mismatch")
     if args.output.exists():
@@ -176,6 +181,7 @@ def main() -> None:
     for flag in ("dataset","specs","config","output"):
         execute.add_argument("--"+flag,type=Path,required=True)
     execute.add_argument("--ids"); execute.add_argument("--resume",action="store_true")
+    execute.add_argument("--mode", choices=("simple", "complex"), default="complex")
     rescore_parser = sub.add_parser("score")
     for flag in ("dataset", "specs", "run", "output"):
         rescore_parser.add_argument("--" + flag, type=Path, required=True)
