@@ -31,7 +31,7 @@ def call(command: list[str], payload: dict, timeout: int) -> dict:
     return value
 
 def stage(folder: Path, name: str, config: dict, payload: dict) -> dict:
-    for attempt in range(1 if name in {"generate", "judge", "audio_judge", "arbitration"} else 2):
+    for attempt in range(1 if name in {"generate", "audio_judge", "arbitration"} else 2):
         try:
             result = call(config[name], payload, config.get("timeout_s", 180))
             save(folder / f"{name}_raw.json", result)
@@ -39,6 +39,26 @@ def stage(folder: Path, name: str, config: dict, payload: dict) -> dict:
         except (ValueError, RuntimeError, subprocess.TimeoutExpired, OSError) as e:
             save(folder / f"{name}_error_{attempt}.json", {"id": folder.name, "stage": name, "attempt": attempt + 1, "error_type": type(e).__name__, "reason": "timeout" if isinstance(e, subprocess.TimeoutExpired) else "invalid response or adapter failed"})
     raise RuntimeError(f"{name}调用失败")
+
+def judge_and_score(folder: Path, config: dict, item: dict, spec: dict, evidence: dict) -> dict:
+    payload = {"item": item, "evaluation_spec": spec, "evidence": evidence}
+    for attempt in range(5):
+        error = {"id": item["id"], "stage": "judge", "attempt": attempt + 1}
+        try:
+            judge = call(config["judge"], payload, config.get("timeout_s", 180))
+        except (ValueError, RuntimeError, subprocess.TimeoutExpired, OSError) as exc:
+            error.update(error_type=type(exc).__name__,
+                         reason="timeout" if isinstance(exc, subprocess.TimeoutExpired) else "invalid response or adapter failed")
+        else:
+            save(folder / "judge_raw.json", judge)
+            try:
+                return score(item, spec, evidence, judge)
+            except (ValueError, KeyError, TypeError) as exc:
+                payload["validation_error"] = str(exc)
+                error.update(error_type=type(exc).__name__, reason="score validation failed")
+        save(folder / f"judge_error_{attempt}.json", error)
+    raise RuntimeError("文本裁判最多调用 5 次，均未获得有效评分")
+
 
 def run(args: argparse.Namespace) -> None:
     items = read_dataset(args.dataset)
@@ -54,7 +74,7 @@ def run(args: argparse.Namespace) -> None:
     if not selected:
         raise ValueError("未选中任何题")
     config["referenced_settings_hashes"] = {arg: digest(load(Path(arg))) for name in ("generate", "asr", "jev", "judge", "align", "acoustic", "events", "audio_judge", "arbitration") for arg in config.get(name, []) if arg.endswith(".json") and Path(arg).is_file()}
-    manifest = {"dataset_hash": digest(items), "spec_hash": digest(specs), "config_hash": digest(config), "model_id": config["model_id"], "versions": config["versions"], "ids": [x["id"] for x in selected], "code_version": "0.2.1", "scoring_version": "2.2", "source_hash": digest({p.name:p.read_text(encoding="utf-8") for p in Path(__file__).parent.glob("*.py")}), "simulation": config.get("simulation", False)}
+    manifest = {"dataset_hash": digest(items), "spec_hash": digest(specs), "config_hash": digest(config), "model_id": config["model_id"], "versions": config["versions"], "ids": [x["id"] for x in selected], "code_version": "0.2.1", "scoring_version": "2.3", "source_hash": digest({p.name:p.read_text(encoding="utf-8") for p in Path(__file__).parent.glob("*.py")}), "simulation": config.get("simulation", False)}
     manifest["evaluation_mode"] = mode
     args.output.mkdir(parents=True, exist_ok=True)
     manifest_path = args.output / "manifest.json"
@@ -130,19 +150,11 @@ def run(args: argparse.Namespace) -> None:
             evidence = {**resolve(spec, identified, arbitrate, supplemental), "asr_status": identified["asr"].get("status"),
                         "spoken_text": identified["asr"].get("spoken_text"), "raw_routes": identified}
             save(folder / "evidence.json", evidence)
-            judge_payload = {"item": item, "evaluation_spec": spec, "evidence": evidence}
-            for attempt in range(2):
-                judge = stage(folder,"judge",config,judge_payload)
-                try:
-                    result = score(item,specs[item["id"]],evidence,judge)
-                    break
-                except (ValueError,KeyError,TypeError) as e:
-                    judge_payload["validation_error"] = str(e)
-            else: raise ValueError("裁判结构或证据两次校验失败")
+            result = judge_and_score(folder, config, item, spec, evidence)
         except InvalidAudio as e:
             result = {"id": item["id"], "category": item["category"], "mode": specs[item["id"]]["requirement_mode"],
                       "status": "model_failure", "scores": dict.fromkeys(DIMENSIONS, 0), "total_score": 0,
-                      "scoring_version": "2.2", "error": str(e)}
+                      "scoring_version": "2.3", "error": str(e)}
         except (OSError, ValueError, KeyError, TypeError, RuntimeError, wave.Error) as e:
             result = {"id":item["id"], "category":item["category"], "mode":specs[item["id"]]["requirement_mode"], "status":"evaluator_error", "scores":dict.fromkeys(DIMENSIONS,None), "total_score":None, "error":str(e)}
         save(result_path,result)
@@ -156,7 +168,7 @@ def rescore(args: argparse.Namespace) -> None:
     specs = specs_for_mode(specs, manifest.get("evaluation_mode", "complex"))
     input_version = manifest.get("scoring_version")
     scoring_version = "2.1" if input_version == "2.0" else input_version
-    if input_version not in {"2.0", "2.1", "2.2"} or digest(items) != manifest["dataset_hash"] or digest(specs) != manifest["spec_hash"]:
+    if input_version not in {"2.0", "2.1", "2.2", "2.3"} or digest(items) != manifest["dataset_hash"] or digest(specs) != manifest["spec_hash"]:
         raise ValueError("scoring version or data mismatch")
     if args.output.exists():
         raise ValueError("rescore output already exists")

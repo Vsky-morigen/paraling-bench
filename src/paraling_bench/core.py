@@ -78,7 +78,7 @@ def validate_specs(items: list[dict], specs: dict) -> None:
         if len(question_ids) != len(set(question_ids)):
             raise ValueError(item["id"] + ": duplicate JEV question IDs")
 
-def score(item: dict, spec: dict, evidence: dict, judge: dict, *, scoring_version: str = "2.2") -> dict:
+def score(item: dict, spec: dict, evidence: dict, judge: dict, *, scoring_version: str = "2.3") -> dict:
     checks = spec["checks"]
     if spec["requirement_mode"] not in {"required", "optional", "prohibited"}:
         raise ValueError("未知requirement_mode")
@@ -114,11 +114,12 @@ def score(item: dict, spec: dict, evidence: dict, judge: dict, *, scoring_versio
         v = scores.get(name)
         if v is not None and (type(v) not in (int, float) or not math.isfinite(v) or not 0 <= v <= 5):
             raise ValueError("表达完成和恰当性须为0到5的有限数值或null")
-    if scoring_version == "2.2" and scores.get("appropriateness") is None:
+    if scoring_version in {"2.2", "2.3"} and scores.get("appropriateness") is None:
         raise ValueError("恰当性必须给出0到5的有限数值")
     for name in DIMENSIONS:
-        if not judge.get("reasons", {}).get(name):
-            raise ValueError("每个维度须提供理由")
+        reason = judge.get("reasons", {}).get(name)
+        if not reason or (scoring_version == "2.3" and (not isinstance(reason, str) or not reason.strip())):
+            raise ValueError(f"reasons.{name} 须提供非空文本理由")
     core_fail = any(r["verdict"] == "fail" and expected[r["id"]]["kind"] == "core" for r in results)
     if core_fail:
         scores["delivery"] = 0
@@ -126,13 +127,15 @@ def score(item: dict, spec: dict, evidence: dict, judge: dict, *, scoring_versio
         scores["delivery"] = None
     elif any(r["verdict"] == "fail" for r in results) and (scores.get("delivery") is None or not 0 < scores["delivery"] < 5):
         raise ValueError("核心完成但附加要求失败，表达完成须大于0且小于5分")
+    elif scoring_version == "2.3" and scores.get("delivery") is None:
+        raise ValueError("所有检查均为 pass 时，scores.delivery 必须是 0 到 5 的数值，不能为 null")
     cer = character_error_rate(item["script"], evidence["spoken_text"]) if evidence.get("asr_status") == "ok" else None
     scores["content"] = round(5 * max(0, 1 - cer), 6) if cer is not None else None
     judge["reasons"]["content"] = f"CER={cer}; NFKC normalization; punctuation and whitespace excluded"
     refs = judge.get("appropriateness_evidence_ids", [])
     if scores.get("appropriateness") is not None:
         valid_refs = {fid for fid, fact in facts.items() if fact.get("observed") != "unknown"}
-        must_cite = scoring_version != "2.2" or bool(valid_refs)
+        must_cite = scoring_version in {"2.0", "2.1"} or bool(valid_refs)
         if (must_cite and not refs) or any(ref not in valid_refs for ref in refs):
             raise ValueError("恰当性评分须引用可用的声音证据，且不得引用无效证据")
     scores = {k: scores.get(k) for k in DIMENSIONS}

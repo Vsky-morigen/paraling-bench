@@ -30,13 +30,23 @@ class FallbackTests(unittest.TestCase):
 
         self.assertEqual(result["check_results"][3]["evidence_ids"], ["arbitration:both"])
 
-    def test_existing_gemini_vote_is_never_counted_twice(self):
+    def test_single_unknown_with_existing_audio_judge_goes_directly_to_arbitration(self):
         spec = {"feature": "stress", "checks": [{"id": "c"}]}
-        supplement, arbitrate = Mock(), Mock()
-        result = resolve(spec, {"audio_judge": response(("c", "pass"))}, arbitrate, supplement)
-        supplement.assert_not_called()
-        arbitrate.assert_not_called()
-        self.assertEqual(result["check_results"][0]["verdict"], "unknown")
+        for acoustic, audio_judge, decision in (
+            ("unknown", "pass", "fail"),
+            ("pass", "unknown", "pass"),
+            ("unknown", "pass", "unknown"),
+        ):
+            with self.subTest(acoustic=acoustic, audio_judge=audio_judge, decision=decision):
+                supplement = Mock()
+                arbitrate = Mock(return_value=response(("c", decision)))
+                routes = {"acoustic": response(("c", acoustic)), "audio_judge": response(("c", audio_judge))}
+                result = resolve(spec, routes, arbitrate, supplement)
+                supplement.assert_not_called()
+                arbitrate.assert_called_once_with(spec["checks"])
+                check = result["check_results"][0]
+                self.assertEqual(check["verdict"], decision)
+                self.assertEqual(check["evidence_ids"], [] if decision == "unknown" else ["arbitration:c"])
 
     def test_event_modes_and_cry_count(self):
         complex_specs = load(Path("data/checks.json"))

@@ -4,6 +4,7 @@ import math
 import subprocess
 import uuid
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from .audio import read_wav
 from .core import normalize_text
@@ -49,16 +50,17 @@ def align_mfa(settings: dict, request: dict) -> dict:
     prefix = settings.get('command', ['mfa'])
     if not isinstance(prefix, list) or not prefix or not all(isinstance(x, str) for x in prefix):
         raise ValueError('align.command must be a nonempty argument list')
-    command = prefix + ['align_one', str(audio), str(transcript), settings['dictionary'],
-                        settings['acoustic_model'], str(output), '--output_format', 'json',
-                        '--no_tokenization', '--temporary_directory', str(work / 'temp')]
-    (work / 'command.json').write_text(json.dumps(command, ensure_ascii=False), encoding='utf-8')
-    try:
-        result = subprocess.run(command, capture_output=True, text=True, encoding='utf-8',
-                                errors='replace', timeout=settings.get('timeout_s', 600))
-    except (OSError, subprocess.TimeoutExpired) as exc:
-        (work / 'error.txt').write_text(str(exc), encoding='utf-8')
-        raise RuntimeError(f"{request.get('id', 'unknown')} align/MFA failed; artifacts: {work}: {exc}") from exc
+    with TemporaryDirectory(prefix='temp-', dir=work) as scratch:
+        command = prefix + ['align_one', str(audio), str(transcript), settings['dictionary'],
+                            settings['acoustic_model'], str(output), '--output_format', 'json',
+                            '--no_tokenization', '--temporary_directory', scratch]
+        (work / 'command.json').write_text(json.dumps(command, ensure_ascii=False), encoding='utf-8')
+        try:
+            result = subprocess.run(command, capture_output=True, text=True, encoding='utf-8',
+                                    errors='replace', timeout=settings.get('timeout_s', 600))
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            (work / 'error.txt').write_text(str(exc), encoding='utf-8')
+            raise RuntimeError(f"{request.get('id', 'unknown')} align/MFA failed; artifacts: {work}: {exc}") from exc
     (work / 'stdout.log').write_text(result.stdout, encoding='utf-8')
     (work / 'stderr.log').write_text(result.stderr, encoding='utf-8')
     if result.returncode or not output.is_file():

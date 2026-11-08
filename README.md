@@ -33,7 +33,7 @@ set "GEMINI_API_KEY=你的 Gemini API 密钥"
 | `judge` | OpenAI 文本裁判 |
 | `jev.url` | DuplexJev 服务根地址，程序追加 `/v1/decide`。服务需要 Bearer Token 时，在 `jev.api_key_env` 填入对应的环境变量名。 |
 | `audio_judge` | Gemini 音频判断（`gemini-3.5-flash-lite`）。按题型提供一路证据，也可在只有一路有效证据时补判。 |
-| `arbitration` | OpenAI 音频仲裁（`gpt-audio-1.5`）。两路有效证据冲突或两路均为未知时独立听判。 |
+| `arbitration` | OpenAI 音频仲裁（`gpt-audio-1.5`）。两路有效证据冲突、两路均为未知，或原始两路已包含音频裁判且一路未知时独立听判。 |
 
 填写 `run.example.json` 的 `model_id` 和 `versions`，记录被测模型和各评测服务的实际版本。音频判断和最终仲裁使用不同模型。评测会向配置中的外部服务发送音频或转写。
 

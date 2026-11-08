@@ -93,7 +93,7 @@ def resolve(spec: dict, responses: dict, arbitrate: Callable[[list[dict]], dict]
         if a != "unknown" and b != "unknown" and a != b:
             pending_arbitration.append(check)
             result["resolution"] = "conflict"
-        elif a == b == "unknown":
+        elif a == b == "unknown" or ("audio_judge" in sources and "unknown" in effective):
             pending_arbitration.append(check)
     if pending_arbitration and arbitrate:
         arbitration = validate_route(arbitrate(pending_arbitration), pending_arbitration, "arbitration")

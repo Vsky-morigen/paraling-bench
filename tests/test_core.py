@@ -12,6 +12,17 @@ class ScoringTests(unittest.TestCase):
         self.evidence["check_results"] = copy.deepcopy(self.judge["check_results"])
         return score(self.item,self.spec,self.evidence,self.judge)
     def test_full(self): self.assertEqual(self.result()["total_score"],100)
+    def test_all_pass_requires_delivery_score_and_reason(self):
+        self.judge["scores"]["delivery"] = None
+        with self.assertRaisesRegex(ValueError, "scores.delivery"):
+            self.result()
+        old_result = score(self.item, self.spec, self.evidence, self.judge, scoring_version="2.2")
+        self.assertIsNone(old_result["scores"]["delivery"])
+        self.judge["scores"]["delivery"] = 5
+        self.judge["reasons"]["delivery"] = " "
+        with self.assertRaisesRegex(ValueError, "reasons.delivery"):
+            self.result()
+
     def test_unknown_not_zero(self):
         self.judge["check_results"][1].update(verdict="unknown",evidence_ids=[])
         self.assertIsNone(self.result()["total_score"])
