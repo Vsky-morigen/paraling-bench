@@ -15,18 +15,20 @@ def response(*pairs):
 
 
 class FallbackTests(unittest.TestCase):
-    def test_only_one_missing_is_supplemented_and_only_conflict_is_arbitrated(self):
+    def test_one_missing_is_supplemented_and_conflict_or_two_unknowns_are_arbitrated(self):
         checks = [{"id": cid} for cid in ("same", "missing", "different", "both")]
         spec = {"feature": "laugh", "checks": checks}
         jev = response(("same", "pass"), ("missing", "pass"), ("different", "unknown"), ("both", "unknown"))
         ast = response(("same", "pass"), ("missing", "unknown"), ("different", "pass"), ("both", "unknown"))
         supplement = Mock(return_value=response(("missing", "pass"), ("different", "fail")))
-        arbitrate = Mock(return_value=response(("different", "fail")))
+        arbitrate = Mock(return_value=response(("different", "fail"), ("both", "pass")))
         result = resolve(spec, {"jev": jev, "events": ast}, arbitrate, supplement)
         supplement.assert_called_once_with(checks[1:3])
-        arbitrate.assert_called_once_with([checks[2]])
-        self.assertEqual([r["verdict"] for r in result["check_results"]], ["pass", "pass", "fail", "unknown"])
+        arbitrate.assert_called_once_with(checks[2:])
+        self.assertEqual([r["verdict"] for r in result["check_results"]], ["pass", "pass", "fail", "pass"])
         self.assertEqual(result["check_results"][1]["evidence_ids"], ["jev:missing", "audio_judge:missing"])
+
+        self.assertEqual(result["check_results"][3]["evidence_ids"], ["arbitration:both"])
 
     def test_existing_gemini_vote_is_never_counted_twice(self):
         spec = {"feature": "stress", "checks": [{"id": "c"}]}

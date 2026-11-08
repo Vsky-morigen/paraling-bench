@@ -65,7 +65,7 @@ def resolve(spec: dict, responses: dict, arbitrate: Callable[[list[dict]], dict]
     supplemental = validate_route(supplement(missing), missing, "audio_judge") if (
         missing and supplement and "audio_judge" not in sources
     ) else {}
-    facts, checks, conflicts = [], [], []
+    facts, checks, pending_arbitration = [], [], []
     for check in spec["checks"]:
         cid = check["id"]
         pair = [(source, rows[source][cid]) for source in sources]
@@ -91,10 +91,12 @@ def resolve(spec: dict, responses: dict, arbitrate: Callable[[list[dict]], dict]
                   "resolution": "consensus" if verdict != "unknown" else "insufficient"}
         checks.append(result)
         if a != "unknown" and b != "unknown" and a != b:
-            conflicts.append(check)
+            pending_arbitration.append(check)
             result["resolution"] = "conflict"
-    if conflicts and arbitrate:
-        arbitration = validate_route(arbitrate(conflicts), conflicts, "arbitration")
+        elif a == b == "unknown":
+            pending_arbitration.append(check)
+    if pending_arbitration and arbitrate:
+        arbitration = validate_route(arbitrate(pending_arbitration), pending_arbitration, "arbitration")
         for result in checks:
             if result["id"] not in arbitration:
                 continue

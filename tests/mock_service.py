@@ -14,7 +14,7 @@ elif kind=="align":response={"status":"ok","chars":[]}
 elif kind=="judge":
     facts=request["evidence"]["facts"]
     refs=[f["id"] for f in facts if f["observed"]!="unknown"]
-    response={"id":request["item"]["id"],"check_results":request["evidence"]["check_results"],"scores":{"content":None,"delivery":5,"appropriateness":5 if refs else None},"appropriateness_evidence_ids":refs,"reasons":dict.fromkeys(["content","delivery","appropriateness"],"SIMULATION ONLY")}
+    response={"id":request["item"]["id"],"check_results":request["evidence"]["check_results"],"scores":{"content":None,"delivery":5,"appropriateness":5 if refs else 2.5},"appropriateness_evidence_ids":refs,"reasons":dict.fromkeys(["content","delivery","appropriateness"],"SIMULATION ONLY")}
 else:
     response={"status":"ok","check_results":[{"id":c["id"],"verdict":"pass","reason":"SIMULATION ONLY"} for c in request["evaluation_spec"]["checks"]]}
 print(json.dumps(response))

@@ -33,7 +33,7 @@ set "GEMINI_API_KEY=你的 Gemini API 密钥"
 | `judge` | OpenAI 文本裁判 |
 | `jev.url` | DuplexJev 服务根地址，程序追加 `/v1/decide`。服务需要 Bearer Token 时，在 `jev.api_key_env` 填入对应的环境变量名。 |
 | `audio_judge` | Gemini 音频判断（`gemini-3.5-flash-lite`）。按题型提供一路证据，也可在只有一路有效证据时补判。 |
-| `arbitration` | OpenAI 音频仲裁（`gpt-audio-1.5`）。两路有效证据冲突时独立听判。 |
+| `arbitration` | OpenAI 音频仲裁（`gpt-audio-1.5`）。两路有效证据冲突或两路均为未知时独立听判。 |
 
 填写 `run.example.json` 的 `model_id` 和 `versions`，记录被测模型和各评测服务的实际版本。音频判断和最终仲裁使用不同模型。评测会向配置中的外部服务发送音频或转写。
 
@@ -69,6 +69,7 @@ python -m paraling_bench.cli run --dataset data/questions.jsonl --specs data/che
 
 - `results.jsonl` 保存逐题评分。各题目录保存音频、转写、评测证据和错误。
 - `summary.json` 汇总整体、类别和任务模式的分数与覆盖率。内容分按字错误率计算。内容、表达完成度、恰当性各 0–5 分，三项等权换算为百分制。
+- 恰当性必须给出数值分。证据不足时，裁判根据可用转写、情景和证据评分，并说明局限。所有信息均不足时给 2.5 分。
 - 生成失败、拒答、超时、全静音及损坏的 WAV 计 0 分。评测服务故障或证据不足时，相关分数留空。存在未完成项时，`total_mean` 留空，`available_mean` 只统计已完成项，请同时查看 `coverage` 和 `incomplete`。
 
 使用已保存的证据重新汇总分数：

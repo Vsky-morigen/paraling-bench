@@ -47,6 +47,17 @@ class ScoringTests(unittest.TestCase):
                     self.judge["scores"][name] = value
                     with self.assertRaises(ValueError): self.result()
 
+    def test_appropriateness_requires_numeric_score_without_audio_evidence(self):
+        self.evidence["facts"] = []
+        for check in self.judge["check_results"]:
+            check.update(verdict="unknown", evidence_ids=[])
+        self.judge["appropriateness_evidence_ids"] = []
+        self.judge["scores"]["appropriateness"] = None
+        with self.assertRaisesRegex(ValueError, "恰当性必须"):
+            self.result()
+        self.judge["scores"]["appropriateness"] = 2.5
+        self.assertEqual(self.result()["scores"]["appropriateness"], 2.5)
+
     def test_fabricated_evidence(self):
         self.judge["check_results"][0]["evidence_ids"]=["fake"]
         with self.assertRaises(ValueError): self.result()
