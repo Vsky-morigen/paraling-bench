@@ -86,7 +86,6 @@ python -m paraling_bench.cli score --dataset data/questions.jsonl --specs data/c
 | `qwen-audio-3.1-tts-next` | 复杂版 | 65.80 | 49/50（98%） |
 | `gpt-4o-mini-tts` | 简易版 | 67.19 | 50/50（100%） |
 | `gpt-4o-mini-tts` | 复杂版 | 64.03 | 50/50（100%） |
-| Qwen | 复杂版 | 79.3 | 50/50（100%） |
 
 ## 校准结果
 
