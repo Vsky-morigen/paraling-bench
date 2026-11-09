@@ -8,7 +8,7 @@ import subprocess
 import sys
 import wave
 from .audio import InvalidAudio, validate_audio
-from .evidence import resolve, routes_for, specs_for_mode, unknown_route, validate_route
+from .evidence import inspect_route, resolve, routes_for, specs_for_mode, unknown_route, validate_route
 from pathlib import Path
 from .core import DIMENSIONS, digest, load, read_dataset, save, score, summarize, validate_bank, validate_specs
 
@@ -55,9 +55,65 @@ def judge_and_score(folder: Path, config: dict, item: dict, spec: dict, evidence
                 return score(item, spec, evidence, judge)
             except (ValueError, KeyError, TypeError) as exc:
                 payload["validation_error"] = str(exc)
-                error.update(error_type=type(exc).__name__, reason="score validation failed")
+                error.update(error_type=type(exc).__name__, reason="score validation failed", detail=str(exc))
         save(folder / f"judge_error_{attempt}.json", error)
     raise RuntimeError("文本裁判最多调用 5 次，均未获得有效评分")
+
+
+def arbitrate_checks(folder: Path, config: dict, payload: dict) -> dict:
+    checks = payload["evaluation_spec"]["checks"]
+    missing = unknown_route(checks, "no valid arbitration response")["check_results"]
+    if "arbitration" not in config:
+        return {"status": "unknown", "check_results": missing}
+
+    request = dict(payload)
+    accepted = {}
+    for attempt in range(3):
+        try:
+            response = call(config["arbitration"], request, config.get("timeout_s", 180))
+        except (ValueError, RuntimeError, subprocess.TimeoutExpired, OSError) as exc:
+            detail = "timeout" if isinstance(exc, subprocess.TimeoutExpired) else type(exc).__name__
+        else:
+            save(folder / f"arbitration_attempt_{attempt + 1}.json", response)
+            rows, errors = inspect_route(response, checks, "arbitration")
+            reported = response.get("validation_error")
+            if isinstance(reported, str) and reported:
+                errors.append(reported)
+            for cid, row in rows.items():
+                if cid not in accepted or accepted[cid]["verdict"] == "unknown":
+                    accepted[cid] = row
+            if not errors:
+                break
+            detail = " / ".join(errors)
+        save(folder / f"arbitration_error_{attempt}.json",
+             {"id": folder.name, "stage": "arbitration", "attempt": attempt + 1, "reason": detail})
+        request["validation_error"] = detail
+
+    result = {"status": "ok" if len(accepted) == len(checks) else "partial",
+              "check_results": [accepted.get(row["id"], row) for row in missing]}
+    save(folder / "arbitration_raw.json", result)
+    return result
+
+
+def evaluator_metadata(config: dict) -> dict:
+    roles = ("generate", "audio_judge", "arbitration")
+    providers = config.get("providers", {})
+    versions = config["versions"]
+    metadata = {
+        role: {
+            "model": config["model_id"] if role == "generate" else versions.get(role),
+            "provider": providers.get(role),
+        }
+        for role in roles
+    }
+    if config.get("audio_judge") and config["audio_judge"] == config.get("arbitration"):
+        metadata["audio_judge"]["provider"] = metadata["arbitration"]["provider"]
+    overlap = [
+        [left, right] for i, left in enumerate(roles) for right in roles[i + 1:]
+        if metadata[left]["provider"] and metadata[right]["provider"]
+        and metadata[left]["provider"].strip().casefold() == metadata[right]["provider"].strip().casefold()
+    ]
+    return {"roles": metadata, "same_provider_roles": overlap}
 
 
 def run(args: argparse.Namespace) -> None:
@@ -76,6 +132,7 @@ def run(args: argparse.Namespace) -> None:
     config["referenced_settings_hashes"] = {arg: digest(load(Path(arg))) for name in ("generate", "asr", "jev", "judge", "align", "acoustic", "events", "audio_judge", "arbitration") for arg in config.get(name, []) if arg.endswith(".json") and Path(arg).is_file()}
     manifest = {"dataset_hash": digest(items), "spec_hash": digest(specs), "config_hash": digest(config), "model_id": config["model_id"], "versions": config["versions"], "ids": [x["id"] for x in selected], "code_version": "0.2.1", "scoring_version": "2.3", "source_hash": digest({p.name:p.read_text(encoding="utf-8") for p in Path(__file__).parent.glob("*.py")}), "simulation": config.get("simulation", False)}
     manifest["evaluation_mode"] = mode
+    manifest["evaluator_metadata"] = evaluator_metadata(config)
     args.output.mkdir(parents=True, exist_ok=True)
     manifest_path = args.output / "manifest.json"
     if manifest_path.exists():
@@ -95,6 +152,7 @@ def run(args: argparse.Namespace) -> None:
             if audio_path.exists() and hashlib.sha256(audio_path.read_bytes()).hexdigest() != load(folder / "audio_meta.json")["sha256"]:
                 raise ValueError("缓存音频已改变")
             results.append(load(result_path)); continue
+        evidence = None
         try:
             audio = folder / "audio.wav"
             request = {"id": item["id"], "instruction": PROMPT, **{k:item[k] for k in ("scenario","script","direction")}, "parameters": config.get("generation_parameters", {})}
@@ -145,7 +203,7 @@ def run(args: argparse.Namespace) -> None:
                 return identified["audio_judge"]
 
             def arbitrate(checks: list[dict]) -> dict:
-                return observe("arbitration", {**payload, "evaluation_spec": {**spec, "checks": checks}})
+                return arbitrate_checks(folder, config, {**payload, "evaluation_spec": {**spec, "checks": checks}})
 
             evidence = {**resolve(spec, identified, arbitrate, supplemental), "asr_status": identified["asr"].get("status"),
                         "spoken_text": identified["asr"].get("spoken_text"), "raw_routes": identified}
@@ -157,6 +215,8 @@ def run(args: argparse.Namespace) -> None:
                       "scoring_version": "2.3", "error": str(e)}
         except (OSError, ValueError, KeyError, TypeError, RuntimeError, wave.Error) as e:
             result = {"id":item["id"], "category":item["category"], "mode":specs[item["id"]]["requirement_mode"], "status":"evaluator_error", "scores":dict.fromkeys(DIMENSIONS,None), "total_score":None, "error":str(e)}
+        if evidence is not None:
+            result.setdefault("check_results", evidence["check_results"])
         save(result_path,result)
         results.append(result)
     save(args.output / "summary.json",summarize(results))

@@ -188,7 +188,7 @@ def execute(kind: str, settings: dict, request: dict) -> dict:
     raise ValueError("未知适配器")
 
 def audio_judge(settings: dict, request: dict, *, arbitration: bool = False) -> dict:
-    from .evidence import EVENT_FEATURES, validate_route
+    from .evidence import EVENT_FEATURES, inspect_route, match_rows, validate_route
     spec = request["evaluation_spec"]
     checks = spec["checks"]
     ids = {check["id"] for check in checks}
@@ -212,6 +212,9 @@ def audio_judge(settings: dict, request: dict, *, arbitration: bool = False) -> 
                    "checks 中的每项返回 check_results，每条含 id、verdict、reason。"
                    "verdict 只能为 pass、fail、unknown。音频证据不清楚时选无法确定或返回 unknown。"
                    "reason 写出实际听到的声音及其台词位置。有无、次数和位置分别判断。")
+    instruction += " 必须原样复制每个 id，每个 id 恰好返回一次，不要改写或新增。"
+    if arbitration and request.get("validation_error"):
+        content["previous_response_error"] = request["validation_error"]
     prompt = instruction + json.dumps(content, ensure_ascii=False)
     audio = base64.b64encode(Path(request["audio_path"]).read_bytes()).decode()
     if arbitration:
@@ -240,29 +243,49 @@ def audio_judge(settings: dict, request: dict, *, arbitration: bool = False) -> 
     answer_text = answer_text.strip()
     if answer_text.startswith("```") and answer_text.endswith("```"):
         answer_text = answer_text.split("\n", 1)[1][:-3].strip()
-    parsed = json.loads(answer_text)
-    answers = parsed.get("answers", [])
-    by_id = {row["id"]: row for row in answers}
-    if len(by_id) != len(answers) or set(by_id) != set(mappings):
-        raise ValueError("audio judge returned unexpected question IDs")
-    validate_route(parsed, direct, "audio judge")
-    rows = list(parsed.get("check_results", []))
+    try:
+        parsed = json.loads(answer_text)
+        if not isinstance(parsed, dict):
+            raise ValueError("audio judge response must be an object")
+    except ValueError:
+        if not arbitration:
+            raise
+        return {"status": "partial", "check_results": [], "raw": raw, "model": settings["model"],
+                "validation_error": "arbitration response must be a valid JSON object"}
+    by_id, errors = match_rows(parsed.get("answers", []), set(mappings), "answers")
+    direct_rows, direct_errors = inspect_route(parsed, direct, "check_results")
+    errors.extend(direct_errors)
+    rows = list(direct_rows.values())
     votes = {}
+    unavailable = set()
     for question in questions:
-        answer = by_id[question["id"]]
-        if answer["answer"] not in question["options"] or not answer.get("reason"):
-            raise ValueError("audio judge returned an invalid option")
-        for cid, mapping in mappings[question["id"]].items():
-            votes.setdefault(cid, []).append((mapping.get(answer["answer"], "unknown"), answer))
+        qid = question["id"]
+        answer = by_id.get(qid, {})
+        selected, reason = answer.get("answer"), answer.get("reason")
+        if selected not in question["options"] or not isinstance(reason, str) or not reason.strip():
+            unavailable.update(mappings[qid])
+            if qid in by_id:
+                errors.append(f"answers: {qid} invalid option/reason")
+            continue
+        for cid, mapping in mappings[qid].items():
+            votes.setdefault(cid, []).append((mapping.get(selected, "unknown"), answer))
     for cid, entries in votes.items():
+        if cid in unavailable:
+            continue
         decisions = {verdict for verdict, _ in entries}
         verdict = "unknown" if "unknown" in decisions else "fail" if "fail" in decisions else "pass"
         rows.append({"id": cid, "verdict": verdict,
                      "reason": " / ".join(answer["reason"] for _, answer in entries),
                      "answers": [answer for _, answer in entries]})
     parsed["check_results"] = rows
-    validate_route(parsed, checks, "audio judge")
-    return {**parsed, "status": "ok", "raw": raw, "model": settings["model"]}
+    if errors:
+        if not arbitration:
+            raise ValueError(" / ".join(errors))
+        parsed["validation_error"] = " / ".join(errors)
+    else:
+        parsed.pop("validation_error", None)
+        validate_route(parsed, checks, "audio judge")
+    return {**parsed, "status": "partial" if errors else "ok", "raw": raw, "model": settings["model"]}
 
 
 def main() -> None:

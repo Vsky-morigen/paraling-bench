@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 from paraling_bench.adapters import execute
+from paraling_bench.cli import arbitrate_checks
 from paraling_bench.core import load
 from paraling_bench.evidence import resolve, specs_for_mode
 
@@ -29,6 +30,8 @@ class FallbackTests(unittest.TestCase):
         self.assertEqual(result["check_results"][1]["evidence_ids"], ["jev:missing", "audio_judge:missing"])
 
         self.assertEqual(result["check_results"][3]["evidence_ids"], ["arbitration:both"])
+        self.assertEqual([row.get("arbitration_trigger") for row in result["check_results"]],
+                         [None, None, "conflict", "insufficient_evidence"])
 
     def test_single_unknown_with_existing_audio_judge_goes_directly_to_arbitration(self):
         spec = {"feature": "stress", "checks": [{"id": "c"}]}
@@ -47,6 +50,26 @@ class FallbackTests(unittest.TestCase):
                 check = result["check_results"][0]
                 self.assertEqual(check["verdict"], decision)
                 self.assertEqual(check["evidence_ids"], [] if decision == "unknown" else ["arbitration:c"])
+
+    def test_arbitration_retries_invalid_ids_and_keeps_unambiguous_results(self):
+        checks = [{"id": cid} for cid in ("Q21.core", "Q21.position", "Q21.count")]
+        payload = {"evaluation_spec": {"checks": checks}}
+        bad = response(("Q21.core", "pass"), ("Q21.position", "pass"),
+                       ("Q21.position", "fail"), ("Q22.count", "fail"))
+        correction = response(("Q21.core", "fail"), ("Q21.position", "pass"))
+        requests = []
+
+        def call(_command, request, _timeout):
+            requests.append(dict(request))
+            return bad if len(requests) == 1 else correction
+
+        with tempfile.TemporaryDirectory() as tmp, patch("paraling_bench.cli.call", side_effect=call):
+            result = arbitrate_checks(Path(tmp), {"arbitration": ["mock"]}, payload)
+            self.assertTrue((Path(tmp) / "arbitration_attempt_3.json").exists())
+        self.assertEqual(len(requests), 3)
+        self.assertIn("duplicate=['Q21.position']", requests[1]["validation_error"])
+        self.assertIn("unexpected=['Q22.count']", requests[1]["validation_error"])
+        self.assertEqual([row["verdict"] for row in result["check_results"]], ["pass", "pass", "unknown"])
 
     def test_event_modes_and_cry_count(self):
         complex_specs = load(Path("data/checks.json"))

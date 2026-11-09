@@ -1,4 +1,5 @@
 """Independent per-check evidence and deterministic consensus."""
+import re
 from typing import Callable
 
 VERDICTS = {"pass", "fail", "unknown"}
@@ -37,16 +38,51 @@ def routes_for(spec: dict) -> tuple[str, str]:
     return "jev", "events"
 
 
-def validate_route(response: dict, checks: list[dict], source: str) -> dict:
-    rows = response.get("check_results", [])
-    ids = [r["id"] for r in rows]
-    expected = {c["id"] for c in checks}
-    if len(ids) != len(set(ids)) or set(ids) != expected:
-        raise ValueError(f"{source}: missing/duplicate/unknown check IDs")
+def match_rows(rows: object, expected_ids: set[str], label: str) -> tuple[dict, list[str]]:
+    """Return uniquely matched rows and a diagnostic without echoing arbitrary model text."""
+    if not isinstance(rows, list):
+        return {}, [f"{label}: expected a JSON array"]
+    matched, duplicates = {}, set()
+    unexpected, malformed = set(), 0
     for row in rows:
-        if row.get("verdict") not in VERDICTS or not row.get("reason"):
-            raise ValueError(f"{source}: invalid verdict/reason")
-    return {r["id"]: r for r in rows}
+        if not isinstance(row, dict) or not isinstance(row.get("id"), str):
+            malformed += 1
+            continue
+        cid = row["id"]
+        if cid not in expected_ids:
+            # Only echo short, task-shaped identifiers in diagnostics.
+            unexpected.add(cid if re.fullmatch(r"Q[0-9]{2}(?:[._-][a-zA-Z0-9]{1,16})?", cid) else "<invalid id>")
+        elif cid in matched:
+            duplicates.add(cid)
+        else:
+            matched[cid] = row
+    missing = sorted(expected_ids - matched.keys())
+    for cid in duplicates:
+        del matched[cid]
+    errors = []
+    if missing or duplicates or unexpected or malformed:
+        errors.append(f"{label}: expected={sorted(expected_ids)}, missing={missing}, "
+                      f"duplicate={sorted(duplicates)}, unexpected={sorted(unexpected)}, malformed_rows={malformed}")
+    return matched, errors
+
+
+def inspect_route(response: dict, checks: list[dict], source: str) -> tuple[dict, list[str]]:
+    rows, errors = match_rows(response.get("check_results", []), {c["id"] for c in checks}, source)
+    valid = {}
+    for cid, row in rows.items():
+        verdict, reason = row.get("verdict"), row.get("reason")
+        if isinstance(verdict, str) and verdict in VERDICTS and isinstance(reason, str) and reason.strip():
+            valid[cid] = row
+        else:
+            errors.append(f"{source}: {cid} invalid verdict/reason")
+    return valid, errors
+
+
+def validate_route(response: dict, checks: list[dict], source: str) -> dict:
+    rows, errors = inspect_route(response, checks, source)
+    if errors:
+        raise ValueError(" / ".join(errors))
+    return rows
 
 
 def unknown_route(checks: list[dict], reason: str) -> dict:
@@ -92,9 +128,10 @@ def resolve(spec: dict, responses: dict, arbitrate: Callable[[list[dict]], dict]
         checks.append(result)
         if a != "unknown" and b != "unknown" and a != b:
             pending_arbitration.append(check)
-            result["resolution"] = "conflict"
+            result.update(resolution="conflict", arbitration_trigger="conflict")
         elif a == b == "unknown" or ("audio_judge" in sources and "unknown" in effective):
             pending_arbitration.append(check)
+            result["arbitration_trigger"] = "insufficient_evidence"
     if pending_arbitration and arbitrate:
         arbitration = validate_route(arbitrate(pending_arbitration), pending_arbitration, "arbitration")
         for result in checks:

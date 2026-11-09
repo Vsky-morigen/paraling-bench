@@ -145,7 +145,30 @@ def score(item: dict, spec: dict, evidence: dict, judge: dict, *, scoring_versio
 def summarize(results: list[dict]) -> dict:
     def group(rows: list[dict]) -> dict:
         values = [r["total_score"] for r in rows if r.get("total_score") is not None]
-        return {"expected": len(rows), "complete": len(values), "coverage": len(values)/len(rows) if rows else 0, "total_mean": sum(values)/len(rows) if values and len(values) == len(rows) else None, "available_mean": sum(values)/len(values) if values else None, "denominator": len(rows), "incomplete": len(rows)-len(values), "statuses": dict(Counter(r["status"] for r in rows)), "dimensions": {d: {"valid": len(v := [r["scores"][d] for r in rows if r.get("scores", {}).get(d) is not None]), "mean": sum(v)/len(v) if v else None} for d in DIMENSIONS}}
+        mean = sum(values) / len(values) if values else None
+        coverage = len(values) / len(rows) if rows else 0
+        checks = [check for row in rows for check in row.get("check_results", [])]
+        resolved = [check for check in checks if check["verdict"] != "unknown"]
+        arbitrated = [check for check in resolved if check.get("resolution") == "arbitrated"]
+        return {
+            "expected": len(rows), "complete": len(values), "coverage": coverage,
+            "total_mean": mean if len(values) == len(rows) else None, "available_mean": mean,
+            "provisional_score": {"mean": mean, "complete": len(values), "expected": len(rows),
+                                  "coverage": coverage,
+                                  "missing_ids": [r["id"] for r in rows if r.get("total_score") is None and "id" in r]}
+            if values and len(values) < len(rows) else None,
+            "denominator": len(rows), "incomplete": len(rows) - len(values),
+            "statuses": dict(Counter(r["status"] for r in rows)),
+            "dimensions": {d: {"valid": len(v := [r["scores"][d] for r in rows if r.get("scores", {}).get(d) is not None]),
+                               "mean": sum(v) / len(v) if v else None} for d in DIMENSIONS},
+            "evidence_resolutions": {
+                "recorded_checks": len(checks),
+                "resolved_checks": len(resolved),
+                "arbitrated_checks": len(arbitrated),
+                "arbitrated_share_of_resolved": len(arbitrated) / len(resolved) if resolved else None,
+                "arbitrated_by_trigger": dict(Counter(c.get("arbitration_trigger", "unrecorded") for c in arbitrated)),
+            },
+        }
     return {"overall": group(results), "categories": {c: group([r for r in results if r["category"] == c]) for c in sorted({r["category"] for r in results})}, "modes": {m: group([r for r in results if r.get("mode") == m]) for m in ("required", "optional", "prohibited")}}
 
 

@@ -88,6 +88,11 @@ class ScoringTests(unittest.TestCase):
         with self.assertRaises(ValueError): self.result()
     def test_coverage(self):
         a=self.result(); b=copy.deepcopy(a);b["total_score"]=None;b["status"]="partial"
-        self.assertEqual(summarize([a,b])["overall"]["coverage"],0.5)
+        overall = summarize([a,b])["overall"]
+        self.assertEqual(overall["coverage"], 0.5)
+        self.assertIsNone(overall["total_mean"])
+        self.assertEqual(overall["provisional_score"],
+                         {"mean": 100, "complete": 1, "expected": 2, "coverage": 0.5,
+                          "missing_ids": ["Q40"]})
 
 if __name__=="__main__":unittest.main()

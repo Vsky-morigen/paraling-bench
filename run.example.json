@@ -11,6 +11,10 @@
     "arbitration": "gpt-audio-1.5",
     "generate": "YOUR_MODEL_VERSION"
   },
+  "providers": {
+    "audio_judge": "Google",
+    "arbitration": "OpenAI"
+  },
   "timeout_s": 600,
   "generate": [
     "python",
