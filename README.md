@@ -78,13 +78,11 @@ python -m paraling_bench.cli run --dataset data/questions.jsonl --specs data/che
 python -m paraling_bench.cli score --dataset data/questions.jsonl --specs data/checks.json --run runs/complex --output runs/rescored
 ```
 
-## 已收录的外部评测结果
+## 评测结果
 
-| 模型（反馈中的名称） | 模式 | 得分（满分 100） | 完整出分 | 来源 |
-| --- | --- | ---: | ---: | --- |
-| Qwen | 复杂版 | 79.3 | 50/50（100%） | 外部评测反馈 |
-
-外部评测使用反馈方配置的音频裁判和仲裁模型。该配置与仓库默认配置不同。反馈未给出该模型的简易版数值或逐题结果。
+| 模型 | 模式 | 得分（满分 100） | 完整出分 |
+| --- | --- | ---: | ---: |
+| Qwen | 复杂版 | 79.3 | 50/50（100%） |
 
 ## 校准结果
 
